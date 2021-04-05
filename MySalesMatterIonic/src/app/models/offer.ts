@@ -3,7 +3,7 @@ import { Listing } from "./listing";
 import { User } from "./user";
 import { OfferType } from "../enums/offer-type.enum";
 
-export class Offer {
+export abstract class Offer {
 
     offerId: number | undefined;
     accepted: boolean | undefined;

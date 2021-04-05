@@ -5,8 +5,6 @@ import { catchError } from 'rxjs/operators';
 
 import { SessionService } from './session.service';
 import { LikedItem } from '../models/liked-item';
-import { CreateLikedItemReq } from '../models/create-liked-item-req';
-import { UnlikeItemReq } from '../models/unlike-item-req';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -43,9 +41,7 @@ export class LikedItemService {
   }
 
   createNewLikedItem(listingId: number): Observable<LikedItem> {
-    let createLikedItemReq: CreateLikedItemReq = new CreateLikedItemReq(this.sessionService.getEmail(), this.sessionService.getPassword(), listingId);
-
-    return this.httpClient.put<LikedItem>(this.baseUrl, createLikedItemReq, httpOptions).pipe
+    return this.httpClient.put<LikedItem>(this.baseUrl + "/createNewLikedItem/" + listingId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword(), null, httpOptions).pipe
       (
         catchError(this.handleError)
       );
@@ -54,9 +50,7 @@ export class LikedItemService {
 
 
   unlikeItem(listingId: number): Observable<any> {
-    let unlikeItemReq: UnlikeItemReq = new UnlikeItemReq(this.sessionService.getEmail(), this.sessionService.getPassword(), listingId);
-
-    return this.httpClient.post<any>(this.baseUrl, unlikeItemReq, httpOptions).pipe
+    return this.httpClient.post<any>(this.baseUrl + "/unlikeItem/" + listingId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword(), null, httpOptions).pipe
       (
         catchError(this.handleError)
       );
