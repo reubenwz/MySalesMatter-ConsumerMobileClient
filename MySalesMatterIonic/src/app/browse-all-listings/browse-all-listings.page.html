@@ -1,9 +1,30 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>BrowseAllListings</ion-title>
+    <ion-title>Browse All Listings</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-card>
+
+    <ion-card-content>
+
+      <ion-list>
+        <ion-button expand="full" *ngFor="let listing of listings" (click)="viewListingDetails($event, listing)">
+          <ion-icon slot="start" name="arrow-forward"></ion-icon>
+          {{listing.name}} - {{listing.description}}
+        </ion-button>
+      </ion-list>
+
+    </ion-card-content>
+
+  </ion-card>
+
 </ion-content>
+
+<ion-footer>
+
+  <ion-title>&copy; 2021 IS3106.</ion-title>
+
+</ion-footer>

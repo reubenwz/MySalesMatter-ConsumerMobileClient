@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>View Listing Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+
+    <ion-card-content>
+
+      <div *ngIf="retrieveListingError == true" style="color: red;">
+        Listing ID {{listingId}} does not exist!
+      </div>
+
+      <ion-list *ngIf="retrieveListingError == false && listingToView != null">
+
+        <ion-item>
+          <ion-label><b>Listing ID</b></ion-label>
+          {{listingToView.listingId}}
+        </ion-item>
+
+        <ion-item>
+          <ion-label><b>Username</b></ion-label>
+          {{listingToView.user.name}}
+        </ion-item>
+
+        <ion-item>
+          <ion-label><b>Name</b></ion-label>
+          {{listingToView.name}}
+        </ion-item>
+
+        <ion-item>
+          <ion-label><b>Brand</b></ion-label>
+          {{listingToView.brand}}
+        </ion-item>
+
+        <ion-item>
+          <ion-label><b>Description</b></ion-label>
+          {{listingToView.description}}
+        </ion-item>
+
+        <ion-item>
+          <ion-label><b>Rental Price</b></ion-label>
+          {{listingToView.rentalPrice}}
+        </ion-item>
+
+        <ion-item>
+          <ion-label><b>Sale Price</b></ion-label>
+          {{listingToView.salePrice | currency}}
+        </ion-item>
+
+        <ion-item>
+          <ion-label><b>Location</b></ion-label>
+          {{listingToView.location}}
+        </ion-item>
+
+        <ion-item>
+          <ion-label><b>Category</b></ion-label>
+          {{listingToView.categoryEntity.name}}
+        </ion-item>
+
+        <ion-item>
+          <ion-label><b>Tags</b></ion-label>
+          <ul>
+            <li *ngFor="let tag of listingToView.tags">{{tag.name}}</li>
+          </ul>
+        </ion-item>
+
+      </ion-list>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card style="text-align: center;" *ngIf="retrieveListingError == false && listingToView != null">
+    <ion-card-content>
+      <ion-button *ngIf="rentalAvailability" (click)="createRentalOffer()">
+        <ion-icon slot="start" name="create"></ion-icon>
+        Rent
+      </ion-button>
+      <ion-button *ngIf="forSaleAvailability" (click)="createBuyOffer()">
+        <ion-icon slot="start" name="create"></ion-icon>
+        Buy
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+
+  <ion-title>&copy; 2021 IS3106.</ion-title>
+
+</ion-footer>

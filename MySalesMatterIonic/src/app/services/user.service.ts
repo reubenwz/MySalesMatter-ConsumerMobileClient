@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class UserService {
 
-  baseUrl: string = "/api/LikedItem";
+  baseUrl: string = "/api/User";
 
 
 

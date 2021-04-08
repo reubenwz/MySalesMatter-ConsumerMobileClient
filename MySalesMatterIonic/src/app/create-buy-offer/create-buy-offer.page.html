@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create Buy Offer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #createBuyOfferForm="ngForm" (ngSubmit)="create(createBuyOfferForm)">
+    <ion-card>
+
+      <ion-card-content>
+
+        <div *ngIf="resultSuccess == true" style="color: blue;">
+          {{message}}
+        </div>
+
+        <div *ngIf="resultError == true" style="color: red;">
+          {{message}}
+        </div>
+        <ion-list>
+
+          <ion-item>
+            <ion-label><b>Sale Price</b></ion-label>
+            {{totalPrice}}
+          </ion-item>
+
+        </ion-list>
+
+      </ion-card-content>
+
+    </ion-card>
+
+    <ion-card style="text-align: center;">
+
+      <ion-card-content>
+        <ion-button (click)="clear()">
+          Clear
+        </ion-button>
+        <ion-button type="submit" ion-button block>
+          Create
+        </ion-button>
+      </ion-card-content>
+
+    </ion-card>
+
+  </form>
+</ion-content>
+
+<ion-footer>
+
+  <ion-title>&copy; 2021 IS3106.</ion-title>
+
+</ion-footer>

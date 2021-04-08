@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create Rental Offer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #createRentalOfferForm="ngForm" (ngSubmit)="create(createRentalOfferForm)">
+    <ion-card>
+
+      <ion-card-content>
+
+        <div *ngIf="resultSuccess == true" style="color: blue;">
+          {{message}}
+        </div>
+
+        <div *ngIf="resultError == true" style="color: red;">
+          {{message}}
+        </div>
+
+        <div style="color: red;">
+
+          <div *ngIf="rentalPrice.invalid && (rentalPrice.dirty || rentalPrice.touched || submitted)" class="errorText">
+            <div *ngIf="rentalPrice.errors.required">
+              Rental price is required.
+            </div>
+          </div>
+
+          <div *ngIf="startDate.invalid && (startDate.dirty || startDate.touched || submitted)" class="errorText">
+            <div *ngIf="startDate.errors.required">
+              Start date is required.
+            </div>
+          </div>
+
+          <div *ngIf="endDate.invalid && (endDate.dirty || endDate.touched || submitted)" class="errorText">
+            <div *ngIf="endDate.errors.required">
+              End date is required.
+            </div>
+          </div>
+
+        </div>
+
+        <ion-list>
+
+          <ion-item>
+            <ion-label><b>Rental Price</b></ion-label>
+            <ion-input type="text" id="rentalPrice" name="rentalPrice" [(ngModel)]="newRentalOffer.rentalPrice"
+              required="true" #rentalPrice="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>Start Date</b></ion-label>
+            <ion-input type="date" id="startDate" name="startDate" [(ngModel)]="newRentalOffer.startDate"
+              required="true" #startDate="ngModel">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>End Date</b></ion-label>
+            <ion-input type="date" id="endDate" name="endDate" [(ngModel)]="newRentalOffer.endDate" required="true"
+              #endDate="ngModel"></ion-input>
+          </ion-item>
+
+        </ion-list>
+
+      </ion-card-content>
+
+    </ion-card>
+
+    <ion-card style="text-align: center;">
+
+      <ion-card-content>
+        <ion-button (click)="clear()">
+          Clear
+        </ion-button>
+        <ion-button type="submit" ion-button block>
+          Create
+        </ion-button>
+      </ion-card-content>
+
+    </ion-card>
+
+  </form>
+</ion-content>
+
+<ion-footer>
+
+  <ion-title>&copy; 2021 IS3106.</ion-title>
+
+</ion-footer>

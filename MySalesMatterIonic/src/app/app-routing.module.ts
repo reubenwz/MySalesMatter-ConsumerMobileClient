@@ -10,12 +10,11 @@ const routes: Routes = [
   },
   {
     path: 'index',
-    loadChildren: () => import('./index/index.module').then( m => m.IndexPageModule),
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./index/index.module').then(m => m.IndexPageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'browseAllListings',
@@ -23,21 +22,35 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'reviews-written',
-    loadChildren: () => import('./reviews-written/reviews-written.module').then( m => m.ReviewsWrittenPageModule)
+    path: 'reviewsWritten',
+    loadChildren: () => import('./reviews-written/reviews-written.module').then(m => m.ReviewsWrittenPageModule),
+    canActivate: [AuthGuard]
   },
   {
-    path: 'reviews-received',
-    loadChildren: () => import('./reviews-received/reviews-received.module').then( m => m.ReviewsReceivedPageModule)
+    path: 'reviewsReceived',
+    loadChildren: () => import('./reviews-received/reviews-received.module').then(m => m.ReviewsReceivedPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'access-right-error',
-    loadChildren: () => import('./access-right-error/access-right-error.module').then( m => m.AccessRightErrorPageModule)
+    loadChildren: () => import('./access-right-error/access-right-error.module').then(m => m.AccessRightErrorPageModule)
+  },  {
+    path: 'view-listing-details',
+    loadChildren: () => import('./view-listing-details/view-listing-details.module').then( m => m.ViewListingDetailsPageModule)
+  },
+  {
+    path: 'create-rental-offer',
+    loadChildren: () => import('./create-rental-offer/create-rental-offer.module').then( m => m.CreateRentalOfferPageModule)
+  },
+  {
+    path: 'create-buy-offer',
+    loadChildren: () => import('./create-buy-offer/create-buy-offer.module').then( m => m.CreateBuyOfferPageModule)
   }
+
 ];
 
 @NgModule({
