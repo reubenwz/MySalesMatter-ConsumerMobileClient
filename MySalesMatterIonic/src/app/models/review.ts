@@ -10,11 +10,11 @@ export class Review {
     reviewer: User | undefined;
     listing: Listing | undefined;
 
-    picturePaths: string[] | undefined;
+    picturePaths: string | undefined;
 
 
 
-    constructor(starRating?: number, description?: string, picturePaths?: string[]) {
+    constructor(starRating?: number, description?: string, picturePaths?: string) {
         this.starRating = starRating;
         this.description = description;
         this.picturePaths = picturePaths;

@@ -58,8 +58,8 @@ export class ReviewService {
       );
   }
 
-  updateReview(reviewToUpdate: Review): Observable<any> {
-    let updateReviewReq: UpdateReviewReq = new UpdateReviewReq(this.sessionService.getEmail(), this.sessionService.getPassword(), reviewToUpdate);
+  updateReview(reviewId: number, starRating: number, desc: string, pictPath: string): Observable<any> {
+    let updateReviewReq: UpdateReviewReq = new UpdateReviewReq(this.sessionService.getEmail(), this.sessionService.getPassword(), reviewId, starRating, pictPath, desc);
 
     return this.httpClient.post<any>(this.baseUrl, updateReviewReq, httpOptions).pipe
       (

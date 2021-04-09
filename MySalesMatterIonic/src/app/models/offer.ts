@@ -1,6 +1,7 @@
 import { SalesTransaction } from "./sales-transaction";
 import { Listing } from "./listing";
 import { User } from "./user";
+import { Message } from "./message";
 import { OfferType } from "../enums/offer-type.enum";
 
 export abstract class Offer {
@@ -15,6 +16,8 @@ export abstract class Offer {
     salesTransaction: SalesTransaction | undefined;
     listing: Listing | undefined;
     user: User | undefined;
+
+    message: Message[] | undefined;
 
 
     constructor(totalPrice?: number, offerDate?: Date) {
