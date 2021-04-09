@@ -69,6 +69,10 @@ export class ViewListingDetailsPage implements OnInit {
     this.router.navigate(["createBuyOffer" + this.listingId]);
   }
 
+  viewReviews() {
+    //this.router.navigate(["viewListingReviews" + this.listingId]);
+  }
+
   back() {
     this.router.navigate(["browseAllListings"]);
   }

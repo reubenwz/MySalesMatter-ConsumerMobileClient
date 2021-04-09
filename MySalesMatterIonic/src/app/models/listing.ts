@@ -6,6 +6,7 @@ import { User } from "./user";
 
 export class Listing {
 
+    listingId: number | undefined;
     categoryId: number | undefined;
     name: string | undefined;
     description: string | undefined;
@@ -26,7 +27,8 @@ export class Listing {
     offers: Offer[] | undefined;
     user: User | undefined;
 
-    constructor(name?: string, description?: string, dateListed?: Date, brand?: string, rentalPrice?: number, salePrice?: number, location?: string, rentalAvailability?: boolean, forSaleAvailability?: boolean, picturePath?: string) {
+    constructor(listingId?: number, name?: string, description?: string, dateListed?: Date, brand?: string, rentalPrice?: number, salePrice?: number, location?: string, rentalAvailability?: boolean, forSaleAvailability?: boolean, picturePath?: string) {
+        this.listingId = listingId;
         this.name = name;
         this.description = description;
         this.dateListed = dateListed;

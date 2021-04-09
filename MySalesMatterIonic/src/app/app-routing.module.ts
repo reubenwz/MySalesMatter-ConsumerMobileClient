@@ -18,8 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'browseAllListings',
-    loadChildren: () => import('./browse-all-listings/browse-all-listings.module').then(m => m.BrowseAllListingsPageModule),
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./browse-all-listings/browse-all-listings.module').then(m => m.BrowseAllListingsPageModule)
   },
   {
     path: 'reviewsWritten',
@@ -38,17 +37,34 @@ const routes: Routes = [
   {
     path: 'access-right-error',
     loadChildren: () => import('./access-right-error/access-right-error.module').then(m => m.AccessRightErrorPageModule)
-  },  {
+  },
+  {
     path: 'view-listing-details',
-    loadChildren: () => import('./view-listing-details/view-listing-details.module').then( m => m.ViewListingDetailsPageModule)
+    loadChildren: () => import('./view-listing-details/view-listing-details.module').then(m => m.ViewListingDetailsPageModule)
   },
   {
     path: 'create-rental-offer',
-    loadChildren: () => import('./create-rental-offer/create-rental-offer.module').then( m => m.CreateRentalOfferPageModule)
+    loadChildren: () => import('./create-rental-offer/create-rental-offer.module').then(m => m.CreateRentalOfferPageModule)
   },
   {
     path: 'create-buy-offer',
-    loadChildren: () => import('./create-buy-offer/create-buy-offer.module').then( m => m.CreateBuyOfferPageModule)
+    loadChildren: () => import('./create-buy-offer/create-buy-offer.module').then(m => m.CreateBuyOfferPageModule)
+  },
+  {
+    path: 'view-my-listings',
+    loadChildren: () => import('./view-my-listings/view-my-listings.module').then(m => m.ViewMyListingsPageModule)
+  },
+  {
+    path: 'view-my-liked-items',
+    loadChildren: () => import('./view-my-liked-items/view-my-liked-items.module').then(m => m.ViewMyLikedItemsPageModule)
+  },
+  {
+    path: 'view-my-offers',
+    loadChildren: () => import('./view-my-offers/view-my-offers.module').then(m => m.ViewMyOffersPageModule)
+  },
+  {
+    path: 'view-listing-offers',
+    loadChildren: () => import('./view-listing-offers/view-listing-offers.module').then(m => m.ViewListingOffersPageModule)
   }
 
 ];

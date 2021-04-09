@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>View Listing Offers</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="resultSuccess == true" style="color: blue;">
+    {{message}}
+  </div>
+
+  <div *ngIf="resultError == true" style="color: red;">
+    {{message}}
+  </div>
+  <ion-card>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let offer of offers">
+          <ion-button expand="full">
+            {{offer.offerId}} - {{offer.offerDate}} - {{offer.offerType}} -
+            {{offer.totalPrice}} - {{offer.accepted}}
+          </ion-button>
+          <ion-button (click)="acceptOffer($event, offer)">
+            Accept
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>

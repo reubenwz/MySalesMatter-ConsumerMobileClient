@@ -1,13 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Browse All Listings</ion-title>
-    <br />
+    <ion-title>My Listings</ion-title>
     <ion-searchbar showcancelbutton="" (ionInput)="filterList($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
   <div *ngIf="resultSuccess == true" style="color: blue;">
     {{message}}
   </div>
@@ -15,11 +13,9 @@
   <div *ngIf="resultError == true" style="color: red;">
     {{message}}
   </div>
-
-  <ion-card *ngFor="let listing of filteredList" (click)="viewListingDetails($event, listing)">
+  <ion-card *ngFor="let listing of filtedList" (click)="viewListingDetails($event, listing)">
 
     <ion-card-content>
-
       <ion-card-title>
         {{listing.name}}
       </ion-card-title>
@@ -30,13 +26,17 @@
 
     <ion-row>
       <ion-col>
-        <ion-button *ngIf="listingIsLiked(listing)" (click)="unlike($event, listing)">
-          <ion-icon name="heart"></ion-icon>
-          Unlike
+        <ion-button (click)="updateListing($event, listing)">
+          <ion-icon name="create"></ion-icon>
+          Update
         </ion-button>
-        <ion-button *ngIf="!listingIsLiked(listing) == false" (click)="like($event, listing)">
-          <ion-icon name="heart" isActive="false"></ion-icon>
-          Like
+        <ion-button (click)="deleteListing($event, listing)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </ion-button>
+        <ion-button (click)="viewOffers($event, listing)">
+          <ion-icon name="star"></ion-icon>
+          View Offers
         </ion-button>
       </ion-col>
     </ion-row>
@@ -44,9 +44,3 @@
   </ion-card>
 
 </ion-content>
-
-<ion-footer>
-
-  <ion-title>&copy; 2021 IS3106.</ion-title>
-
-</ion-footer>
