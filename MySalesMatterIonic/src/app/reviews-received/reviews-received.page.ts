@@ -12,11 +12,11 @@ import { logging } from 'selenium-webdriver';
 import { Listing } from '../models/listing';
 
 @Component({
-  selector: 'app-reviews-written',
-  templateUrl: './reviews-written.page.html',
-  styleUrls: ['./reviews-written.page.scss'],
+  selector: 'app-reviews-received',
+  templateUrl: './reviews-received.page.html',
+  styleUrls: ['./reviews-received.page.scss'],
 })
-export class ReviewsWrittenPage implements OnInit {
+export class ReviewsReceivedPage implements OnInit {
 
   reviews: Review[];
   listings: Listing[];
@@ -45,18 +45,18 @@ export class ReviewsWrittenPage implements OnInit {
 	}
 
   refreshReviews(){
-    // this.userService.getUserById(this.userId).subscribe(
-		// 	response => {
-		// 		this.listings = response.listings;
-    //     this.listings.forEach(this.listings.reviews => {
-          
-    //     });
-    //     this.reviews = 
-    //     console.log(this.userId);
-		// 	},
-		// 	error => {
-		// 		console.log('********** ViewAllReviewsPage.ts: ' + error);
-		// 	}
-		// );
+    this.userService.getUserById(this.userId).subscribe(
+			response => {
+				this.listings = response.listings;
+        this.listings.forEach(x => {
+          x.reviews.forEach(y => {
+            this.reviews.push(y);
+          });          
+        });
+			},
+			error => {
+				console.log('********** ViewAllReviewsPage.ts: ' + error);
+			}
+		);
   }
 }
