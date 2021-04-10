@@ -6,7 +6,7 @@
           <ion-list-header>My Sales Matter</ion-list-header>
           <ion-note>Buy & Sell</ion-note>
 
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPagesLogout; let i = index">
             <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
               routerLinkActive="selected">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
@@ -15,6 +15,7 @@
           </ion-menu-toggle>
         </ion-list>
 
+       
 
       </ion-content>
     </ion-menu>
