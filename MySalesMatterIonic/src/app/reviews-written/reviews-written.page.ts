@@ -16,7 +16,7 @@ import { logging } from 'selenium-webdriver';
 })
 export class ReviewsWrittenPage implements OnInit {
 
-  reviews: Review[] | null;
+  reviews: Review[];
   userId: number;
   error: boolean;
   errorMessage: string;
@@ -33,21 +33,22 @@ export class ReviewsWrittenPage implements OnInit {
 
   ngOnInit() {
     this.userId = parseInt(this.activatedRoute.snapshot.paramMap.get('userId'));
-    this.updateModel();
+    this.refreshReviews();
   }
 
   ionViewWillEnter() {
-    this.updateModel();
+    this.refreshReviews();
 	}
 
-  updateModel(){
-    // this.reviewService.getReviewByUserId(this.userId).subscribe(
-		// 	response => {
-		// 		this.reviews = response;
-		// 	},
-		// 	error => {
-		// 		console.log('********** ViewAllReviewsPage.ts: ' + error);
-		// 	}
-		// );
+  refreshReviews(){
+    this.reviewService.getReviewsByUserId(this.userId).subscribe(
+			response => {
+				this.reviews = response;
+        console.log(this.userId);
+			},
+			error => {
+				console.log('********** ViewAllReviewsPage.ts: ' + error);
+			}
+		);
   }
 }

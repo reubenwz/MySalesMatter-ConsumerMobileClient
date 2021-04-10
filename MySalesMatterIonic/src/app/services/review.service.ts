@@ -35,8 +35,8 @@ export class ReviewService {
       );
   }
 
-  getReviewByUserId(userId: number): Observable<Review> {
-    return this.httpClient.get<Review>(this.baseUrl + "/retrieveReviewByUserId/" + userId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
+  getReviewsByUserId(userId: number): Observable<Review[]> {
+    return this.httpClient.get<Review[]>(this.baseUrl + "/retrieveReviewsByUserId/" + userId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
       (
         catchError(this.handleError)
       );
