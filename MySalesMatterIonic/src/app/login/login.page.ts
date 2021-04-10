@@ -35,9 +35,7 @@ export class LoginPage implements OnInit {
 		this.password = "";
 	}
 
-
-
-	userLogin(userLoginForm: NgForm) {
+	userRegister(userLoginForm: NgForm) {
 		this.submitted = true;
 
 		if (userLoginForm.valid) {

@@ -8,7 +8,8 @@ export class AppComponent {
 
 
 	public appPagesLogout = [
-		{ title: 'Login', url: '/login', icon: 'lock-closed' }
+		{ title: 'Login', url: '/login', icon: 'lock-closed' },
+    { title: 'Register', url:'/register', icon:'lock-closed'}
 	];
 
 	public appPagesLogin = [

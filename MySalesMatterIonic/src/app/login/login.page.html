@@ -60,25 +60,27 @@
 				<ion-list>
 
 					<ion-item>
-						<ion-label fixed>Email</ion-label>
+						<ion-label position="floating">Email</ion-label>
 						<ion-input type="text" id="email" name="email" [(ngModel)]="email" minlength="4" maxlength="32"
 							required="true" #inusername="ngModel"></ion-input>
 					</ion-item>
 
 					<ion-item>
-						<ion-label fixed>Password</ion-label>
+						<ion-label position="floating">Password</ion-label>
 						<ion-input type="password" id="password" name="password" [(ngModel)]="password" minlength="4"
 							maxlength="32" required="true" #inpassword="ngModel"></ion-input>
 					</ion-item>
 
-					<ion-item>
-						<ion-button (click)="clear()">
-							Clear
-						</ion-button>
-						<ion-button type="submit" ion-button block>
-							Login
-						</ion-button>
-					</ion-item>
+          <ng-container>
+            <ion-list style="text-align:center">
+              <ion-button color="danger" (click)="clear()">
+                <ion-icon slot="start" name="close"></ion-icon>Clear
+              </ion-button>
+              <ion-button color="tertiary" ion-button block>
+                Login
+              </ion-button>
+            </ion-list>
+            </ng-container>
 
 				</ion-list>
 

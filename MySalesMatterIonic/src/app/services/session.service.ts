@@ -32,7 +32,7 @@ export class SessionService {
   }
 
   setCurrentUser(currentUser: User | null): void
-	{		 
+	{
 		sessionStorage.currentUser = JSON.stringify(currentUser);
 	}
 
@@ -61,4 +61,45 @@ export class SessionService {
   setPassword(password: string | undefined): void {
     sessionStorage.password = password;
   }
+
+  getUsername(): string {
+    return sessionStorage.username;
+  }
+
+  setUsername(username : string | undefined): void {
+    sessionStorage.username = username;
+  }
+
+  getName() : string {
+    return sessionStorage.name;
+  }
+
+  setName(name : string | undefined) : void {
+    sessionStorage.name = name;
+  }
+
+  getPhoneNumber() : string {
+    return sessionStorage.phoneNumber;
+  }
+
+  setPhoneNumber(phoneNumber : string | undefined) : void {
+    sessionStorage.phoneNumber = phoneNumber;
+  }
+
+  getBankAccountNum() : string {
+    return sessionStorage.bankAccountNum;
+  }
+
+  setBankAccountNum(bankAccountNum: string | undefined) : void {
+    sessionStorage.bankAccountNum = bankAccountNum;
+  }
+
+  getBio() : string {
+    return sessionStorage.bio;
+  }
+
+  setBio(bio : string | undefined) : void {
+    sessionStorage.bio = bio;
+  }
+
 }

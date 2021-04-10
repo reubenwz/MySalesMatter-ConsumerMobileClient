@@ -73,7 +73,19 @@ const routes: Routes = [
     path: 'view-listing-offers',
     loadChildren: () => import('./view-listing-offers/view-listing-offers.module').then(m => m.ViewListingOffersPageModule),
     canActivate: [AuthGuard]
+  },  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'delete-listing',
+    loadChildren: () => import('./delete-listing/delete-listing.module').then( m => m.DeleteListingPageModule)
+  },
+  {
+    path: 'update-listing',
+    loadChildren: () => import('./update-listing/update-listing.module').then( m => m.UpdateListingPageModule)
   }
+
 
 ];
 
