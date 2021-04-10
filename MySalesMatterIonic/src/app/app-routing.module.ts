@@ -36,35 +36,43 @@ const routes: Routes = [
   },
   {
     path: 'access-right-error',
-    loadChildren: () => import('./access-right-error/access-right-error.module').then(m => m.AccessRightErrorPageModule)
+    loadChildren: () => import('./access-right-error/access-right-error.module').then(m => m.AccessRightErrorPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'view-listing-details',
-    loadChildren: () => import('./view-listing-details/view-listing-details.module').then(m => m.ViewListingDetailsPageModule)
+    loadChildren: () => import('./view-listing-details/view-listing-details.module').then(m => m.ViewListingDetailsPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'create-rental-offer',
-    loadChildren: () => import('./create-rental-offer/create-rental-offer.module').then(m => m.CreateRentalOfferPageModule)
+    loadChildren: () => import('./create-rental-offer/create-rental-offer.module').then(m => m.CreateRentalOfferPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'create-buy-offer',
-    loadChildren: () => import('./create-buy-offer/create-buy-offer.module').then(m => m.CreateBuyOfferPageModule)
+    loadChildren: () => import('./create-buy-offer/create-buy-offer.module').then(m => m.CreateBuyOfferPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'view-my-listings',
-    loadChildren: () => import('./view-my-listings/view-my-listings.module').then(m => m.ViewMyListingsPageModule)
+    loadChildren: () => import('./view-my-listings/view-my-listings.module').then(m => m.ViewMyListingsPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'view-my-liked-items',
-    loadChildren: () => import('./view-my-liked-items/view-my-liked-items.module').then(m => m.ViewMyLikedItemsPageModule)
+    loadChildren: () => import('./view-my-liked-items/view-my-liked-items.module').then(m => m.ViewMyLikedItemsPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'view-my-offers',
-    loadChildren: () => import('./view-my-offers/view-my-offers.module').then(m => m.ViewMyOffersPageModule)
+    loadChildren: () => import('./view-my-offers/view-my-offers.module').then(m => m.ViewMyOffersPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'view-listing-offers',
-    loadChildren: () => import('./view-listing-offers/view-listing-offers.module').then(m => m.ViewListingOffersPageModule)
+    loadChildren: () => import('./view-listing-offers/view-listing-offers.module').then(m => m.ViewListingOffersPageModule),
+    canActivate: [AuthGuard]
   }
 
 ];

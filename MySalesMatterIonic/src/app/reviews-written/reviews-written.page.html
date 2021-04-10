@@ -11,16 +11,33 @@
 
 <ion-content>
 
-	<ion-card>      
+	<ion-card *ngFor="let review of reviews">      
 	  
       <ion-card-content>
-        
-		<ion-list>
-			<ion-button expand="full" *ngFor="let product of products" (click)="viewProductDetails($event, product)">
-				<ion-icon slot="start" name="arrow-forward"></ion-icon>
-				{{product.skuCode}} - {{product.name}}
-			</ion-button>
-		</ion-list>
+		<ion-item>
+			<ion-label><b>Review ID</b></ion-label>
+			{{review.reviewId}}
+		</ion-item>
+
+		<ion-item>
+			<ion-label><b>Listing</b></ion-label>
+			{{review.listing.name}}
+		</ion-item>
+
+		<ion-item>
+			<ion-label><b>Reviewer</b></ion-label>
+			{{review.reviewer.name}}
+		</ion-item>
+
+		<ion-item>
+			<ion-label><b>Description</b></ion-label>
+			{{review.description}}
+		</ion-item>
+
+		<ion-item>
+			<ion-label><b>Star Rating</b></ion-label>
+			{{review.starRating}}
+		</ion-item>
 		
       </ion-card-content>
 	  
