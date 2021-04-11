@@ -8,13 +8,13 @@ import { UserService } from '../services/user.service';
 import { User } from '../models/user';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+	selector: 'app-login',
+	templateUrl: './login.page.html',
+	styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
 
-  submitted: boolean;
+	submitted: boolean;
 	email: string;
 	password: string;
 	loginError: boolean;
@@ -35,14 +35,14 @@ export class LoginPage implements OnInit {
 		this.password = "";
 	}
 
-	userRegister(userLoginForm: NgForm) {
+	userLogin(userLoginForm: NgForm) {
 		this.submitted = true;
 
 		if (userLoginForm.valid) {
 			this.sessionService.setEmail(this.email);
 			this.sessionService.setPassword(this.password);
 
-			this.userService.userLogin(this.sessionService.getEmail(), this.sessionService.getPassword()).subscribe(
+			this.userService.userLogin(this.email, this.password).subscribe(
 				response => {
 					let user: User = response;
 
