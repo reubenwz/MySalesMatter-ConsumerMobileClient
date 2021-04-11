@@ -24,14 +24,14 @@ export class BrowseAllListingsPage implements OnInit {
     private router: Router,
     private listingService: ListingService,
     private likedItemService: LikedItemService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.refreshListings();
   }
 
   createNewListing() {
-    this.router.navigate(['/createNewListing/']);
+    this.router.navigate(['/create-new-listing/']);
   }
 
   ionViewWillEnter() {
@@ -116,5 +116,4 @@ export class BrowseAllListingsPage implements OnInit {
       }
     );
   }
-
 }

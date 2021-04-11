@@ -12,7 +12,6 @@
       Create New Listing
     </ion-button>
   </ion-toolbar>
-  
 </ion-header>
 
 <ion-content>
@@ -31,7 +30,7 @@
       <p>For Rent: {{listing.rentalAvailabilty}}</p>
       <p>For Sale: {{listing.forSaleAvailability}}</p>
       <p>Username: {{listing.user.name}}</p>
-      <ion-button (click)="createNewListing($event)"></ion-button>
+      <ion-button (click)="createNewListing()"></ion-button>
       <ion-button>
         <ion-icon name="heart"></ion-icon>
         Unlike

@@ -144,12 +144,13 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'createNewListing',
+    path: 'create-new-listing',
     loadChildren: () =>
-      import('./create-new-listing/create-new-listing.module').then(m => m.CreateNewListingPageModule),
-      canActivate: [AuthGuard]
+      import('./create-new-listing/create-new-listing.module').then(
+        (m) => m.CreateNewListingPageModule
+      ),
+    canActivate: [AuthGuard],
   },
-  
 ];
 
 @NgModule({

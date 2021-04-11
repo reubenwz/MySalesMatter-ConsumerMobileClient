@@ -1,46 +1,28 @@
 <ion-header>
-
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-menu-button></ion-menu-button>
-		</ion-buttons>
-		<ion-title>Reviews Received</ion-title>
-	</ion-toolbar>
-  
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Reviews Received</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card *ngFor="let review of reviews">
+    <ion-card-content>
+      <ion-card-title>{{review.reviewId}} </ion-card-title>
 
-	<ion-card *ngFor="let review of reviews">      
-	  
-      <ion-card-content>
-        
-		<ion-card-title>
-			{{review.reviewId}}
-		</ion-card-title>
+      <ion-card-title> {{review.listing.name}} </ion-card-title>
 
-		<ion-card-title>
-			{{review.listing.name}}
-		</ion-card-title>
+      <ion-card-title> {{review.reviewer.name}} </ion-card-title>
 
-		<ion-card-title>
-			{{review.reviewer.name}}
-		</ion-card-title>
+      <ion-card-title> {{review.starRating}} </ion-card-title>
 
-		<ion-card-title>
-			{{review.starRating}}
-		</ion-card-title>
-	
-		  <p>{{review.description}}</p>
-		
-      </ion-card-content>
-	  
-    </ion-card>	
-
+      <p>{{review.description}}</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 
 <ion-footer>
-
-	<ion-title>&copy; 2021 IS3106.</ion-title>
-	
+  <ion-title>&copy; 2021 IS3106.</ion-title>
 </ion-footer>

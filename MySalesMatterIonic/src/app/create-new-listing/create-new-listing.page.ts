@@ -46,6 +46,7 @@ export class CreateNewListingPage implements OnInit {
     this.newListing.name = '';
     this.resultSuccess = false;
     this.resultError = false;
+    this.userId = 1;
   }
 
   ngOnInit() {
@@ -54,7 +55,7 @@ export class CreateNewListingPage implements OnInit {
         this.categories = response;
       },
       (error) => {
-        console.log('********** CreateNewProductComponent.ts: ' + error);
+        console.log('********** CreateNewListingComponent.ts: ' + error);
       }
     );
 
@@ -63,7 +64,7 @@ export class CreateNewListingPage implements OnInit {
         this.tags = response;
       },
       (error) => {
-        console.log('********** CreateNewProductComponent.ts: ' + error);
+        console.log('********** CreateNewListingComponent.ts: ' + error);
       }
     );
   }
@@ -81,7 +82,10 @@ export class CreateNewListingPage implements OnInit {
         longTagIds.push(parseInt(this.tagIds[i]));
       }
     }
-
+    console.log(
+      '********** DEBUG CreateNewListingPage.ts brand : ' +
+        this.newListing.brand
+    );
     this.submitted = true;
 
     if (createListingForm.valid) {
@@ -94,7 +98,7 @@ export class CreateNewListingPage implements OnInit {
         )
         .subscribe(
           (response) => {
-            let newListingId: number = response.listingId;
+            let newListingId: number = response;
             this.resultSuccess = true;
             this.resultError = false;
             this.message =
@@ -110,9 +114,9 @@ export class CreateNewListingPage implements OnInit {
             this.resultError = true;
             this.resultSuccess = false;
             this.message =
-              'An error has occurred while creating the new product: ' + error;
+              'An error has occurred while creating the new Listing: ' + error;
 
-            console.log('********** CreateNewProductPage.ts: ' + error);
+            console.log('********** CreateNewListingPage.ts: ' + error);
           }
         );
     }
