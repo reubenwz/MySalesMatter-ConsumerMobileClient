@@ -11,7 +11,7 @@
 
 <ion-content>
 
-	<ion-card *ngFor="let review of reviews">      
+	<ion-card *ngFor="let review of reviews" (click)="viewReviewDetails($event, review)">      
 	  
       <ion-card-content>
 		<ion-item>

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+
+import { SessionService } from './services/session.service';
+
 @Component({
 	selector: 'app-root',
 	templateUrl: 'app.component.html',
@@ -18,5 +21,5 @@ export class AppComponent {
 		{ title: 'Reviews Received', url: '/reviewsReceived', icon: 'arrow-forward' },
 		{ title: 'Reviews Witten', url: '/reviewsWritten', icon: 'arrow-forward' }
 	];
-	constructor() { }
+	constructor(public sessionService: SessionService) { }
 }

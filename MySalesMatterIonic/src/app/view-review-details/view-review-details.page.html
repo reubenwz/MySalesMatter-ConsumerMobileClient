@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- <ion-button (click)="back()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+      </ion-button> -->
+    </ion-buttons>
+    <ion-title>View Review Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+
+    <ion-card-content>
+
+      <div *ngIf="retrieveReviewError == true" style="color: red;">
+        Review ID {{reviewId}} does not exist!
+      </div>
+
+      <ion-list *ngIf="retrieveReviewError == false && reviewToView != null">
+
+        <ion-item>
+          <ion-label><b>Reviewer</b></ion-label>
+          {{reviewToView.reviewer.name}}
+        </ion-item>
+
+        <ion-item>
+          <ion-label><b>Star Rating</b></ion-label>
+          {{reviewToView.starRating}}
+        </ion-item>
+
+        <ion-item>
+          <ion-label><b>Description</b></ion-label>
+          {{reviewToView.description}}
+        </ion-item>
+      </ion-list>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+
+  <ion-title>&copy; 2021 IS3106.</ion-title>
+
+</ion-footer>

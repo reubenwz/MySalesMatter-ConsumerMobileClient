@@ -21,19 +21,19 @@
 				{{errorMessage}}
 			</div>
 
-			<form #staffLoginForm="ngForm" (ngSubmit)="userLogin(staffLoginForm)">
+			<form #userLoginForm="ngForm" (ngSubmit)="userLogin(userLoginForm)">
 
 				<div style="color: red;">
 
-					<div *ngIf="inusername.invalid && (inusername.dirty || inusername.touched || submitted)"
+					<div *ngIf="inemail.invalid && (inemail.dirty || inemail.touched || submitted)"
 						class="errorText">
-						<div *ngIf="inusername.errors.required">
+						<div *ngIf="inemail.errors.required">
 							Email is required.
 						</div>
-						<div *ngIf="inusername.errors.minlength">
+						<div *ngIf="inemail.errors.minlength">
 							Email is required!
 						</div>
-						<div *ngIf="inusername.errors.maxlength">
+						<div *ngIf="inemail.errors.maxlength">
 							Enter you email!
 						</div>
 					</div>
@@ -62,7 +62,7 @@
 					<ion-item>
 						<ion-label position="floating">Email</ion-label>
 						<ion-input type="text" id="email" name="email" [(ngModel)]="email" minlength="4" maxlength="32"
-							required="true" #inusername="ngModel"></ion-input>
+							required="true" #inemail="ngModel"></ion-input>
 					</ion-item>
 
 					<ion-item>

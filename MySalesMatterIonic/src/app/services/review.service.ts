@@ -42,6 +42,13 @@ export class ReviewService {
       );
   }
 
+  getReviewsReceivedByUserId(userId: number): Observable<Review[]> {
+    return this.httpClient.get<Review[]>(this.baseUrl + "/getReviewsReceivedByUserId/" + userId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
+      (
+        catchError(this.handleError)
+      );
+  }
+
   getReviewByReviewId(reviewId: number): Observable<Review> {
     return this.httpClient.get<Review>(this.baseUrl + "/retrieveReviewByReviewId/" + reviewId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
       (

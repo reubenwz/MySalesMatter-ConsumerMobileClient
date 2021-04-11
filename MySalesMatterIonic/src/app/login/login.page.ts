@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
 			this.sessionService.setEmail(this.email);
 			this.sessionService.setPassword(this.password);
 
-			this.userService.userLogin().subscribe(
+			this.userService.userLogin(this.sessionService.getEmail(), this.sessionService.getPassword()).subscribe(
 				response => {
 					let user: User = response;
 

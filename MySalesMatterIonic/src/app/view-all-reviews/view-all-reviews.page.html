@@ -1,0 +1,42 @@
+<ion-header>
+
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title>Reviews All Reviews</ion-title>
+	</ion-toolbar>
+  
+</ion-header>
+
+<ion-content>
+
+	<ion-card *ngFor="let review of reviews">      
+	  
+      <ion-card-content>
+		<ion-item>
+			<ion-label><b>Reviewed By</b></ion-label>
+			{{review.reviewer.name}}
+		</ion-item>
+
+    <ion-item>
+			<ion-label><b>Star Rating</b></ion-label>
+			{{review.starRating}}
+		</ion-item>
+
+		<ion-item>
+			<ion-label><b>Description</b></ion-label>
+			{{review.description}}
+		</ion-item>
+		
+      </ion-card-content>
+	  
+    </ion-card>	
+
+</ion-content>
+
+<ion-footer>
+
+	<ion-title>&copy; 2021 IS3106.</ion-title>
+	
+</ion-footer>

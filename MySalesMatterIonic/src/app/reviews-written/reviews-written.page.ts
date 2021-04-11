@@ -40,6 +40,10 @@ export class ReviewsWrittenPage implements OnInit {
     this.refreshReviews();
 	}
 
+  viewReviewDetails(event, review) {
+    this.router.navigate(["/viewReviewDetails/" + review.reviewId]);
+  }
+
   refreshReviews(){
     this.reviewService.getReviewsByUserId(this.userId).subscribe(
 			response => {

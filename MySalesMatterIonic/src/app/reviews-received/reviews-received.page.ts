@@ -7,7 +7,6 @@ import { Review } from '../models/review';
 import { ReviewService } from '../services/review.service';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
-import { ListingService } from '../services/listing.service';
 import { logging } from 'selenium-webdriver';
 import { Listing } from '../models/listing';
 
@@ -19,7 +18,6 @@ import { Listing } from '../models/listing';
 export class ReviewsReceivedPage implements OnInit {
 
   reviews: Review[];
-  listings: Listing[];
   userId: number;
   error: boolean;
   errorMessage: string;
@@ -29,8 +27,7 @@ export class ReviewsReceivedPage implements OnInit {
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private reviewService: ReviewService,
-    private userService: UserService,
-    private listingService: ListingService) { 
+    private userService: UserService) { 
     this.error = false;
     this.retriveReviewsError = false;
     }
@@ -45,14 +42,9 @@ export class ReviewsReceivedPage implements OnInit {
 	}
 
   refreshReviews(){
-    this.userService.getUserById(this.userId).subscribe(
+    this.reviewService.getReviewsReceivedByUserId(this.userId).subscribe(
 			response => {
-				this.listings = response.listings;
-        this.listings.forEach(x => {
-          x.reviews.forEach(y => {
-            this.reviews.push(y);
-          });          
-        });
+				this.reviews = response;
 			},
 			error => {
 				console.log('********** ViewAllReviewsPage.ts: ' + error);

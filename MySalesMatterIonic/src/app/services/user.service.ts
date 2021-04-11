@@ -28,8 +28,15 @@ export class UserService {
 
 
 
-  userLogin(): Observable<User> {
-    return this.httpClient.get<User>(this.baseUrl + "/userLogin?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
+  // userLogin(): Observable<User> {
+  //   return this.httpClient.get<User>(this.baseUrl + "/userLogin?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
+  //     (
+  //       catchError(this.handleError)
+  //     );
+  // }
+
+  userLogin(email: string, password: string): Observable<User> {
+    return this.httpClient.get<User>(this.baseUrl + "/userLogin?username=" + email + "&password=" + password).pipe
       (
         catchError(this.handleError)
       );

@@ -84,6 +84,14 @@ const routes: Routes = [
   {
     path: 'update-listing',
     loadChildren: () => import('./update-listing/update-listing.module').then( m => m.UpdateListingPageModule)
+  },
+  {
+    path: 'view-all-reviews',
+    loadChildren: () => import('./view-all-reviews/view-all-reviews.module').then( m => m.ViewAllReviewsPageModule)
+  },
+  {
+    path: 'view-review-details',
+    loadChildren: () => import('./view-review-details/view-review-details.module').then( m => m.ViewReviewDetailsPageModule)
   }
 
 

@@ -70,7 +70,7 @@ export class ViewListingDetailsPage implements OnInit {
   }
 
   viewReviews() {
-    //this.router.navigate(["viewListingReviews" + this.listingId]);
+    //this.router.navigate(["viewAllReviews" + this.listingId]);
   }
 
   back() {
