@@ -146,10 +146,10 @@ const routes: Routes = [
   {
     path: 'createNewListing',
     loadChildren: () =>
-      import('./create-new-listing/create-new-listing.module').then(
-        (m) => m.CreateNewListingPageModule
-      ),
+      import('./create-new-listing/create-new-listing.module').then(m => m.CreateNewListingPageModule),
+      canActivate: [AuthGuard]
   },
+  
 ];
 
 @NgModule({

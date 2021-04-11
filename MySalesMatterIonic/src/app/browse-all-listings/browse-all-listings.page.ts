@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { LikedItem } from '../models/liked-item';
 import { Listing } from '../models/listing';
 import { LikedItemService } from '../services/liked-item.service';
@@ -29,7 +30,7 @@ export class BrowseAllListingsPage implements OnInit {
     this.refreshListings();
   }
 
-  createNewListing(event) {
+  createNewListing() {
     this.router.navigate(['/createNewListing']);
   }
 
@@ -114,5 +115,6 @@ export class BrowseAllListingsPage implements OnInit {
         console.log('********** BrowseAllListingsPage.ts: ' + error);
       }
     );
-  }
+    }
+
 }

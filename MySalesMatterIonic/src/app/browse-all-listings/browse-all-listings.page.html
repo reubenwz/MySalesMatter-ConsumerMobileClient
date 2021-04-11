@@ -7,10 +7,14 @@
       (ionInput)="filterList($event)"
     ></ion-searchbar>
     <br />
+    <ion-button (click)="createNewListing()">
+      <ion-icon slot="start" name="add-outline"></ion-icon>
+      Create New Listing
+    </ion-button>
   </ion-toolbar>
-  <ion-button (click)="createNewListing($event)"></ion-button>
+  
 </ion-header>
-<ion-button (click)="createNewListing($event)"></ion-button>
+
 <ion-content>
   <div *ngIf="resultSuccess == true" style="color: blue">{{message}}</div>
 
