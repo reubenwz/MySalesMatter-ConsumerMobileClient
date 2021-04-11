@@ -5,8 +5,8 @@ import { NgForm } from '@angular/forms';
 
 import { Review } from '../models/review';
 import { ReviewService } from '../services/review.service';
+import { SessionService } from '../services/session.service';
 import { User } from '../models/user';
-import { UserService } from '../services/user.service';
 import { logging } from 'selenium-webdriver';
 import { Listing } from '../models/listing';
 
@@ -27,19 +27,23 @@ export class ReviewsReceivedPage implements OnInit {
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private reviewService: ReviewService,
-    private userService: UserService) { 
+    private sessionService: SessionService) { 
     this.error = false;
     this.retriveReviewsError = false;
     }
 
   ngOnInit() {
-    this.userId = parseInt(this.activatedRoute.snapshot.paramMap.get('userId'));
+    this.userId = this.sessionService.getCurrentUser().userId;
     this.refreshReviews();
   }
 
   ionViewWillEnter() {
     this.refreshReviews();
 	}
+
+  viewReviewDetails(event, review) {
+    this.router.navigate(["/view-review-details/" + review.reviewId]);
+  }
 
   refreshReviews(){
     this.reviewService.getReviewsReceivedByUserId(this.userId).subscribe(

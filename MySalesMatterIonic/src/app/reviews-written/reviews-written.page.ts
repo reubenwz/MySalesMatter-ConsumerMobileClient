@@ -6,7 +6,7 @@ import { NgForm } from '@angular/forms';
 import { Review } from '../models/review';
 import { ReviewService } from '../services/review.service';
 import { User } from '../models/user';
-import { UserService } from '../services/user.service';
+import { SessionService } from '../services/session.service';
 import { logging } from 'selenium-webdriver';
 
 @Component({
@@ -26,13 +26,13 @@ export class ReviewsWrittenPage implements OnInit {
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private reviewService: ReviewService,
-    private userService: UserService) { 
+    private sessionService: SessionService) { 
     this.error = false;
     this.retriveReviewsError = false;
     }
 
   ngOnInit() {
-    this.userId = parseInt(this.activatedRoute.snapshot.paramMap.get('userId'));
+    this.userId = this.sessionService.getCurrentUser().userId;
     this.refreshReviews();
   }
 
@@ -41,7 +41,11 @@ export class ReviewsWrittenPage implements OnInit {
 	}
 
   viewReviewDetails(event, review) {
-    this.router.navigate(["/viewReviewDetails/" + review.reviewId]);
+    this.router.navigate(["/view-review-details/" + review.reviewId]);
+  }
+
+  editReview(event, review) {
+
   }
 
   refreshReviews(){

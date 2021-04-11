@@ -50,9 +50,9 @@ export class ViewReviewDetailsPage implements OnInit {
     );
   }
 
-  // back() {
-  //   this.router.navigate(["browseAllListings"]);
-  // }
+  back() {
+    this.router.navigate(["index"]);
+  }
 
 }
 

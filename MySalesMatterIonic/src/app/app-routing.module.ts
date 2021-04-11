@@ -144,6 +144,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'view-review-details/:reviewId',
+    loadChildren: () =>
+      import('./view-review-details/view-review-details.module').then(
+        (m) => m.ViewReviewDetailsPageModule
+      ),
+  },
+  {
     path: 'create-new-listing',
     loadChildren: () =>
       import('./create-new-listing/create-new-listing.module').then(
