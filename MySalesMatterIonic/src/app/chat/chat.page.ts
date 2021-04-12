@@ -15,7 +15,6 @@ import { Message } from '../models/message';
   styleUrls: ['./chat.page.scss'],
 })
 export class ChatPage implements OnInit {
-
   messages: Message[];
   userId: number;
   error: boolean;
@@ -23,13 +22,15 @@ export class ChatPage implements OnInit {
   resultSuccess: boolean;
   retriveMessagesError: boolean;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private messageService: MessageService,
-    private sessionService: SessionService) { 
+    private sessionService: SessionService
+  ) {
     this.error = false;
     this.retriveMessagesError = false;
-    }
+  }
 
   ngOnInit() {
     this.userId = this.sessionService.getCurrentUser().userId;
@@ -38,17 +39,18 @@ export class ChatPage implements OnInit {
 
   refreshChats() {
     this.messageService.retrieveReceivedMessagesByUserId(this.userId).subscribe(
-			response => {
-				this.messages = response;
-			},
-			error => {
-				console.log('********** ViewAllReviewsPage.ts: ' + error);
-			}
-		);
+      (response) => {
+        this.messages = response;
+      },
+      (error) => {
+        console.log('********** ViewAllReviewsPage.ts: ' + error);
+      }
+    );
   }
 
   replyMessage(event, message) {
-    this.router.navigate(["/replyChat/" + message.offer.offerId]);
+    this.router.navigate([
+      '/replyChat/' + message.sender.userId + '/' + message.offer.offerId,
+    ]);
   }
 }
-

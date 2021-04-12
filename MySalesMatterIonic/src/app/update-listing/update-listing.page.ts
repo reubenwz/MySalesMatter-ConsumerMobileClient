@@ -48,6 +48,11 @@ export class UpdateListingPage implements OnInit {
       this.activatedRoute.snapshot.paramMap.get('listingId')
     );
 
+    console.log(
+      'update listing: ' +
+        parseInt(this.activatedRoute.snapshot.paramMap.get('listingId'))
+    );
+
     this.listingService.getListingByListingId(this.listingId).subscribe(
       (response) => {
         this.listingToUpdate = response;

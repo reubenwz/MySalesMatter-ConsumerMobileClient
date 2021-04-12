@@ -11,9 +11,13 @@
   <form #createMessageForm="ngForm" (ngSubmit)="create(createMessageForm)">
     <ion-card>
       <ion-card-content>
-        <div *ngIf="resultSuccess == true" style="color: blue">{{message}}</div>
+        <div *ngIf="resultSuccess == true" style="color: blue">
+          {{respondMessage}}
+        </div>
 
-        <div *ngIf="resultError == true" style="color: red">{{message}}</div>
+        <div *ngIf="resultError == true" style="color: red">
+          {{respondMessage}}
+        </div>
 
         <div style="color: red">
           <div

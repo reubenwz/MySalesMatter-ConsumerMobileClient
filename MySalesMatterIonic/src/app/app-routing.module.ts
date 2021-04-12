@@ -153,7 +153,14 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'replyChat/:offerId',
+    path: 'replyChat/:userId',
+    loadChildren: () =>
+      import('./reply-chat/reply-chat.module').then(
+        (m) => m.ReplyChatPageModule
+      ),
+  },
+  {
+    path: 'replyChat/:userId/:offerId',
     loadChildren: () =>
       import('./reply-chat/reply-chat.module').then(
         (m) => m.ReplyChatPageModule
@@ -232,11 +239,15 @@ const routes: Routes = [
   },
   {
     path: 'chat',
-    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+    loadChildren: () =>
+      import('./chat/chat.module').then((m) => m.ChatPageModule),
   },
   {
     path: 'reply-chat',
-    loadChildren: () => import('./reply-chat/reply-chat.module').then( m => m.ReplyChatPageModule)
+    loadChildren: () =>
+      import('./reply-chat/reply-chat.module').then(
+        (m) => m.ReplyChatPageModule
+      ),
   },
 ];
 
