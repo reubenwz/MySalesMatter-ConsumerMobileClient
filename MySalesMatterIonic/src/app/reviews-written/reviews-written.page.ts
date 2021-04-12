@@ -52,7 +52,6 @@ export class ReviewsWrittenPage implements OnInit {
     this.reviewService.getReviewsByUserId(this.userId).subscribe(
 			response => {
 				this.reviews = response;
-        console.log(this.userId);
 			},
 			error => {
 				console.log('********** ViewAllReviewsPage.ts: ' + error);

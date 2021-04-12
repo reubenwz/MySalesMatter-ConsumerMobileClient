@@ -17,6 +17,7 @@ export class UpdateListingPage implements OnInit {
   listingId: number;
   listingToUpdate: Listing;
   retrieveListingError: boolean;
+  userId: number;
 
   categoryId: string;
   tagIds: string[];

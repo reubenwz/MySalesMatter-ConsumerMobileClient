@@ -53,6 +53,20 @@ export class ListingService {
       .pipe(catchError(this.handleError));
   }
 
+  getListingByOfferId(offerId: number): Observable<Listing> {
+    return this.httpClient
+      .get<Listing>(
+        this.baseUrl +
+          '/retrieveListingByOfferId/' +
+          offerId +
+          '?username=' +
+          this.sessionService.getEmail() +
+          '&password=' +
+          this.sessionService.getPassword()
+      )
+      .pipe(catchError(this.handleError));
+  }
+
   getListingsByUser(): Observable<Listing[]> {
     return this.httpClient
       .get<Listing[]>(

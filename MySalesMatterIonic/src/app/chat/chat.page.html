@@ -1,0 +1,32 @@
+<ion-header>
+	<ion-toolbar>
+	  <ion-title>My Chats</ion-title>
+	</ion-toolbar>
+  </ion-header>
+  <br />
+  
+  <ion-content>
+	<div *ngIf="resultSuccess == true" style="color: blue">{{message}}</div>
+  
+	<div *ngIf="resultError == true" style="color: red">{{message}}</div>
+  
+	<ion-card *ngFor="let m of messages">
+	  <ion-card-content>
+		<ion-card-title>{{m.message}}</ion-card-title>
+		<br />
+    <p>Listing: {{m.offer.listing.name}}</p>
+		<p>Sender: {{m.sender.name}}</p>
+		<p>Sent Date: {{m.sentDate}}</p>
+    <br />
+		<ion-button (click)="replyMessage($event, m)">
+			<ion-icon name="chatbox-outline"></ion-icon>
+			Reply
+		</ion-button>
+	  </ion-card-content>
+	</ion-card>
+  </ion-content>
+  
+  <ion-footer>
+	<ion-title>&copy; 2021 IS3106.</ion-title>
+  </ion-footer>
+  

@@ -153,6 +153,20 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'replyChat/:offerId',
+    loadChildren: () =>
+      import('./reply-chat/reply-chat.module').then(
+        (m) => m.ReplyChatPageModule
+      ),
+  },
+  {
+    path: 'replyChat',
+    loadChildren: () =>
+      import('./reply-chat/reply-chat.module').then(
+        (m) => m.ReplyChatPageModule
+      ),
+  },
+  {
     path: 'viewAllReviews',
     loadChildren: () =>
       import('./view-all-reviews/view-all-reviews.module').then(
@@ -215,6 +229,14 @@ const routes: Routes = [
       import(
         './view-all-loans-and-purchase/view-all-loans-and-purchase.module'
       ).then((m) => m.ViewAllLoansAndPurchasePageModule),
+  },
+  {
+    path: 'chat',
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+  },
+  {
+    path: 'reply-chat',
+    loadChildren: () => import('./reply-chat/reply-chat.module').then( m => m.ReplyChatPageModule)
   },
 ];
 

@@ -7,6 +7,10 @@ import { SessionService } from './session.service';
 import { Message } from '../models/message';
 import { CreateMessageReq } from '../models/create-message-req';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,23 +28,20 @@ export class MessageService {
         );
     }
 
-    retrieveReceivedMessageSByUserId(userId: number): Observable<Message> {
-      return this.httpClient.get<Message>(this.baseUrl + "/retrieveReceivedMessageSByUserId/" + userId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
+    retrieveReceivedMessagesByUserId(userId: number): Observable<Message[]> {
+      return this.httpClient.get<Message[]>(this.baseUrl + "/retrieveReceivedMessagesByUserId/" + userId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
         (
           catchError(this.handleError)
         );
     }
 
-
-  //   addMessage(message: string, offerId: number, senderId: number, date: Date): Observable<Message> {
-  //     let createMessageReq: CreateMessageReq = new CreateMessageReq(this.sessionService.getEmail(), this.sessionService.getPassword(), message, offerId, senderId, date);
-  
-  //     return this.httpClient.put<Message>(this.baseUrl, createReviewReq, httpOptions).pipe
-  //     (
-  //       catchError(this.handleError)
-  //     );
-  // }
-
+    addMessage(message: Message, offerId: number): Observable<Message> {
+      let createMessageReq: CreateMessageReq = new CreateMessageReq(this.sessionService.getEmail(), this.sessionService.getPassword(), message.message, offerId, this.sessionService.getCurrentUser().userId, new Date());
+      return this.httpClient.put<Message>(this.baseUrl + "/addMessage", createMessageReq, httpOptions).pipe
+        (
+          catchError(this.handleError)
+        );
+    }
 
     private handleError(error: HttpErrorResponse) {
       let errorMessage: string = "";
@@ -56,12 +57,5 @@ export class MessageService {
   
       return throwError(errorMessage);
     }
-}
-function createReviewReq<T>(baseUrl: string, createReviewReq: any, httpOptions: any) {
-  throw new Error('Function not implemented.');
-}
-
-function httpOptions<T>(baseUrl: string, createReviewReq: <T>(baseUrl: string, createReviewReq: any, httpOptions: any) => void, httpOptions: any) {
-  throw new Error('Function not implemented.');
 }
 

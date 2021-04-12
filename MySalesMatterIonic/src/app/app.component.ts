@@ -13,23 +13,26 @@ export class AppComponent {
     { title: 'Register', url: '/register', icon: 'lock-closed' },
   ];
 
-  public appPagesLogin = [
+  public appPagesLoginGeneral = [
     { title: 'Logout', url: '/login', icon: 'exit' },
-    { title: 'Home', url: '/browseAllListings', icon: 'home' },
-    {
-      title: 'My Listings',
-      url: '/viewMyListings',
-      icon: 'arrow-forward',
-    },
-    {
-      title: 'Reviews Received',
-      url: '/reviewsReceived',
-      icon: 'arrow-forward',
-    },
-    { title: 'Reviews Written', url: '/reviewsWritten', icon: 'arrow-forward' },
+    { title: 'Home', url: '/index', icon: 'home' },
+    { title: 'Chat', url: '/chat', icon: 'chatbubbles' },
+  ];
+
+  public appPagesBuyRent= [
+    { title: 'Browse All Listings', 
+    url: '/browseAllListings', 
+    icon: 'arrow-forward' },
     {
       title: 'All Loans And Purchases',
       url: '/viewAllLoansAndPurchase',
+      icon: 'arrow-forward',
+    },
+  ];
+  public appPagesProfile= [
+    {
+      title: 'My Listings',
+      url: '/viewMyListings',
       icon: 'arrow-forward',
     },
     {
@@ -37,6 +40,17 @@ export class AppComponent {
       url: '/viewMyLikedItems',
       icon: 'arrow-forward',
     },
+  ];
+  public appPagesReviews= [
+    {
+      title: 'Reviews Received',
+      url: '/reviewsReceived',
+      icon: 'arrow-forward',
+    },
+    { title: 'Reviews Written', 
+    url: '/reviewsWritten', 
+    icon: 'arrow-forward' 
+  },
   ];
   constructor(public sessionService: SessionService) {}
 }

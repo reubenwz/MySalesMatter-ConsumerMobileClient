@@ -4,6 +4,8 @@ import { Review } from '../models/review';
 import { SalesTransactionService } from '../services/sales-transaction.service';
 import { SalesTransaction } from '../models/sales-transaction';
 import { SessionService } from '../services/session.service';
+import { ListingService } from '../services/listing.service';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-view-all-loans-and-purchase',
@@ -17,10 +19,12 @@ export class ViewAllLoansAndPurchasePage implements OnInit {
   resultSuccess: boolean;
   resultError: boolean;
   message: string;
+  listingId: number | null;
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private saleTransactionService: SalesTransactionService,
+    private listingService: ListingService,
     private sessionService: SessionService) {
 
     this.resultSuccess = false;
@@ -39,8 +43,15 @@ export class ViewAllLoansAndPurchasePage implements OnInit {
     );
   }
 
-  viewListingDetails(event, offer) {
-    this.router.navigate(['/viewListingDetails/' + offer.listing.listingId]);
+  viewListingDetails(event, offerId) {
+    console.log("HIII" + offerId);
+    this.listingService.getListingByOfferId(offerId).subscribe (
+      (response) => {
+        this.listingId = response.listingId;
+      }
+    )
+    console.log("HIII" + this.listingId);
+    this.router.navigate(['/viewListingDetails/' + this.listingId]);
   }
 
   back() {

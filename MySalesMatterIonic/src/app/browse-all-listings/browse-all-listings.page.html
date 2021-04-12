@@ -22,10 +22,12 @@
   <ion-card *ngFor="let listing of filteredList">
     <ion-card-content>
       <ion-card-title> {{listing.name}} </ion-card-title>
+      <br />
       <p>Description: {{listing.description}}</p>
       <p>For Rent: {{listing.rentalAvailabilty}}</p>
       <p>For Sale: {{listing.forSaleAvailability}}</p>
       <p>Username: {{listing.user.name}}</p>
+      <br />
       <ion-button (click)="viewListingDetails($event, listing)">
         <ion-icon name="open-outline"></ion-icon>
         View

@@ -7,8 +7,44 @@
           <ion-list-header>My Sales Matter</ion-list-header>
           <ion-note>Buy & Sell Items</ion-note>
 
-          <ion-list *ngIf="sessionService.getIsLogin()">        
-            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPagesLogin; let i = index">
+          <ion-list *ngIf="sessionService.getIsLogin()">   
+            <ion-list-header>
+              <ion-label>General</ion-label>
+            </ion-list-header>     
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPagesLoginGeneral; let i = index">
+              <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+          <ion-list *ngIf="sessionService.getIsLogin()">    
+            <ion-list-header>
+              <ion-label>Buy/Rent</ion-label>
+            </ion-list-header>    
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPagesBuyRent; let i = index">
+              <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+          <ion-list *ngIf="sessionService.getIsLogin()">  
+            <ion-list-header>
+              <ion-label>Profile</ion-label>
+            </ion-list-header>      
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPagesProfile; let i = index">
+              <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+          <ion-list *ngIf="sessionService.getIsLogin()">   
+            <ion-list-header>
+              <ion-label>Reviews</ion-label>
+            </ion-list-header>     
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPagesReviews; let i = index">
               <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
                 <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
@@ -16,7 +52,10 @@
             </ion-menu-toggle>
           </ion-list>
   
-          <ion-list *ngIf="!sessionService.getIsLogin()">        
+          <ion-list *ngIf="!sessionService.getIsLogin()">   
+            <ion-list-header>
+              <ion-label>General</ion-label>
+            </ion-list-header>      
             <ion-menu-toggle auto-hide="false" *ngFor="let p of appPagesLogout; let i = index">
               <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
                 <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
