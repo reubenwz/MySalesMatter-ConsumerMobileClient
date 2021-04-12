@@ -57,10 +57,10 @@ export class UserService {
   }
 
   registerUser(newUser: User): Observable<User> {
-    let createUserReq: CreateUserReq = new CreateUserReq(newUser);
+    let createUserReq: CreateUserReq = new CreateUserReq(newUser.email, newUser.phoneNumber, newUser.bankAccountNumber, newUser.bio, newUser.username, newUser.name, newUser.password);
 
-    console.log("service: " + createUserReq.newUser.username);
-    return this.httpClient.put<User>(this.baseUrl, createUserReq, httpOptions).pipe
+    console.log("service: " + createUserReq.username);
+    return this.httpClient.put<User>(this.baseUrl + "/registerUser", createUserReq, httpOptions).pipe
       (
         catchError(this.handleError)
       );

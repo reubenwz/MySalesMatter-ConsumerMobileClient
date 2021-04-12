@@ -72,9 +72,14 @@ export class ListingService {
     tagIds: number[]
   ): Observable<number> {
     let createListingReq: CreateListingReq = new CreateListingReq(
+      newListing.name,
+      newListing.description,
+      newListing.brand,
+      newListing.rentalPrice,
+      newListing.salePrice,
+      newListing.location,
       this.sessionService.getEmail(),
       this.sessionService.getPassword(),
-      newListing,
       userId,
       categoryId,
       tagIds
@@ -83,10 +88,12 @@ export class ListingService {
       '********** DEBUG listingService.ts brand : ' +
         newListing.brand +
         'createListingReq brand: ' +
-        createListingReq.newListing.brand
+        createListingReq.brand +
+        'createListingReq userId: ' +
+        createListingReq.userId
     );
     return this.httpClient
-      .put<number>(this.baseUrl, createListingReq, httpOptions)
+      .put<number>(this.baseUrl + '/createNewListing', createListingReq, httpOptions)
       .pipe(catchError(this.handleError));
   }
 

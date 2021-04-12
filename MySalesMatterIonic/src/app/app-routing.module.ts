@@ -42,6 +42,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'viewAllLoansAndPurchase',
+    loadChildren: () =>
+      import('./view-all-loans-and-purchase/view-all-loans-and-purchase.module').then(
+        (m) => m.ViewAllLoansAndPurchasePageModule
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'login',
     loadChildren: () =>
       import('./login/login.module').then((m) => m.LoginPageModule),
@@ -190,6 +198,10 @@ const routes: Routes = [
   {
     path: 'edit-review',
     loadChildren: () => import('./edit-review/edit-review.module').then(m => m.EditReviewPageModule)
+  },
+  {
+    path: 'view-all-loans-and-purchase',
+    loadChildren: () => import('./view-all-loans-and-purchase/view-all-loans-and-purchase.module').then( m => m.ViewAllLoansAndPurchasePageModule)
   },
 ];
 
