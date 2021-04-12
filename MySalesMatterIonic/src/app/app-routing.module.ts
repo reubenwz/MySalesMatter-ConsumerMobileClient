@@ -55,7 +55,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'view-listing-details',
+    path: 'viewListingDetails',
+    loadChildren: () =>
+      import('./view-listing-details/view-listing-details.module').then(
+        (m) => m.ViewListingDetailsPageModule
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'viewListingDetails/:listingId',
     loadChildren: () =>
       import('./view-listing-details/view-listing-details.module').then(
         (m) => m.ViewListingDetailsPageModule
@@ -130,7 +138,14 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'view-all-reviews',
+    path: 'viewAllReviews',
+    loadChildren: () =>
+      import('./view-all-reviews/view-all-reviews.module').then(
+        (m) => m.ViewAllReviewsPageModule
+      ),
+  },
+  {
+    path: 'viewAllReviews/:listingId',
     loadChildren: () =>
       import('./view-all-reviews/view-all-reviews.module').then(
         (m) => m.ViewAllReviewsPageModule
@@ -151,12 +166,30 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'edit-review',
+    loadChildren: () =>
+      import('./edit-review/edit-review.module').then(
+        (m) => m.EditReviewPageModule
+      ),
+  },
+  {
+    path: 'edit-review/:reviewId',
+    loadChildren: () =>
+      import('./edit-review/edit-review.module').then(
+        (m) => m.EditReviewPageModule
+      ),
+  },
+  {
     path: 'create-new-listing',
     loadChildren: () =>
       import('./create-new-listing/create-new-listing.module').then(
         (m) => m.CreateNewListingPageModule
       ),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-review',
+    loadChildren: () => import('./edit-review/edit-review.module').then( m => m.EditReviewPageModule)
   },
 ];
 

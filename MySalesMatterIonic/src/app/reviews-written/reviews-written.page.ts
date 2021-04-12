@@ -45,7 +45,7 @@ export class ReviewsWrittenPage implements OnInit {
   }
 
   editReview(event, review) {
-
+    this.router.navigate(["/edit-review/" + review.reviewId]);
   }
 
   refreshReviews(){

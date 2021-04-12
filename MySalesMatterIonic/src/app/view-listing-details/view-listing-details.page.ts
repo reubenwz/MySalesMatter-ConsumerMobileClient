@@ -35,7 +35,6 @@ export class ViewListingDetailsPage implements OnInit {
 
   ngOnInit() {
     this.listingId = parseInt(this.activatedRoute.snapshot.paramMap.get('listingId'));
-
     this.refreshListing();
   }
 
@@ -70,7 +69,7 @@ export class ViewListingDetailsPage implements OnInit {
   }
 
   viewReviews() {
-    //this.router.navigate(["viewAllReviews" + this.listingId]);
+    this.router.navigate(["viewAllReviews" + this.listingId]);
   }
 
   back() {

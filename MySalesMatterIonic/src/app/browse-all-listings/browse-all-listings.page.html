@@ -30,7 +30,10 @@
       <p>For Rent: {{listing.rentalAvailabilty}}</p>
       <p>For Sale: {{listing.forSaleAvailability}}</p>
       <p>Username: {{listing.user.name}}</p>
-      <ion-button (click)="createNewListing()"></ion-button>
+      <ion-button (click)="viewListingDetails()">
+        <ion-icon name="open-outline"></ion-icon>
+        View
+      </ion-button>
       <ion-button>
         <ion-icon name="heart"></ion-icon>
         Unlike
