@@ -2,7 +2,10 @@
   <ion-toolbar>
     <ion-title>Browse All Listings</ion-title>
     <br />
-    <ion-searchbar showcancelbutton="" (ionInput)="filterList($event)"></ion-searchbar>
+    <ion-searchbar
+      showcancelbutton=""
+      (ionInput)="filterList($event)"
+    ></ion-searchbar>
     <br />
     <ion-button (click)="createNewListing()">
       <ion-icon slot="start" name="add-outline"></ion-icon>
@@ -19,7 +22,6 @@
   <ion-card *ngFor="let listing of filteredList">
     <ion-card-content>
       <ion-card-title> {{listing.name}} </ion-card-title>
-
       <p>Description: {{listing.description}}</p>
       <p>For Rent: {{listing.rentalAvailabilty}}</p>
       <p>For Sale: {{listing.forSaleAvailability}}</p>
@@ -28,36 +30,19 @@
         <ion-icon name="open-outline"></ion-icon>
         View
       </ion-button>
-      <ion-button>
-        <ion-icon name="heart"></ion-icon>
-        Unlike
-      </ion-button>
-      <!--<div *ngIf="listingIsLiked(listing)">
+      <!-- <div *ngIf="listingIsLiked(listing)">
         <ion-button (click)="unlike($event, listing)">
           <ion-icon name="heart"></ion-icon>
           Unlike
         </ion-button>
-      </div>-->
-    </ion-card-content>
-
-    <!--<ion-row>
-      <ion-col>
-        <ion-button
-          *ngIf="listingIsLiked(listing)"
-          (click)="unlike($event, listing)"
-        >
+      </div>
+      <div *ngIf="!listingIsLiked(listing)">
+        <ion-button (click)="like($event, listing)">
           <ion-icon name="heart"></ion-icon>
-          Unlike
-        </ion-button>
-        <ion-button
-          *ngIf="!listingIsLiked(listing) == false"
-          (click)="like($event, listing)"
-        >
-          <ion-icon name="heart" isActive="false"></ion-icon>
           Like
         </ion-button>
-      </ion-col>
-    </ion-row>-->
+      </div> -->
+    </ion-card-content>
   </ion-card>
 </ion-content>
 

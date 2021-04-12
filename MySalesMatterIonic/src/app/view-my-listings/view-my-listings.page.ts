@@ -10,65 +10,68 @@ import { ListingService } from '../services/listing.service';
   styleUrls: ['./view-my-listings.page.scss'],
 })
 export class ViewMyListingsPage implements OnInit {
-
   filteredList: Listing[];
   error: boolean;
   errorMessage: string;
   resultSuccess: boolean;
 
-  constructor(private router: Router, private listingService: ListingService, public alertController: AlertController) { }
+  constructor(
+    private router: Router,
+    private listingService: ListingService,
+    public alertController: AlertController
+  ) {}
 
   ngOnInit() {
     this.refreshListings();
   }
 
-
-
   ionViewWillEnter() {
     this.refreshListings();
   }
 
-
   viewListingDetails(event, listing) {
-    this.router.navigate(["/viewListingDetails/" + listing.listingId]);
+    this.router.navigate(['/viewListingDetails/' + listing.listingId]);
   }
 
   updateListing(event, listing) {
-    //this.router.navigate(["/updateProduct/" + listing.listingId]);
+    this.router.navigate(['/updateListing/' + listing.listingId]);
   }
 
   viewOffers(event, listing) {
-    this.router.navigate(["/viewListingOffers/" + listing.listingId]);
+    this.router.navigate(['/viewListingOffers/' + listing.listingId]);
   }
 
   async deleteListing(event, listing) {
     const alert = await this.alertController.create({
       header: 'Confirm Delete Listing',
-      message: 'Confirm delete listing <strong>' + listing.listingId + '</strong>?',
+      message:
+        'Confirm delete listing <strong>' + listing.listingId + '</strong>?',
       buttons: [
         {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: (blah) => {
-
-          }
-        }, {
+          handler: (blah) => {},
+        },
+        {
           text: 'Okay',
           handler: () => {
             this.listingService.deleteListing(listing.listingId).subscribe(
-              response => {
+              (response) => {
                 this.resultSuccess = true;
-                this.filteredList.splice(this.filteredList.indexOf(listing, 0), 1);
+                this.filteredList.splice(
+                  this.filteredList.indexOf(listing, 0),
+                  1
+                );
               },
-              error => {
+              (error) => {
                 this.error = true;
                 this.errorMessage = error;
               }
             );
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
 
     await alert.present();
@@ -81,25 +84,23 @@ export class ViewMyListingsPage implements OnInit {
       return;
     }
     this.listingService.searchListingsByName(searchTerm).subscribe(
-      response => {
+      (response) => {
         this.filteredList = response;
       },
-      error => {
+      (error) => {
         console.log('********** ViewMyListingsPage.ts: ' + error);
       }
     );
-
   }
 
   refreshListings() {
     this.listingService.getListingsByUser().subscribe(
-      response => {
+      (response) => {
         this.filteredList = response;
       },
-      error => {
+      (error) => {
         console.log('********** ViewMyListingsPage.ts: ' + error);
       }
     );
   }
-
 }

@@ -5,16 +5,20 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let likedItem of likedItems" (click)="viewListingDetails($event, likedItem)">
-
+  <ion-card
+    *ngFor="let likedItem of likedItems"
+    (click)="viewListingDetails($event, likedItem)"
+  >
     <ion-card-content>
-      <ion-card-title>
-        {{likedItem.listing.name}}
-      </ion-card-title>
+      <ion-card-title> {{likedItem.listing.name}} </ion-card-title>
 
       <p>{{likedItem.listing.description}}</p>
-
+      <p>For Rent: {{likedItem.listing.rentalAvailabilty}}</p>
+      <p>For Sale:{{likedItem.listing.forSaleAvailability}}</p>
+      <ion-button (click)="viewListingDetails($event, listing)">
+        <ion-icon name="open-outline"></ion-icon>
+        View
+      </ion-button>
     </ion-card-content>
-
   </ion-card>
 </ion-content>

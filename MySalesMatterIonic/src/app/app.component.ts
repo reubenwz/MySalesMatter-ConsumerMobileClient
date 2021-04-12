@@ -26,12 +26,17 @@ export class AppComponent {
       url: '/reviewsReceived',
       icon: 'arrow-forward',
     },
+    { title: 'Reviews Written', url: '/reviewsWritten', icon: 'arrow-forward' },
     {
       title: 'All Loans And Purchases',
       url: '/viewAllLoansAndPurchase',
       icon: 'arrow-forward',
     },
-    { title: 'Reviews Written', url: '/reviewsWritten', icon: 'arrow-forward' },
+    {
+      title: 'My Liked Items',
+      url: '/viewMyLikedItems',
+      icon: 'arrow-forward',
+    },
   ];
-  constructor(public sessionService: SessionService) { }
+  constructor(public sessionService: SessionService) {}
 }

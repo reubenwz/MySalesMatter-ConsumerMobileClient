@@ -44,9 +44,9 @@ const routes: Routes = [
   {
     path: 'viewAllLoansAndPurchase',
     loadChildren: () =>
-      import('./view-all-loans-and-purchase/view-all-loans-and-purchase.module').then(
-        (m) => m.ViewAllLoansAndPurchasePageModule
-      ),
+      import(
+        './view-all-loans-and-purchase/view-all-loans-and-purchase.module'
+      ).then((m) => m.ViewAllLoansAndPurchasePageModule),
     canActivate: [AuthGuard],
   },
   {
@@ -103,7 +103,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'view-my-liked-items',
+    path: 'viewMyLikedItems',
     loadChildren: () =>
       import('./view-my-liked-items/view-my-liked-items.module').then(
         (m) => m.ViewMyLikedItemsPageModule
@@ -139,7 +139,14 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'update-listing',
+    path: 'updateListing/:listingId',
+    loadChildren: () =>
+      import('./update-listing/update-listing.module').then(
+        (m) => m.UpdateListingPageModule
+      ),
+  },
+  {
+    path: 'updateListing',
     loadChildren: () =>
       import('./update-listing/update-listing.module').then(
         (m) => m.UpdateListingPageModule
@@ -197,11 +204,17 @@ const routes: Routes = [
   },
   {
     path: 'edit-review',
-    loadChildren: () => import('./edit-review/edit-review.module').then(m => m.EditReviewPageModule)
+    loadChildren: () =>
+      import('./edit-review/edit-review.module').then(
+        (m) => m.EditReviewPageModule
+      ),
   },
   {
     path: 'view-all-loans-and-purchase',
-    loadChildren: () => import('./view-all-loans-and-purchase/view-all-loans-and-purchase.module').then( m => m.ViewAllLoansAndPurchasePageModule)
+    loadChildren: () =>
+      import(
+        './view-all-loans-and-purchase/view-all-loans-and-purchase.module'
+      ).then((m) => m.ViewAllLoansAndPurchasePageModule),
   },
 ];
 
@@ -211,4 +224,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

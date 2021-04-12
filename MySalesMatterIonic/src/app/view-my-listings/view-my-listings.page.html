@@ -1,25 +1,21 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>My Listings</ion-title>
-    <ion-searchbar showcancelbutton="" (ionInput)="filterList($event)"></ion-searchbar>
+    <ion-searchbar
+      showcancelbutton=""
+      (ionInput)="filterList($event)"
+    ></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div *ngIf="resultSuccess == true" style="color: blue;">
-    {{message}}
-  </div>
+  <div *ngIf="resultSuccess == true" style="color: blue">{{message}}</div>
 
-  <div *ngIf="resultError == true" style="color: red;">
-    {{message}}
-  </div>
+  <div *ngIf="resultError == true" style="color: red">{{message}}</div>
 
   <ion-card *ngFor="let listing of filteredList">
-
     <ion-card-content>
-      <ion-card-title>
-        {{listing.name}}
-      </ion-card-title>
+      <ion-card-title> {{listing.name}} </ion-card-title>
 
       <p>Description: {{listing.description}}</p>
       <p>For Rent: {{listing.rentalAvailabilty}}</p>
@@ -30,7 +26,6 @@
         <ion-icon name="open-outline"></ion-icon>
         View
       </ion-button>
-
     </ion-card-content>
 
     <ion-row>
@@ -49,7 +44,5 @@
         </ion-button>
       </ion-col>
     </ion-row>
-
   </ion-card>
-
 </ion-content>

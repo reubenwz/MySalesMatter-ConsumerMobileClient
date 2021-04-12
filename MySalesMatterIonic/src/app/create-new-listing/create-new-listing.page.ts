@@ -74,7 +74,6 @@ export class CreateNewListingPage implements OnInit {
     this.newListing = new Listing();
   }
 
-
   create(createListingForm: NgForm) {
     let longTagIds: number[] = new Array();
 

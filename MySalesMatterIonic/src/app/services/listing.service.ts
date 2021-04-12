@@ -93,7 +93,11 @@ export class ListingService {
         createListingReq.userId
     );
     return this.httpClient
-      .put<number>(this.baseUrl + '/createNewListing', createListingReq, httpOptions)
+      .put<number>(
+        this.baseUrl + '/createNewListing',
+        createListingReq,
+        httpOptions
+      )
       .pipe(catchError(this.handleError));
   }
 
@@ -127,15 +131,21 @@ export class ListingService {
 
   updateListing(
     listingToUpdate: Listing,
-    categoryId: number | null,
+    categoryId: number | undefined | null,
     tagIds: number[]
   ): Observable<any> {
     let updateListingReq: UpdateListingReq = new UpdateListingReq(
       this.sessionService.getEmail(),
       this.sessionService.getPassword(),
-      listingToUpdate,
       categoryId,
-      tagIds
+      tagIds,
+      listingToUpdate.name,
+      listingToUpdate.description,
+      listingToUpdate.brand,
+      listingToUpdate.rentalPrice,
+      listingToUpdate.salePrice,
+      listingToUpdate.location,
+      listingToUpdate.listingId
     );
 
     return this.httpClient
@@ -145,7 +155,7 @@ export class ListingService {
 
   deleteListing(listingId: number): Observable<any> {
     return this.httpClient
-      .get<any>(
+      .delete<any>(
         this.baseUrl +
           '/' +
           listingId +
