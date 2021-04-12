@@ -71,7 +71,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'create-rental-offer',
+    path: 'createRentalOffer/:listingId',
     loadChildren: () =>
       import('./create-rental-offer/create-rental-offer.module').then(
         (m) => m.CreateRentalOfferPageModule
@@ -79,7 +79,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'create-buy-offer',
+    path: 'createBuyOffer/:listingId',
     loadChildren: () =>
       import('./create-buy-offer/create-buy-offer.module').then(
         (m) => m.CreateBuyOfferPageModule
@@ -87,7 +87,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'view-my-listings',
+    path: 'viewMyListings',
     loadChildren: () =>
       import('./view-my-listings/view-my-listings.module').then(
         (m) => m.ViewMyListingsPageModule
@@ -111,7 +111,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'view-listing-offers',
+    path: 'viewListingOffers/:listingId',
     loadChildren: () =>
       import('./view-listing-offers/view-listing-offers.module').then(
         (m) => m.ViewListingOffersPageModule
@@ -189,7 +189,7 @@ const routes: Routes = [
   },
   {
     path: 'edit-review',
-    loadChildren: () => import('./edit-review/edit-review.module').then( m => m.EditReviewPageModule)
+    loadChildren: () => import('./edit-review/edit-review.module').then(m => m.EditReviewPageModule)
   },
 ];
 
@@ -199,4 +199,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

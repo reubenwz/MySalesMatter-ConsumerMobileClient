@@ -78,4 +78,8 @@ export class CreateRentalOfferPage implements OnInit {
     }
   }
 
+  back() {
+    this.router.navigate(["/viewListingDetails/" + this.listingId]);
+  }
+
 }

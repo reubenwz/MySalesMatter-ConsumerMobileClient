@@ -20,8 +20,8 @@ export class ViewListingOffersPage implements OnInit {
   constructor(private router: Router, private offerService: OfferService, public alertController: AlertController, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.refreshOffers();
     this.listingId = parseInt(this.activatedRoute.snapshot.paramMap.get('listingId'));
+    this.refreshOffers();
   }
 
 
@@ -32,7 +32,6 @@ export class ViewListingOffersPage implements OnInit {
 
 
   refreshOffers() {
-    this.router.navigate(["viewListingOffers" + this.listingId]);
     this.offerService.getOffersByListingId(this.listingId).subscribe(
       response => {
         this.offers = response;
@@ -74,5 +73,9 @@ export class ViewListingOffersPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  back() {
+    this.router.navigate(["viewMyListings"]);
   }
 }

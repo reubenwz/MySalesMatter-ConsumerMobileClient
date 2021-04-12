@@ -17,11 +17,16 @@ export class AppComponent {
     { title: 'Logout', url: '/login', icon: 'exit' },
     { title: 'Home', url: '/browseAllListings', icon: 'home' },
     {
+      title: 'My Listings',
+      url: '/viewMyListings',
+      icon: 'arrow-forward',
+    },
+    {
       title: 'Reviews Received',
       url: '/reviewsReceived',
       icon: 'arrow-forward',
     },
     { title: 'Reviews Written', url: '/reviewsWritten', icon: 'arrow-forward' },
   ];
-  constructor(public sessionService: SessionService) {}
+  constructor(public sessionService: SessionService) { }
 }

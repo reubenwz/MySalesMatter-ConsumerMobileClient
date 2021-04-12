@@ -50,26 +50,26 @@ export class ViewListingDetailsPage implements OnInit {
     this.listingService.getListingByListingId(this.listingId).subscribe(
       response => {
         this.listingToView = response;
+        this.rentalAvailability = this.listingToView.rentalAvailability;
+        this.forSaleAvailability = this.listingToView.forSaleAvailability;
       },
       error => {
         this.retrieveListingError = true;
         console.log('********** ViewListingDetailsPage.ts: ' + error);
       }
     );
-    this.rentalAvailability = this.listingToView.rentalAvailability;
-    this.forSaleAvailability = this.listingToView.forSaleAvailability;
   }
 
   createRentalOffer() {
-    this.router.navigate(["createRentalOffer" + this.listingId]);
+    this.router.navigate(['/createRentalOffer/' + this.listingId]);
   }
 
   createBuyOffer() {
-    this.router.navigate(["createBuyOffer" + this.listingId]);
+    this.router.navigate(["/createBuyOffer/" + this.listingId]);
   }
 
   viewReviews() {
-    this.router.navigate(["viewAllReviews" + this.listingId]);
+    this.router.navigate(["viewAllReviews/" + this.listingId]);
   }
 
   back() {

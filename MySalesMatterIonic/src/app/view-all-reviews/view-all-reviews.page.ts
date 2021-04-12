@@ -42,6 +42,10 @@ export class ViewAllReviewsPage implements OnInit {
     );
   }
 
+  back() {
+    this.router.navigate(["/viewListingDetails/" + this.listingId]);
+  }
+
 }
 
 

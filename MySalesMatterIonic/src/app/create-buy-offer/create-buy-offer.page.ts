@@ -95,4 +95,7 @@ export class CreateBuyOfferPage implements OnInit {
     }
   }
 
+  back() {
+    this.router.navigate(["/viewListingDetails/" + this.listingId]);
+  }
 }

@@ -13,14 +13,23 @@
   <div *ngIf="resultError == true" style="color: red;">
     {{message}}
   </div>
-  <ion-card *ngFor="let listing of filtedList" (click)="viewListingDetails($event, listing)">
+
+  <ion-card *ngFor="let listing of filteredList">
 
     <ion-card-content>
       <ion-card-title>
         {{listing.name}}
       </ion-card-title>
 
-      <p>{{listing.description}}</p>
+      <p>Description: {{listing.description}}</p>
+      <p>For Rent: {{listing.rentalAvailabilty}}</p>
+      <p>For Sale: {{listing.forSaleAvailability}}</p>
+      <p>Username: {{listing.user.name}}</p>
+
+      <ion-button (click)="viewListingDetails($event, listing)">
+        <ion-icon name="open-outline"></ion-icon>
+        View
+      </ion-button>
 
     </ion-card-content>
 

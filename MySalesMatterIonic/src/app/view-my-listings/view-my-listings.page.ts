@@ -29,7 +29,6 @@ export class ViewMyListingsPage implements OnInit {
   }
 
 
-
   viewListingDetails(event, listing) {
     this.router.navigate(["/viewListingDetails/" + listing.listingId]);
   }
@@ -39,7 +38,7 @@ export class ViewMyListingsPage implements OnInit {
   }
 
   viewOffers(event, listing) {
-    this.router.navigate(["viewListingOffers" + listing.listingId]);
+    this.router.navigate(["/viewListingOffers/" + listing.listingId]);
   }
 
   async deleteListing(event, listing) {
@@ -93,7 +92,7 @@ export class ViewMyListingsPage implements OnInit {
   }
 
   refreshListings() {
-    this.listingService.getListings().subscribe(
+    this.listingService.getListingsByUser().subscribe(
       response => {
         this.filteredList = response;
       },
