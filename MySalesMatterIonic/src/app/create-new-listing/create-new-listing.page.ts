@@ -9,6 +9,7 @@ import { TagService } from '../services/tag.service';
 import { Listing } from '../models/listing';
 import { Category } from '../models/category';
 import { Tag } from '../models/tag';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-create-new-listing',
@@ -34,6 +35,7 @@ export class CreateNewListingPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private listingService: ListingService,
     private categoryService: CategoryService,
+    private sessionService: SessionService,
     private tagService: TagService
   ) {
     this.submitted = false;
@@ -46,7 +48,7 @@ export class CreateNewListingPage implements OnInit {
     this.newListing.name = '';
     this.resultSuccess = false;
     this.resultError = false;
-    this.userId = 1;
+    this.userId = this.sessionService.getCurrentUser().userId;
   }
 
   ngOnInit() {
@@ -84,7 +86,7 @@ export class CreateNewListingPage implements OnInit {
     }
     console.log(
       '********** DEBUG CreateNewListingPage.ts brand : ' +
-        this.newListing.brand
+      this.newListing.brand
     );
     this.submitted = true;
 

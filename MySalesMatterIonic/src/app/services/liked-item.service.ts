@@ -7,7 +7,7 @@ import { SessionService } from './session.service';
 import { LikedItem } from '../models/liked-item';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'text/plain' })
 };
 
 @Injectable({
@@ -41,7 +41,7 @@ export class LikedItemService {
   }
 
   createNewLikedItem(listingId: number): Observable<LikedItem> {
-    return this.httpClient.put<LikedItem>(this.baseUrl + "/createNewLikedItem/" + listingId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword(), null, httpOptions).pipe
+    return this.httpClient.put<LikedItem>(this.baseUrl + "/createNewLikedItem/" + listingId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword(), listingId.toString, httpOptions).pipe
       (
         catchError(this.handleError)
       );
@@ -50,7 +50,7 @@ export class LikedItemService {
 
 
   unlikeItem(listingId: number): Observable<any> {
-    return this.httpClient.post<any>(this.baseUrl + "/unlikeItem/" + listingId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword(), null, httpOptions).pipe
+    return this.httpClient.post<any>(this.baseUrl + "/unlikeItem/" + listingId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword(), listingId.toString, httpOptions).pipe
       (
         catchError(this.handleError)
       );

@@ -53,22 +53,21 @@ export class OfferService {
   }
 
   acceptOffer(offerId: number): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl + "/acceptOffer/" + offerId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
+    return this.httpClient.post<any>(this.baseUrl + "/acceptOffer/" + offerId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword(), offerId.toString, httpOptions).pipe
       (
         catchError(this.handleError)
       );
   }
 
   deleteOffer(offerId: number): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl + "/" + offerId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
+    return this.httpClient.delete<any>(this.baseUrl + "/" + offerId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
       (
         catchError(this.handleError)
       );
   }
 
-  createNewOffer(newOffer: Offer, listingId: number, userId: number): Observable<Offer> {
-    let createOfferReq: CreateOfferReq = new CreateOfferReq(this.sessionService.getEmail(), this.sessionService.getPassword(), newOffer, userId, listingId);
-
+  createNewOffer(totalPrice: number, offerDate: Date, offerType: number, startDate: Date, endDate: Date, listingId: number, userId: number): Observable<Offer> {
+    let createOfferReq: CreateOfferReq = new CreateOfferReq(this.sessionService.getEmail(), this.sessionService.getPassword(), totalPrice, offerDate, offerType, startDate, endDate, listingId, userId);
     return this.httpClient.put<Offer>(this.baseUrl, createOfferReq, httpOptions).pipe
       (
         catchError(this.handleError)

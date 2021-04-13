@@ -111,7 +111,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'view-my-offers',
+    path: 'viewMyOffers',
     loadChildren: () =>
       import('./view-my-offers/view-my-offers.module').then(
         (m) => m.ViewMyOffersPageModule
@@ -257,4 +257,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

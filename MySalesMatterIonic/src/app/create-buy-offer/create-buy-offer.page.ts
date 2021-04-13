@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OfferType } from '../enums/offer-type.enum';
-import { BuyOffer } from '../models/buy-offer';
 import { Offer } from '../models/offer';
 import { OfferService } from '../services/offer.service';
 import { ListingService } from '../services/listing.service';
 import { Listing } from '../models/listing';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-create-buy-offer',
@@ -16,7 +16,6 @@ import { Listing } from '../models/listing';
 export class CreateBuyOfferPage implements OnInit {
 
   submitted: boolean;
-  newBuyOffer: Offer;
   userId: number;
   listingId: number;
   listing: Listing;
@@ -32,15 +31,13 @@ export class CreateBuyOfferPage implements OnInit {
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private offerService: OfferService,
-    private listingService: ListingService) {
+    private listingService: ListingService,
+    private sessionService: SessionService) {
     this.submitted = false;
-    this.newBuyOffer = new BuyOffer();
-    this.newBuyOffer.offerDate = new Date();
-    this.newBuyOffer.offerType = OfferType.BUY;
-    this.newBuyOffer.totalPrice = this.totalPrice;
 
     this.resultSuccess = false;
     this.resultError = false;
+    this.userId = this.sessionService.getCurrentUser().userId;
   }
 
 
@@ -63,7 +60,6 @@ export class CreateBuyOfferPage implements OnInit {
 
   clear() {
     this.submitted = false;
-    this.newBuyOffer = new BuyOffer();
   }
 
 
@@ -73,14 +69,13 @@ export class CreateBuyOfferPage implements OnInit {
     this.submitted = true;
 
     if (createBuyOfferForm.valid) {
-      this.offerService.createNewOffer(this.newBuyOffer, this.listingId, this.userId).subscribe(
+      this.offerService.createNewOffer(this.totalPrice, new Date(), OfferType.BUY, null, null, this.listingId, this.userId).subscribe(
         response => {
           let newOfferCreated: Offer = response;
           this.resultSuccess = true;
           this.resultError = false;
-          this.message = "New offer " + newOfferCreated.offerId + " created successfully";
+          this.message = "New buy offer " + newOfferCreated + " created successfully";
 
-          this.newBuyOffer = new BuyOffer();
           this.submitted = false;
           createBuyOfferForm.reset();
         },

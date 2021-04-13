@@ -2,10 +2,7 @@
   <ion-toolbar>
     <ion-title>Browse All Listings</ion-title>
     <br />
-    <ion-searchbar
-      showcancelbutton=""
-      (ionInput)="filterList($event)"
-    ></ion-searchbar>
+    <ion-searchbar showcancelbutton="" (ionInput)="filterList($event)"></ion-searchbar>
     <br />
     <ion-button (click)="createNewListing()">
       <ion-icon slot="start" name="add-outline"></ion-icon>
@@ -32,7 +29,7 @@
         <ion-icon name="open-outline"></ion-icon>
         View
       </ion-button>
-      <!-- <div *ngIf="listingIsLiked(listing)">
+      <div *ngIf="listingIsLiked(listing)">
         <ion-button (click)="unlike($event, listing)">
           <ion-icon name="heart"></ion-icon>
           Unlike
@@ -40,10 +37,10 @@
       </div>
       <div *ngIf="!listingIsLiked(listing)">
         <ion-button (click)="like($event, listing)">
-          <ion-icon name="heart"></ion-icon>
+          <ion-icon name="heart-outline"></ion-icon>
           Like
         </ion-button>
-      </div> -->
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

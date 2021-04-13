@@ -24,7 +24,7 @@ export class BrowseAllListingsPage implements OnInit {
     private router: Router,
     private listingService: ListingService,
     private likedItemService: LikedItemService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.refreshListings();
@@ -59,14 +59,6 @@ export class BrowseAllListingsPage implements OnInit {
   }
 
   listingIsLiked(listing) {
-    this.likedItemService.getLikedItems().subscribe(
-      (response) => {
-        this.likedItems = response;
-      },
-      (error) => {
-        console.log('********** BrowseAllListingsPage.ts: ' + error);
-      }
-    );
     for (var val of this.likedItems) {
       if (val.listing.listingId == listing.listingId) {
         return true;
@@ -83,6 +75,7 @@ export class BrowseAllListingsPage implements OnInit {
         this.resultSuccess = true;
         this.resultError = false;
         this.message = 'Listing unliked successfully';
+        this.refreshListings();
       },
       (error) => {
         console.log('********** BrowseAllListingsPage.ts: ' + error);
@@ -91,6 +84,7 @@ export class BrowseAllListingsPage implements OnInit {
   }
 
   like(event, listing) {
+    console.log("*** " + listing.listingId);
     this.likedItemService.createNewLikedItem(listing.listingId).subscribe(
       (response) => {
         this.likedItem = response;
@@ -99,6 +93,7 @@ export class BrowseAllListingsPage implements OnInit {
         this.message =
           'Listing liked successfully! Liked Item ID: ' +
           this.likedItem.likedItemId;
+        this.refreshListings();
       },
       (error) => {
         console.log('********** BrowseAllListingsPage.ts: ' + error);
@@ -110,6 +105,14 @@ export class BrowseAllListingsPage implements OnInit {
     this.listingService.getListings().subscribe(
       (response) => {
         this.filteredList = response;
+      },
+      (error) => {
+        console.log('********** BrowseAllListingsPage.ts: ' + error);
+      }
+    );
+    this.likedItemService.getLikedItems().subscribe(
+      (response) => {
+        this.likedItems = response;
       },
       (error) => {
         console.log('********** BrowseAllListingsPage.ts: ' + error);

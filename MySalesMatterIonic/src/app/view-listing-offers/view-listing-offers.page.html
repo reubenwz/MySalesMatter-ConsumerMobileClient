@@ -17,21 +17,22 @@
   <div *ngIf="resultError == true" style="color: red;">
     {{message}}
   </div>
-  <ion-card>
-
+  <ion-card *ngFor="let offer of offers">
     <ion-card-content>
-      <ion-list>
-        <ion-item *ngFor="let offer of offers">
-          <ion-button expand="full">
-            {{offer.offerId}} - {{offer.offerDate}} - {{offer.offerType}} -
-            {{offer.totalPrice}} - {{offer.accepted}}
-          </ion-button>
-          <ion-button (click)="acceptOffer($event, offer)">
-            Accept
-          </ion-button>
-        </ion-item>
-      </ion-list>
+      <p>Offer Id: {{offer.offerId}}</p>
+      <p>Offer Date: {{offer.offerDate}}</p>
+      <p>Offer Type: {{offer.offerType}}</p>
+      <p>Total Price: {{offer.totalPrice}}</p>
+      <p>Accepted? {{offer.accepted}}</p>
+      <br />
+      <ion-button (click)="acceptOffer($event, offer)" *ngIf="!offer.accepted">
+        Accept
+      </ion-button>
     </ion-card-content>
-
   </ion-card>
+
 </ion-content>
+
+<ion-footer>
+  <ion-title>&copy; 2021 IS3106.</ion-title>
+</ion-footer>

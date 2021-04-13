@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OfferType } from '../enums/offer-type.enum';
+import { Listing } from '../models/listing';
 import { Offer } from '../models/offer';
-import { RentalOffer } from '../models/rental-offer';
+import { ListingService } from '../services/listing.service';
 import { OfferService } from '../services/offer.service';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-create-rental-offer',
@@ -14,9 +16,12 @@ import { OfferService } from '../services/offer.service';
 export class CreateRentalOfferPage implements OnInit {
 
   submitted: boolean;
-  newRentalOffer: Offer;
   userId: number;
   listingId: number;
+  start: Date;
+  end: Date;
+  totalPrice: number;
+  listing: Listing;
 
   resultSuccess: boolean;
   resultError: boolean;
@@ -26,14 +31,14 @@ export class CreateRentalOfferPage implements OnInit {
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private offerService: OfferService) {
+    private offerService: OfferService,
+    private sessionService: SessionService,
+    private listingService: ListingService) {
     this.submitted = false;
-    this.newRentalOffer = new RentalOffer();
-    this.newRentalOffer.offerDate = new Date();
-    this.newRentalOffer.offerType = OfferType.RENTAL;
 
     this.resultSuccess = false;
     this.resultError = false;
+    this.userId = this.sessionService.getCurrentUser().userId;
   }
 
 
@@ -46,8 +51,20 @@ export class CreateRentalOfferPage implements OnInit {
 
   clear() {
     this.submitted = false;
-    this.newRentalOffer = new RentalOffer();
   }
+
+  /*calculateRentalPrice() {
+    var diff = (new Date(this.end).getTime() - new Date(this.start).getTime()) / (1000 * 3600 * 24);
+    this.listingService.getListingByListingId(this.listingId).subscribe(
+      response => {
+        var listing = response;
+        this.totalPrice = listing.rentalPrice * diff;
+      },
+      error => {
+        console.log('********** ViewListingDetailsPage.ts: ' + error);
+      }
+    );
+  }*/
 
 
 
@@ -56,14 +73,13 @@ export class CreateRentalOfferPage implements OnInit {
     this.submitted = true;
 
     if (createRentalOfferForm.valid) {
-      this.offerService.createNewOffer(this.newRentalOffer, this.listingId, this.userId).subscribe(
+      this.offerService.createNewOffer(this.totalPrice, new Date(), OfferType.RENTAL, new Date(this.start), new Date(this.end), this.listingId, this.userId).subscribe(
         response => {
           let newOfferCreated: Offer = response;
           this.resultSuccess = true;
           this.resultError = false;
-          this.message = "New offer " + newOfferCreated.offerId + " created successfully";
+          this.message = "New rental offer " + newOfferCreated + " created successfully";
 
-          this.newRentalOffer = new RentalOffer();
           this.submitted = false;
           createRentalOfferForm.reset();
         },

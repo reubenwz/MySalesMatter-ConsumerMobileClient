@@ -6,6 +6,10 @@
 
 <ion-content>
 
+  <div *ngIf="resultSuccess == true" style="color: blue">{{message}}</div>
+
+  <div *ngIf="resultError == true" style="color: red">{{message}}</div>
+
   <ion-card>
 
     <ion-card-header>
@@ -15,17 +19,22 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-list>
-        <ion-item *ngFor="let acceptedOffer of acceptedOffers">
-          <ion-button expand="full" (click)="viewListingDetails($event, acceptedOffer)">
-            {{acceptedOffer.offerId}} - {{acceptedOffer.offerDate}} - {{acceptedOffer.offerType}} -
-            {{acceptedOffer.totalPrice}}
+      <ion-card *ngFor="let acceptedOffer of allOffers">
+        <ion-card-content *ngIf="acceptedOffer.accepted">
+          <p>Offer Id: {{acceptedOffer.offerId}}</p>
+          <p>Offer Date: {{acceptedOffer.offerDate}}</p>
+          <p>Offer Type: {{acceptedOffer.offerType}}</p>
+          <p>Total Price: {{acceptedOffer.totalPrice}}</p>
+          <br />
+          <ion-button (click)="viewListingDetails($event, acceptedOffer)">
+            <ion-icon name="open-outline"></ion-icon>
+            View
           </ion-button>
           <ion-button (click)="makePayment($event, acceptedOffer)">
             Make Payment
           </ion-button>
-        </ion-item>
-      </ion-list>
+        </ion-card-content>
+      </ion-card>
     </ion-card-content>
 
   </ion-card>
@@ -39,17 +48,28 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-list>
-        <ion-item *ngFor="let pendingOffer of pendingOffers">
-          <ion-button expand="full" (click)="viewListingDetails($event, pendingOffer)">
-            <ion-icon slot="start" name="arrow-forward"></ion-icon>
-            {{pendingOffer.offerId}} - {{pendingOffer.offerDate}} - {{pendingOffer.offerType}} -
-            {{pendingOffer.totalPrice}}
+      <ion-card *ngFor="let pendingOffer of allOffers">
+        <ion-card-content *ngIf="!pendingOffer.accepted">
+          <p>Offer Id: {{pendingOffer.offerId}}</p>
+          <p>Offer Date: {{pendingOffer.offerDate}}</p>
+          <p>Offer Type: {{pendingOffer.offerType}}</p>
+          <p>Total Price: {{pendingOffer.totalPrice}}</p>
+          <br />
+          <ion-button (click)="viewListingDetails($event, pendingOffer)">
+            <ion-icon name="open-outline"></ion-icon>
+            View
           </ion-button>
-        </ion-item>
-      </ion-list>
+          <ion-button (click)="deleteOffer($event, pendingOffer)">
+            Delete
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
 
     </ion-card-content>
 
   </ion-card>
 </ion-content>
+
+<ion-footer>
+  <ion-title>&copy; 2021 IS3106.</ion-title>
+</ion-footer>

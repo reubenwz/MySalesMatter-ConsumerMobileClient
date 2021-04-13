@@ -49,21 +49,21 @@
 
           <ion-item>
             <ion-label><b>Rental Price</b></ion-label>
-            <ion-input type="text" id="rentalPrice" name="rentalPrice" [(ngModel)]="newRentalOffer.rentalPrice"
-              required="true" #rentalPrice="ngModel"></ion-input>
+            <ion-input type="number" id="rentalPrice" name="rentalPrice" [(ngModel)]="totalPrice" required="true"
+              #rentalPrice="ngModel"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label><b>Start Date</b></ion-label>
-            <ion-input type="date" id="startDate" name="startDate" [(ngModel)]="newRentalOffer.startDate"
-              required="true" #startDate="ngModel">
+            <ion-input type="date" id="startDate" name="startDate" [(ngModel)]="start" required="true"
+              #startDate="ngModel">
             </ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label><b>End Date</b></ion-label>
-            <ion-input type="date" id="endDate" name="endDate" [(ngModel)]="newRentalOffer.endDate" required="true"
-              #endDate="ngModel"></ion-input>
+            <ion-input type="date" id="endDate" name="endDate" [(ngModel)]="end" required="true" #endDate="ngModel">
+            </ion-input>
           </ion-item>
 
         </ion-list>
