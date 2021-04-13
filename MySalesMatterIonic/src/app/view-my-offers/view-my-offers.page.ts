@@ -34,7 +34,7 @@ export class ViewMyOffersPage implements OnInit {
     private sessionService: SessionService,
     private salesTransactionService: SalesTransactionService,
     public alertController: AlertController
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.refreshOffers();
@@ -57,12 +57,66 @@ export class ViewMyOffersPage implements OnInit {
   }
 
   arrangeMeetup(event, offer) {
-    this.router.navigate([
-      '/replyChat/' +
-        this.sessionService.getCurrentUser().userId +
-        '/' +
-        offer.offerId,
-    ]);
+    this.listingService.getListingByOfferId(offer.offerId).subscribe(
+      (response) => {
+        this.listing = response;
+        this.router.navigate([
+          '/replyChat/' +
+          this.listing.user.userId +
+          '/' +
+          offer.offerId,
+        ]);
+      },
+      (error) => {
+        console.log('********** ViewMyListingsPage.ts: ' + error);
+      }
+    );
+
+  }
+
+  canMakePayment(offer) {
+    if (offer.paid == false && offer.offerType == 'RENTAL') {
+      return true;
+    } return false;
+  }
+
+  canProceedToBuy(offer) {
+    if (!offer.paid && offer.offerType == 'BUY') {
+      return true;
+    } return false;
+  }
+
+  async proceedToBuy(event, offer) {
+    const alert = await this.alertController.create({
+      header: 'Confirm Buy',
+      message: 'Confirm proceed to buy for offer <strong>' + offer.offerId + '</strong>?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => { },
+        },
+        {
+          text: 'Okay',
+          handler: () => {
+            this.offerService.proceedToBuy(offer.offerId).subscribe(
+              response => {
+                this.resultSuccess = true;
+                this.message = "Buy offer " + offer.offerId + " confirmed";
+              },
+              (error) => {
+                this.error = true;
+                this.errorMessage = error;
+                this.message = "An error has occurred while confirming the buy offer: " + error;
+              }
+            );
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 
   makePayment(event, offer) {
@@ -78,7 +132,7 @@ export class ViewMyOffersPage implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: (blah) => {},
+          handler: (blah) => { },
         },
         {
           text: 'Okay',
@@ -87,10 +141,12 @@ export class ViewMyOffersPage implements OnInit {
               (response) => {
                 this.resultSuccess = true;
                 this.allOffers.splice(this.allOffers.indexOf(offer, 0), 1);
+                this.message = "Offer " + offer.offerId + " deleted successfully";
               },
               (error) => {
                 this.error = true;
                 this.errorMessage = error;
+                this.message = "An error has occurred while deleting the offer: " + error;
               }
             );
           },
@@ -110,12 +166,6 @@ export class ViewMyOffersPage implements OnInit {
         console.log('********** ViewMyListingsPage.ts: ' + error);
       }
     );
-    /*for (var val of this.allOffers) {
-      if (val.accepted) {
-        this.acceptedOffers.push(val);
-      } else {
-        this.pendingOffers.push(val);
-      }
-    }*/
+
   }
 }

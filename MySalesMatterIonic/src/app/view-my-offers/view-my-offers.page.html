@@ -26,17 +26,14 @@
             <ion-icon name="open-outline"></ion-icon>
             View
           </ion-button>
-          <ion-button
-            *ngIf="!acceptedOffer.paid and acceptedOffer.offerType == 'RENTAL'"
-            (click)="makePayment($event, acceptedOffer)"
-          >
-            Make Payment
+          <ion-button *ngIf="canMakePayment(acceptedOffer)" (click)="makePayment($event, acceptedOffer)">
+            Make Deposit
           </ion-button>
-          <ion-button
-            *ngIf="acceptedOffer.paid"
-            (click)="arrangeMeetup($event, acceptedOffer)"
-          >
+          <ion-button (click)="arrangeMeetup($event, acceptedOffer)">
             Arrange Meetup
+          </ion-button>
+          <ion-button *ngIf="canProceedToBuy(acceptedOffer)" (click)="proceedToBuy($event, acceptedOffer)">
+            Proceed To Buy
           </ion-button>
         </ion-card-content>
       </ion-card>

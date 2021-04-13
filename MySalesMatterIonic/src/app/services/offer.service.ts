@@ -25,16 +25,16 @@ export class OfferService {
   constructor(
     private httpClient: HttpClient,
     private sessionService: SessionService
-  ) {}
+  ) { }
 
   getOffers(): Observable<Offer[]> {
     return this.httpClient
       .get<Offer[]>(
         this.baseUrl +
-          '/retrieveAllOffers?username=' +
-          this.sessionService.getEmail() +
-          '&password=' +
-          this.sessionService.getPassword()
+        '/retrieveAllOffers?username=' +
+        this.sessionService.getEmail() +
+        '&password=' +
+        this.sessionService.getPassword()
       )
       .pipe(catchError(this.handleError));
   }
@@ -43,12 +43,12 @@ export class OfferService {
     return this.httpClient
       .get<Offer>(
         this.baseUrl +
-          '/retrieveOffer/' +
-          offerId +
-          '?username=' +
-          this.sessionService.getEmail() +
-          '&password=' +
-          this.sessionService.getPassword()
+        '/retrieveOffer/' +
+        offerId +
+        '?username=' +
+        this.sessionService.getEmail() +
+        '&password=' +
+        this.sessionService.getPassword()
       )
       .pipe(catchError(this.handleError));
   }
@@ -69,12 +69,12 @@ export class OfferService {
     return this.httpClient
       .post<any>(
         this.baseUrl +
-          '/acceptOffer/' +
-          offerId +
-          '?username=' +
-          this.sessionService.getEmail() +
-          '&password=' +
-          this.sessionService.getPassword(),
+        '/acceptOffer/' +
+        offerId +
+        '?username=' +
+        this.sessionService.getEmail() +
+        '&password=' +
+        this.sessionService.getPassword(),
         offerId.toString,
         httpOptions
       )
@@ -85,12 +85,12 @@ export class OfferService {
     return this.httpClient
       .delete<any>(
         this.baseUrl +
-          '/' +
-          offerId +
-          '?username=' +
-          this.sessionService.getEmail() +
-          '&password=' +
-          this.sessionService.getPassword()
+        '/' +
+        offerId +
+        '?username=' +
+        this.sessionService.getEmail() +
+        '&password=' +
+        this.sessionService.getPassword()
       )
       .pipe(catchError(this.handleError));
   }
@@ -124,10 +124,10 @@ export class OfferService {
     return this.httpClient
       .get<Offer[]>(
         this.baseUrl +
-          '/retrieveOfferByUserId?username=' +
-          this.sessionService.getEmail() +
-          '&password=' +
-          this.sessionService.getPassword()
+        '/retrieveOfferByUserId?username=' +
+        this.sessionService.getEmail() +
+        '&password=' +
+        this.sessionService.getPassword()
       )
       .pipe(catchError(this.handleError));
   }
@@ -136,10 +136,26 @@ export class OfferService {
     return this.httpClient
       .get<Offer[]>(
         this.baseUrl +
-          '/retrievePurchaseOfferByUserId?username=' +
-          this.sessionService.getEmail() +
-          '&password=' +
-          this.sessionService.getPassword()
+        '/retrievePurchaseOfferByUserId?username=' +
+        this.sessionService.getEmail() +
+        '&password=' +
+        this.sessionService.getPassword()
+      )
+      .pipe(catchError(this.handleError));
+  }
+
+  proceedToBuy(offerId: number): Observable<any> {
+    return this.httpClient
+      .post<any>(
+        this.baseUrl +
+        '/proceedToBuy/' +
+        offerId +
+        '?username=' +
+        this.sessionService.getEmail() +
+        '&password=' +
+        this.sessionService.getPassword(),
+        offerId.toString,
+        httpOptions
       )
       .pipe(catchError(this.handleError));
   }
@@ -148,12 +164,12 @@ export class OfferService {
     return this.httpClient
       .get<Offer[]>(
         this.baseUrl +
-          '/retrieveOfferByListingId/' +
-          listingId +
-          '?username=' +
-          this.sessionService.getEmail() +
-          '&password=' +
-          this.sessionService.getPassword()
+        '/retrieveOfferByListingId/' +
+        listingId +
+        '?username=' +
+        this.sessionService.getEmail() +
+        '&password=' +
+        this.sessionService.getPassword()
       )
       .pipe(catchError(this.handleError));
   }

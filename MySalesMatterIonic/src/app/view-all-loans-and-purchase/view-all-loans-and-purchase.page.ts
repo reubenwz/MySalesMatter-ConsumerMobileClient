@@ -5,7 +5,6 @@ import { SalesTransactionService } from '../services/sales-transaction.service';
 import { SalesTransaction } from '../models/sales-transaction';
 import { SessionService } from '../services/session.service';
 import { ListingService } from '../services/listing.service';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { Offer } from '../models/offer';
 import { OfferService } from '../services/offer.service';
 

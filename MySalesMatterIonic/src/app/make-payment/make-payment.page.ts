@@ -34,7 +34,7 @@ export class MakePaymentPage implements OnInit {
     this.offerService.getOfferByOfferId(this.offerId).subscribe(
       response => {
         this.offer = response;
-        this.totalPrice = (this.offer.totalPrice / this.offer.listing.rentalPrice) * 5;
+        this.totalPrice = (this.offer.totalPrice / this.offer.listing.rentalPrice) * this.offer.listing.rentalPrice * (10 / 100);
       },
       error => {
         console.log('********** MakePaymentPage.ts: ' + error);
