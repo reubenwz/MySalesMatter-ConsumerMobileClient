@@ -1,6 +1,13 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
+  </ion-buttons>
     <ion-title>My Listings</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
     <ion-searchbar
       showcancelbutton=""
       (ionInput)="filterList($event)"

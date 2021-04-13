@@ -123,4 +123,8 @@ export class CreateNewListingPage implements OnInit {
         );
     }
   }
+
+  back() {
+    this.router.navigate(['/index/']);
+  }
 }

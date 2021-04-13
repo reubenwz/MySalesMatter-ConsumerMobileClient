@@ -58,4 +58,8 @@ export class ReviewsWrittenPage implements OnInit {
 			}
 		);
   }
+
+  back() {
+    this.router.navigate(['/index/']);
+  }
 }

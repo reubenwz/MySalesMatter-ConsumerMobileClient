@@ -76,6 +76,6 @@ export class ViewAllLoansAndPurchasePage implements OnInit {
   }
 
   back() {
-    this.router.navigate(['/index']);
+    this.router.navigate(['/index/']);
   }
 }

@@ -41,4 +41,8 @@ export class ViewMyLikedItemsPage implements OnInit {
     );
   }
 
+  back() {
+    this.router.navigate(['/index/']);
+  }
+
 }

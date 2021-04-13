@@ -1,17 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Browse All Listings</ion-title>
-    <br />
-    <ion-searchbar showcancelbutton="" (ionInput)="filterList($event)"></ion-searchbar>
-    <br />
-    <ion-button (click)="createNewListing()">
-      <ion-icon slot="start" name="add-outline"></ion-icon>
-      Create New Listing
-    </ion-button>
+<ion-header class="ion-no-border"> 
+  <ion-toolbar color="tertiary"><ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  <ion-title>Browse All Listings</ion-title>
+</ion-toolbar>
+<br/>
+<ion-toolbar>
+  <div class="ion-searchbar-right">
+  <ion-searchbar showcancelbutton="" (ionInput)="filterList($event)"></ion-searchbar></div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="ion-text-center">
+    <ion-button (click)="createNewListing()">
+      <ion-icon slot="start" name="add-outline"></ion-icon>
+      Create New Listing
+    </ion-button>
+    </div>
   <div *ngIf="resultSuccess == true" style="color: blue">{{message}}</div>
 
   <div *ngIf="resultError == true" style="color: red">{{message}}</div>

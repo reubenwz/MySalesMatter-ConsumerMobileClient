@@ -53,4 +53,8 @@ export class ChatPage implements OnInit {
       '/replyChat/' + message.sender.userId + '/' + message.offer.offerId,
     ]);
   }
+
+  back() {
+    this.router.navigate(['/index/']);
+  }
 }

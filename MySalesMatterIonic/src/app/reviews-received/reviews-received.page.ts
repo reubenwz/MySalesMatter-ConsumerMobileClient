@@ -55,4 +55,8 @@ export class ReviewsReceivedPage implements OnInit {
 			}
 		);
   }
+
+  back() {
+    this.router.navigate(['/index/']);
+  }
 }

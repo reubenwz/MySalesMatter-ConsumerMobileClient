@@ -103,4 +103,8 @@ export class ViewMyListingsPage implements OnInit {
       }
     );
   }
+
+  back() {
+    this.router.navigate(['/index/']);
+  }
 }
