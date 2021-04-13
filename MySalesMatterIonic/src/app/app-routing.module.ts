@@ -265,6 +265,15 @@ const routes: Routes = [
         (m) => m.ReplyChatPageModule
       ),
   },
+  {
+    path: 'makePayment',
+    loadChildren: () => import('./make-payment/make-payment.module').then(m => m.MakePaymentPageModule)
+  },
+  {
+    path: 'makePayment/:offerId',
+    loadChildren: () => import('./make-payment/make-payment.module').then(m => m.MakePaymentPageModule)
+  },
+
 ];
 
 @NgModule({

@@ -48,8 +48,8 @@ export class SalesTransactionService {
       );
   }
 
-  createNewTransaction(offerId: number, userId: number, status: string, transactionDate: Date, totalAmt: number): Observable<SalesTransaction> {
-    let createSalesTransactionReq: CreateSalesTransactionReq = new CreateSalesTransactionReq(this.sessionService.getEmail(), this.sessionService.getPassword(), offerId, userId, status, transactionDate, totalAmt);
+  createNewTransaction(offerId: number, userId: number, transactionDate: Date, totalAmt: number, ccName: string, ccNum: string, cvv: string, expiry: string): Observable<SalesTransaction> {
+    let createSalesTransactionReq: CreateSalesTransactionReq = new CreateSalesTransactionReq(this.sessionService.getEmail(), this.sessionService.getPassword(), offerId, userId, transactionDate, totalAmt, ccName, ccNum, cvv, expiry);
 
     return this.httpClient.put<SalesTransaction>(this.baseUrl, createSalesTransactionReq, httpOptions).pipe
       (

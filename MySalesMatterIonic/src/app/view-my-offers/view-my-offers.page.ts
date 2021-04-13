@@ -57,38 +57,8 @@ export class ViewMyOffersPage implements OnInit {
     ]);
   }
 
-  async makePayment(event, offer) {
-    const alert = await this.alertController.create({
-      header: 'Confirm Payment',
-      message: 'Confirm payment <strong>' + offer.offerId + '</strong>?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            this.message = "Payment failed!";
-            this.refreshOffers();
-          }
-        }, {
-          text: 'Confirm Payment',
-          handler: () => {
-            this.salesTransactionService.createNewTransaction(offer.offerId, this.sessionService.getCurrentUser().userId, 'paid', new Date(), offer.totalPrice).subscribe(
-              response => {
-                this.resultSuccess = true;
-                this.message = "Payment made!";
-                this.refreshOffers();
-              },
-              error => {
-                this.error = true;
-                this.errorMessage = error;
-              }
-            );
-          }
-        }
-      ]
-    });
-    await alert.present();
+  makePayment(event, offer) {
+    this.router.navigate(['/makePayment/' + offer.offerId]);
   }
 
   async deleteOffer(event, offer) {

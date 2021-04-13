@@ -59,7 +59,7 @@ export class ViewReviewDetailsPage implements OnInit {
 
 
 
- 
+
 
 
 
