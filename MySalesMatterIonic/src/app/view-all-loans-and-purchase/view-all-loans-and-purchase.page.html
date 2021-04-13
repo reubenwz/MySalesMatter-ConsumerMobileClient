@@ -20,26 +20,16 @@
 	  <br />
       <p>Transaction Type: {{sales.offer.offerType}}</p>
       <p>Transaction Date: {{sales.transactionDate}}</p>
-      <p>Total Amount ($): {{sales.totalAmt}}</p>
+      <p>Total Amount: {{sales.totalAmt | currency}}</p>
 	  <br />
       <ion-button (click)="viewListingDetails($event, sales.offer.offerId)">
         <ion-icon name="open-outline"></ion-icon>
         View
       </ion-button>
-			<!-- <ion-item>
-				<ion-label><b>Transaction Type</b></ion-label>
-				{{sales.offer.offerType}}
-			</ion-item>
-
-			<ion-item>
-				<ion-label><b>Transaction Date</b></ion-label>
-				{{sales.transactionDate}}
-			</ion-item>
-
-			<ion-item>
-				<ion-label><b>Total Amount ($)</b></ion-label>
-				{{sales.totalAmt}}
-			</ion-item> -->
+	  <ion-button (click)="addReview($event, sales.offer.offerId)">
+        <ion-icon name="create-outline"></ion-icon>
+        Add Review
+      </ion-button>
 
 		</ion-card-content>
 

@@ -5,6 +5,9 @@ import { Listing } from '../models/listing';
 import { Offer } from '../models/offer';
 import { ListingService } from '../services/listing.service';
 import { OfferService } from '../services/offer.service';
+import { SalesTransactionService } from '../services/sales-transaction.service';
+import { SessionService } from '../services/session.service';
+import { SalesTransaction } from '../models/sales-transaction';
 
 @Component({
   selector: 'app-view-my-offers',
@@ -18,11 +21,12 @@ export class ViewMyOffersPage implements OnInit {
   allOffers: Offer[];
   listing: Listing;
 
+  message: string;
   error: boolean;
   errorMessage: string;
   resultSuccess: boolean;
 
-  constructor(private router: Router, private offerService: OfferService, private listingService: ListingService, public alertController: AlertController) { }
+  constructor(private router: Router, private offerService: OfferService, private listingService: ListingService, private sessionService: SessionService, private salesTransactionService: SalesTransactionService, public alertController: AlertController) { }
 
   ngOnInit() {
     this.refreshOffers();
@@ -47,7 +51,44 @@ export class ViewMyOffersPage implements OnInit {
     );
   }
 
-  makePayment(event, offer) {
+  arrangeMeetup(event, offer) {
+    this.router.navigate([
+      '/replyChat/' + this.sessionService.getCurrentUser().userId + '/' + offer.offerId,
+    ]);
+  }
+
+  async makePayment(event, offer) {
+    const alert = await this.alertController.create({
+      header: 'Confirm Payment',
+      message: 'Confirm payment <strong>' + offer.offerId + '</strong>?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            this.message = "Payment failed!";
+            this.refreshOffers();
+          }
+        }, {
+          text: 'Confirm Payment',
+          handler: () => {
+            this.salesTransactionService.createNewTransaction(offer.offerId, this.sessionService.getCurrentUser().userId, 'paid', new Date(), offer.totalPrice).subscribe(
+              response => {
+                this.resultSuccess = true;
+                this.message = "Payment made!";
+                this.refreshOffers();
+              },
+              error => {
+                this.error = true;
+                this.errorMessage = error;
+              }
+            );
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
   async deleteOffer(event, offer) {

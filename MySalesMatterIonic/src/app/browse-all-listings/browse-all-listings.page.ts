@@ -74,7 +74,7 @@ export class BrowseAllListingsPage implements OnInit {
       (response) => {
         this.resultSuccess = true;
         this.resultError = false;
-        this.message = 'Listing unliked successfully';
+        this.message = 'Listing unliked successfully!';
         this.refreshListings();
       },
       (error) => {
@@ -91,8 +91,7 @@ export class BrowseAllListingsPage implements OnInit {
         this.resultSuccess = true;
         this.resultError = false;
         this.message =
-          'Listing liked successfully! Liked Item ID: ' +
-          this.likedItem.likedItemId;
+          'Listing liked successfully!';
         this.refreshListings();
       },
       (error) => {

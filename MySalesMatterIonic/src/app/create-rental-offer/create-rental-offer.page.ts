@@ -21,8 +21,12 @@ export class CreateRentalOfferPage implements OnInit {
   start: Date;
   end: Date;
   totalPrice: number;
+  newTotalPrice: number;
   listing: Listing;
+  days: number;
+  diff: number;
 
+  retrieveListingError: boolean;
   resultSuccess: boolean;
   resultError: boolean;
   message: string;
@@ -35,7 +39,7 @@ export class CreateRentalOfferPage implements OnInit {
     private sessionService: SessionService,
     private listingService: ListingService) {
     this.submitted = false;
-
+    this.retrieveListingError = false;
     this.resultSuccess = false;
     this.resultError = false;
     this.userId = this.sessionService.getCurrentUser().userId;
@@ -45,12 +49,28 @@ export class CreateRentalOfferPage implements OnInit {
 
   ngOnInit() {
     this.listingId = parseInt(this.activatedRoute.snapshot.paramMap.get('listingId'));
+    this.listingService.getListingByListingId(this.listingId).subscribe(
+      response => {
+        this.listing = response;
+        this.totalPrice = this.listing.rentalPrice;
+      },
+      error => {
+        this.retrieveListingError = true;
+        console.log('********** CreateBuyOfferPage.ts: ' + error);
+      }
+    );
   }
 
 
 
   clear() {
     this.submitted = false;
+  }
+
+  calculate() {
+    this.diff = new Date(this.end).getTime() - new Date(this.start).getTime();
+    this.days = this.diff / (1000 * 60 * 60 * 24);
+    this.newTotalPrice = this.days * this.totalPrice;
   }
 
   /*calculateRentalPrice() {
@@ -73,7 +93,7 @@ export class CreateRentalOfferPage implements OnInit {
     this.submitted = true;
 
     if (createRentalOfferForm.valid) {
-      this.offerService.createNewOffer(this.totalPrice, new Date(), OfferType.RENTAL, new Date(this.start), new Date(this.end), this.listingId, this.userId).subscribe(
+      this.offerService.createNewOffer(this.newTotalPrice, new Date(), OfferType.RENTAL, new Date(this.start), new Date(this.end), this.listingId, this.userId).subscribe(
         response => {
           let newOfferCreated: Offer = response;
           this.resultSuccess = true;

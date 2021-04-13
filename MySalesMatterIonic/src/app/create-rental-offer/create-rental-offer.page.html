@@ -25,11 +25,11 @@
 
         <div style="color: red;">
 
-          <div *ngIf="rentalPrice.invalid && (rentalPrice.dirty || rentalPrice.touched || submitted)" class="errorText">
+          <!-- <div *ngIf="rentalPrice.invalid && (rentalPrice.dirty || rentalPrice.touched || submitted)" class="errorText">
             <div *ngIf="rentalPrice.errors.required">
               Rental price is required.
             </div>
-          </div>
+          </div> -->
 
           <div *ngIf="startDate.invalid && (startDate.dirty || startDate.touched || submitted)" class="errorText">
             <div *ngIf="startDate.errors.required">
@@ -48,10 +48,15 @@
         <ion-list>
 
           <ion-item>
-            <ion-label><b>Rental Price</b></ion-label>
+            <ion-label><b>Rental Price Per Day</b></ion-label>
+            {{totalPrice | currency}}
+          </ion-item>
+
+          <!-- <ion-item>
+            <ion-label><b>Rental Price Per Day</b></ion-label>
             <ion-input type="number" id="rentalPrice" name="rentalPrice" [(ngModel)]="totalPrice" required="true"
               #rentalPrice="ngModel"></ion-input>
-          </ion-item>
+          </ion-item> -->
 
           <ion-item>
             <ion-label><b>Start Date</b></ion-label>
@@ -66,6 +71,11 @@
             </ion-input>
           </ion-item>
 
+          <ion-item>
+            <ion-label><b>Total Rental Price</b></ion-label>
+            {{newTotalPrice | currency}}
+          </ion-item>
+
         </ion-list>
 
       </ion-card-content>
@@ -75,6 +85,9 @@
     <ion-card style="text-align: center;">
 
       <ion-card-content>
+        <ion-button (click)="calculate()">
+          Calculate
+        </ion-button>
         <ion-button (click)="clear()">
           Clear
         </ion-button>

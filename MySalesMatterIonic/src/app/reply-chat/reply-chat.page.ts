@@ -59,7 +59,7 @@ export class ReplyChatPage implements OnInit {
             this.newMessage = response;
             this.resultSuccess = true;
             this.resultError = false;
-            this.respondMessage = 'Reply sent!';
+            this.respondMessage = 'Mesage sent!';
             this.newMessage = new Message();
             this.submitted = false;
             createMessageForm.reset();
@@ -69,7 +69,7 @@ export class ReplyChatPage implements OnInit {
             this.resultError = true;
             this.resultSuccess = false;
             this.respondMessage =
-              'An error has occurred while sending the reply: ' + error;
+              'An error has occurred while sending the message: ' + error;
             console.log('********** response failure ');
           }
         );

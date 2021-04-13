@@ -16,6 +16,7 @@ export class ViewListingOffersPage implements OnInit {
   error: boolean;
   errorMessage: string;
   resultSuccess: boolean;
+  message: string;
 
   constructor(private router: Router, private offerService: OfferService, public alertController: AlertController, private activatedRoute: ActivatedRoute) { }
 
@@ -52,7 +53,8 @@ export class ViewListingOffersPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-
+            this.message = "Offer rejected successfully";
+            this.refreshOffers();
           }
         }, {
           text: 'Okay',
@@ -61,6 +63,8 @@ export class ViewListingOffersPage implements OnInit {
               response => {
                 this.resultSuccess = true;
                 this.refreshOffers;
+                this.message = "Offer accepted successfully";
+                this.refreshOffers();
               },
               error => {
                 this.error = true;

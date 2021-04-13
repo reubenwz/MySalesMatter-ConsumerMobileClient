@@ -19,7 +19,7 @@ export class ViewAllLoansAndPurchasePage implements OnInit {
   resultSuccess: boolean;
   resultError: boolean;
   message: string;
-  listingId: number | null;
+  listingId: number;
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -48,10 +48,18 @@ export class ViewAllLoansAndPurchasePage implements OnInit {
     this.listingService.getListingByOfferId(offerId).subscribe (
       (response) => {
         this.listingId = response.listingId;
+        this.router.navigate(['/viewListingDetails/' + this.listingId]);
       }
     )
-    console.log("HIII" + this.listingId);
-    this.router.navigate(['/viewListingDetails/' + this.listingId]);
+  }
+
+  addReview(event, offerId) {
+    this.listingService.getListingByOfferId(offerId).subscribe (
+      (response) => {
+        this.listingId = response.listingId;
+        this.router.navigate(['/createReview/' + this.listingId]);
+      }
+    )
   }
 
   back() {

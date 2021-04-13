@@ -22,8 +22,8 @@
       <p>Offer Id: {{offer.offerId}}</p>
       <p>Offer Date: {{offer.offerDate}}</p>
       <p>Offer Type: {{offer.offerType}}</p>
-      <p>Total Price: {{offer.totalPrice}}</p>
-      <p>Accepted? {{offer.accepted}}</p>
+      <p>Total Price: {{offer.totalPrice | currency}}</p>
+      <p>Offer Status / Accepted? {{offer.accepted}}</p>
       <br />
       <ion-button (click)="acceptOffer($event, offer)" *ngIf="!offer.accepted">
         Accept

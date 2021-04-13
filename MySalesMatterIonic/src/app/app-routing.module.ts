@@ -42,6 +42,22 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'createReview/:listingId',
+    loadChildren: () =>
+      import('./create-review/create-review.module').then(
+        (m) => m.CreateReviewPageModule
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'createReview',
+    loadChildren: () =>
+      import('./create-review/create-review.module').then(
+        (m) => m.CreateReviewPageModule
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'viewAllLoansAndPurchase',
     loadChildren: () =>
       import(

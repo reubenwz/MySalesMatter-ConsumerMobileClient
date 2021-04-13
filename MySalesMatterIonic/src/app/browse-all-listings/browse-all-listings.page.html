@@ -29,18 +29,14 @@
         <ion-icon name="open-outline"></ion-icon>
         View
       </ion-button>
-      <div *ngIf="listingIsLiked(listing)">
-        <ion-button (click)="unlike($event, listing)">
+        <ion-button *ngIf="listingIsLiked(listing)" (click)="unlike($event, listing)">
           <ion-icon name="heart"></ion-icon>
           Unlike
         </ion-button>
-      </div>
-      <div *ngIf="!listingIsLiked(listing)">
-        <ion-button (click)="like($event, listing)">
+        <ion-button *ngIf="!listingIsLiked(listing)" (click)="like($event, listing)">
           <ion-icon name="heart-outline"></ion-icon>
           Like
         </ion-button>
-      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>
