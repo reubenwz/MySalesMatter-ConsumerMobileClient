@@ -1,44 +1,55 @@
 <ion-header>
-
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-button (click)="back()">
-				<ion-icon slot="start" name="arrow-back"></ion-icon>
-			</ion-button>
-		</ion-buttons>
-		<ion-title>Loans and Purchase</ion-title>
-	</ion-toolbar>
-
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Loans and Purchase</ion-title>
+  </ion-toolbar>
 </ion-header>
-
+<h3>Rental Transactions</h3>
 <ion-content>
-
-	<ion-card *ngFor="let sales of s">
-
-		<ion-card-content>
-      <ion-card-title> Sales Transaction ID {{sales.salesTransactionId}} </ion-card-title>
-	  <br />
+  <ion-card *ngFor="let sales of s">
+    <ion-card-content>
+      <ion-card-title>
+        Sales Transaction ID {{sales.salesTransactionId}}
+      </ion-card-title>
+      <br />
       <p>Transaction Type: {{sales.offer.offerType}}</p>
       <p>Transaction Date: {{sales.transactionDate}}</p>
       <p>Total Amount: {{sales.totalAmt | currency}}</p>
-	  <br />
+      <br />
       <ion-button (click)="viewListingDetails($event, sales.offer.offerId)">
         <ion-icon name="open-outline"></ion-icon>
         View
       </ion-button>
-	  <ion-button (click)="addReview($event, sales.offer.offerId)">
+      <ion-button (click)="addReview($event, sales.offer.offerId)">
         <ion-icon name="create-outline"></ion-icon>
         Add Review
       </ion-button>
-
-		</ion-card-content>
-
-	</ion-card>
-
+    </ion-card-content>
+  </ion-card>
+  <h3>Purchase Transactions</h3>
+  <ion-card *ngFor="let purchase of o">
+    <ion-card-content>
+      <ion-card-title> Purchase ID {{purchase.offerId}} </ion-card-title>
+      <br />
+      <p>Transaction Type: {{purchase.offerType}}</p>
+      <p>Total Amount: {{purchase.totalPrice | currency}}</p>
+      <br />
+      <ion-button (click)="viewListingDetails($event, purchase.offerId)">
+        <ion-icon name="open-outline"></ion-icon>
+        View
+      </ion-button>
+      <ion-button (click)="addReview($event, purchase.offerId)">
+        <ion-icon name="create-outline"></ion-icon>
+        Add Review
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 
 <ion-footer>
-
-	<ion-title>&copy; 2021 IS3106.</ion-title>
-
+  <ion-title>&copy; 2021 IS3106.</ion-title>
 </ion-footer>

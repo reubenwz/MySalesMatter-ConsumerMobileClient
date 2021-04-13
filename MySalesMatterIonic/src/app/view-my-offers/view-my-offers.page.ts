@@ -8,6 +8,7 @@ import { OfferService } from '../services/offer.service';
 import { SalesTransactionService } from '../services/sales-transaction.service';
 import { SessionService } from '../services/session.service';
 import { SalesTransaction } from '../models/sales-transaction';
+import { OfferType } from '../enums/offer-type.enum';
 
 @Component({
   selector: 'app-view-my-offers',
@@ -15,37 +16,41 @@ import { SalesTransaction } from '../models/sales-transaction';
   styleUrls: ['./view-my-offers.page.scss'],
 })
 export class ViewMyOffersPage implements OnInit {
-
   pendingOffers: Offer[];
   acceptedOffers: Offer[];
   allOffers: Offer[];
   listing: Listing;
+  offerType: OfferType;
 
   message: string;
   error: boolean;
   errorMessage: string;
   resultSuccess: boolean;
 
-  constructor(private router: Router, private offerService: OfferService, private listingService: ListingService, private sessionService: SessionService, private salesTransactionService: SalesTransactionService, public alertController: AlertController) { }
+  constructor(
+    private router: Router,
+    private offerService: OfferService,
+    private listingService: ListingService,
+    private sessionService: SessionService,
+    private salesTransactionService: SalesTransactionService,
+    public alertController: AlertController
+  ) {}
 
   ngOnInit() {
     this.refreshOffers();
   }
 
-
-
   ionViewWillEnter() {
     this.refreshOffers();
   }
 
-
   viewListingDetails(event, offer) {
     this.listingService.getListingByOfferId(offer.offerId).subscribe(
-      response => {
+      (response) => {
         this.listing = response;
-        this.router.navigate(["/viewListingDetails/" + this.listing.listingId]);
+        this.router.navigate(['/viewListingDetails/' + this.listing.listingId]);
       },
-      error => {
+      (error) => {
         console.log('********** ViewMyListingsPage.ts: ' + error);
       }
     );
@@ -53,7 +58,10 @@ export class ViewMyOffersPage implements OnInit {
 
   arrangeMeetup(event, offer) {
     this.router.navigate([
-      '/replyChat/' + this.sessionService.getCurrentUser().userId + '/' + offer.offerId,
+      '/replyChat/' +
+        this.sessionService.getCurrentUser().userId +
+        '/' +
+        offer.offerId,
     ]);
   }
 
@@ -64,14 +72,13 @@ export class ViewMyOffersPage implements OnInit {
   async deleteOffer(event, offer) {
     const alert = await this.alertController.create({
       header: 'Confirm Delete Offer',
-      message:
-        'Confirm delete offer <strong>' + offer.offerId + '</strong>?',
+      message: 'Confirm delete offer <strong>' + offer.offerId + '</strong>?',
       buttons: [
         {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: (blah) => { },
+          handler: (blah) => {},
         },
         {
           text: 'Okay',
@@ -79,10 +86,7 @@ export class ViewMyOffersPage implements OnInit {
             this.offerService.deleteOffer(offer.offerId).subscribe(
               (response) => {
                 this.resultSuccess = true;
-                this.allOffers.splice(
-                  this.allOffers.indexOf(offer, 0),
-                  1
-                );
+                this.allOffers.splice(this.allOffers.indexOf(offer, 0), 1);
               },
               (error) => {
                 this.error = true;
@@ -99,10 +103,10 @@ export class ViewMyOffersPage implements OnInit {
 
   refreshOffers() {
     this.offerService.getOffersByUserId().subscribe(
-      response => {
+      (response) => {
         this.allOffers = response;
       },
-      error => {
+      (error) => {
         console.log('********** ViewMyListingsPage.ts: ' + error);
       }
     );
@@ -114,5 +118,4 @@ export class ViewMyOffersPage implements OnInit {
       }
     }*/
   }
-
 }

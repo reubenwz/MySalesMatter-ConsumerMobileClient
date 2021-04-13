@@ -5,17 +5,13 @@
 </ion-header>
 
 <ion-content>
-
   <div *ngIf="resultSuccess == true" style="color: blue">{{message}}</div>
 
   <div *ngIf="resultError == true" style="color: red">{{message}}</div>
 
   <ion-card>
-
     <ion-card-header>
-      <ion-card-title>
-        Accepted Offers
-      </ion-card-title>
+      <ion-card-title> Accepted Offers </ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
@@ -30,24 +26,26 @@
             <ion-icon name="open-outline"></ion-icon>
             View
           </ion-button>
-          <ion-button *ngIf="!acceptedOffer.paid" (click)="makePayment($event, acceptedOffer)">
+          <ion-button
+            *ngIf="!acceptedOffer.paid and acceptedOffer.offerType == 'RENTAL'"
+            (click)="makePayment($event, acceptedOffer)"
+          >
             Make Payment
           </ion-button>
-          <ion-button *ngIf="acceptedOffer.paid" (click)="arrangeMeetup($event, acceptedOffer)">
+          <ion-button
+            *ngIf="acceptedOffer.paid"
+            (click)="arrangeMeetup($event, acceptedOffer)"
+          >
             Arrange Meetup
           </ion-button>
         </ion-card-content>
       </ion-card>
     </ion-card-content>
-
   </ion-card>
 
   <ion-card>
-
     <ion-card-header>
-      <ion-card-title>
-        Pending Offers
-      </ion-card-title>
+      <ion-card-title> Pending Offers </ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
@@ -67,9 +65,7 @@
           </ion-button>
         </ion-card-content>
       </ion-card>
-
     </ion-card-content>
-
   </ion-card>
 </ion-content>
 
