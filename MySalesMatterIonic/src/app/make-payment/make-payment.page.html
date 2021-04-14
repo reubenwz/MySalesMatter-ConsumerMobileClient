@@ -24,6 +24,12 @@
             <div *ngIf="ccNum.errors.required">
               Credit Card Number is required.
             </div>
+            <div *ngIf="ccNum.errors.minlength">
+							Credit Card Number must be 16 characters long.
+						</div>
+						<div *ngIf="ccNum.errors.maxlength">
+							Credit Card Number must be 16 characters long.
+						</div>
           </div>
         </div>
 

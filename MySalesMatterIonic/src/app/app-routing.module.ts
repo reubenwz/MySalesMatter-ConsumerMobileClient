@@ -42,7 +42,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'createReview/:listingId',
+    path: 'createReview/:salesId',
     loadChildren: () =>
       import('./create-review/create-review.module').then(
         (m) => m.CreateReviewPageModule

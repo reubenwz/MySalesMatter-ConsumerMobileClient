@@ -1,5 +1,10 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
+  </ion-buttons>
     <ion-title>My Offers</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -29,7 +34,7 @@
           <ion-button *ngIf="canMakePayment(acceptedOffer)" (click)="makePayment($event, acceptedOffer)">
             Make Deposit
           </ion-button>
-          <ion-button (click)="arrangeMeetup($event, acceptedOffer)">
+          <ion-button *ngIf="acceptedOffer.paid" (click)="arrangeMeetup($event, acceptedOffer)">
             Arrange Meetup
           </ion-button>
           <ion-button *ngIf="canProceedToBuy(acceptedOffer)" (click)="proceedToBuy($event, acceptedOffer)">

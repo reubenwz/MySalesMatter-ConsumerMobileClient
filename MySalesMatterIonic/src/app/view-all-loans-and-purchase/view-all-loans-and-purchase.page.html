@@ -9,8 +9,9 @@
   </ion-toolbar>
 </ion-header>
 
-<h3 style="text-align: center;">Rental Transactions</h3>
+<!-- <h3 style="text-align: center;">Rental Transactions</h3> -->
 <ion-content>
+  <h3 style="text-align: center;">Rental Transactions</h3>
   <ion-card *ngFor="let sales of s">
     <ion-card-content>
       <ion-card-title>
@@ -25,14 +26,15 @@
         <ion-icon name="open-outline"></ion-icon>
         View
       </ion-button>
-      <ion-button (click)="addReview($event, sales.offer.offerId)">
+      <ion-button *ngIf="!sales.reviewed" (click)="addReview($event, sales.salesTransactionId)">
         <ion-icon name="create-outline"></ion-icon>
         Add Review
       </ion-button>
     </ion-card-content>
   </ion-card>
-  <h3 style="text-align: center;">Purchase Transactions</h3>
+  <!-- <h3 style="text-align: center;">Purchase Transactions</h3> -->
   <ion-card *ngFor="let purchase of o">
+    <h3 style="text-align: center;">Purchase Transactions</h3>
     <ion-card-content>
       <ion-card-title> Purchase ID {{purchase.offerId}} </ion-card-title>
       <br />
@@ -43,7 +45,7 @@
         <ion-icon name="open-outline"></ion-icon>
         View
       </ion-button>
-      <ion-button (click)="addReview($event, purchase.offerId)">
+      <ion-button *ngIf="!purchase.reviewed" (click)="addReview($event, purchase.salesTransactionId)">
         <ion-icon name="create-outline"></ion-icon>
         Add Review
       </ion-button>

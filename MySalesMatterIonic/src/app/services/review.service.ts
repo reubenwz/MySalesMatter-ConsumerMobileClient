@@ -56,11 +56,11 @@ export class ReviewService {
       );
   }
 
-  createNewReview(newReview: Review, reviewerId: number, listingId: number): Observable<Review> {
+  createNewReview(newReview: Review, reviewerId: number, listingId: number, salesId: number): Observable<Review> {
     console.log(newReview.description, newReview.starRating);
     console.log(reviewerId);
     console.log(listingId);
-    let createReviewReq: CreateReviewReq = new CreateReviewReq(newReview.description, newReview.starRating, this.sessionService.getEmail(), this.sessionService.getPassword(), reviewerId, listingId);
+    let createReviewReq: CreateReviewReq = new CreateReviewReq(newReview.description, newReview.starRating, this.sessionService.getEmail(), this.sessionService.getPassword(), reviewerId, listingId, salesId);
 
     return this.httpClient.put<Review>(this.baseUrl, createReviewReq, httpOptions).pipe
       (

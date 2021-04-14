@@ -14,9 +14,11 @@ export class SalesTransaction {
     user: User | undefined;
 
     offer: Offer | undefined;
+    reviewed: boolean | undefined;
 
 
-    constructor(totalAmt?: number, transactionDate?: Date, ccName?: string, ccNum?: string, cvv?: string, expiry?: string) {
+    constructor(reviewed?: boolean, totalAmt?: number, transactionDate?: Date, ccName?: string, ccNum?: string, cvv?: string, expiry?: string) {
+        this.reviewed = reviewed;
         this.totalAmt = totalAmt;
         this.transactionDate = transactionDate;
         this.ccName = ccName;

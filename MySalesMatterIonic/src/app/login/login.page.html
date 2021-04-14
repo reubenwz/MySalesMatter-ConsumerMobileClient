@@ -6,7 +6,7 @@
 				<ion-icon slot="start" name="arrow-back"></ion-icon>
 			</ion-button>
 		</ion-buttons>
-		<ion-title>Login</ion-title>
+		<ion-title>Login / Logout</ion-title>
 	</ion-toolbar>
 
 </ion-header>
@@ -97,10 +97,28 @@
 
 
 		</ion-card-content>
+		<ion-card-header>
+			<ion-card-title>MySalesMatter</ion-card-title>
+			<ion-card-subtitle>How it started?</ion-card-subtitle>
+		  </ion-card-header>
+		
+		  <ion-card-content>
+			First launched in April 2021, MySalesMatter is developed by 4 Information System Undergraduate from National University of Singapore. It all started when one of the team member who likes to try items out before making a decision to purchase any items to prevent regrets. However, locally, there is an absence of such platform that enables users to perform both functions of first renting items and purchasing afterwards. Hence this idea of enabling users to rent and sell items originated from there.
+		  </ion-card-content>
+		  <br/>
+		  <ion-card-header>
+			<ion-card-subtitle>What is MYM?</ion-card-subtitle>
+		  </ion-card-header>
+		  <ion-card-content>
+			MySalesMatter, MYM for short, is a peer-to-peer renting and selling platforms for users. At MYM, users can choose to sell and rent unwanted items. If you are looking for items to rent or purchase or would like to earn quick cash by renting or selling unwanted items online, MYM is just the right website for you!
+		  </ion-card-content>
+
+		  
 
 	</ion-card>
 
 </ion-content>
+
 
 <ion-footer *ngIf="sessionService.getIsLogin() == true">
 

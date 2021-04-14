@@ -14,8 +14,8 @@ export class AppComponent {
   ];
 
   public appPagesLoginGeneral = [
-    { title: 'Logout', url: '/login', icon: 'exit' },
-    { title: 'Home', url: '/index', icon: 'home' },
+    // { title: 'Logout', url: '/login', icon: 'exit' },
+    { title: 'Home', url: '/login', icon: 'person' },
     { title: 'Chat', url: '/chat', icon: 'chatbubbles' },
   ];
 
@@ -23,41 +23,41 @@ export class AppComponent {
     {
       title: 'Browse All Listings',
       url: '/browseAllListings',
-      icon: 'arrow-forward'
+      icon: 'chevron-forward'
     },
     {
       title: 'All Loans And Purchases',
       url: '/viewAllLoansAndPurchase',
-      icon: 'arrow-forward',
+      icon: 'chevron-forward',
     },
   ];
   public appPagesProfile = [
     {
       title: 'My Listings',
       url: '/viewMyListings',
-      icon: 'arrow-forward',
+      icon: 'chevron-forward',
     },
     {
       title: 'My Liked Items',
       url: '/viewMyLikedItems',
-      icon: 'arrow-forward',
+      icon: 'chevron-forward',
     },
     {
-      title: 'My Offers (Transaction History)',
+      title: 'My Offers - Transaction History',
       url: '/viewMyOffers',
-      icon: 'arrow-forward',
+      icon: 'chevron-forward',
     }
   ];
   public appPagesReviews = [
     {
       title: 'Reviews Received',
       url: '/reviewsReceived',
-      icon: 'arrow-forward',
+      icon: 'chevron-forward',
     },
     {
       title: 'Reviews Written',
       url: '/reviewsWritten',
-      icon: 'arrow-forward'
+      icon: 'chevron-forward'
     },
   ];
   constructor(public sessionService: SessionService) { }

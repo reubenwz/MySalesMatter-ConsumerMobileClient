@@ -7,6 +7,7 @@ import { SessionService } from '../services/session.service';
 import { ListingService } from '../services/listing.service';
 import { Offer } from '../models/offer';
 import { OfferService } from '../services/offer.service';
+import { ReviewService } from '../services/review.service';
 
 @Component({
   selector: 'app-view-all-loans-and-purchase',
@@ -21,6 +22,9 @@ export class ViewAllLoansAndPurchasePage implements OnInit {
   resultError: boolean;
   message: string;
   listingId: number;
+  salesId: number;
+  reviews: Review[];
+  sales: SalesTransaction;
 
   o: Offer[];
   retrievePurchasesError: boolean;
@@ -31,7 +35,8 @@ export class ViewAllLoansAndPurchasePage implements OnInit {
     private saleTransactionService: SalesTransactionService,
     private offerService: OfferService,
     private listingService: ListingService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private reviewService: ReviewService
   ) {
     this.resultSuccess = false;
     this.resultError = false;
@@ -60,6 +65,31 @@ export class ViewAllLoansAndPurchasePage implements OnInit {
     );
   }
 
+  // reviewDoesNotExist(offerId) {
+  //   this.listingService.getListingByOfferId(offerId).subscribe((response) => {
+  //     this.listingId = response.listingId;
+  //   },
+  //   error => {
+  //     console.log('********** ViewAllLoansAndPurchasePage.ts: ' + error);
+  //   }
+  // );
+  // console.log(this.listingId);
+  //   this.reviewService.getReviewsByUserId(this.sessionService.getCurrentUser().userId).subscribe(
+	// 		response => {
+	// 			this.reviews = response;
+  //       this.reviews.forEach(x => {
+  //         if (x.listing.listingId == this.listingId) {
+  //           return false;
+  //         }
+  //       });
+  //       },
+	// 		error => {
+	// 			console.log('********** ViewAllLoansAndPurchasePage.ts: ' + error);
+	// 		}
+	// 	);
+  //   return true;
+  // }
+
   viewListingDetails(event, offerId) {
     console.log('HIII' + offerId);
     this.listingService.getListingByOfferId(offerId).subscribe((response) => {
@@ -68,11 +98,10 @@ export class ViewAllLoansAndPurchasePage implements OnInit {
     });
   }
 
-  addReview(event, offerId) {
-    this.listingService.getListingByOfferId(offerId).subscribe((response) => {
-      this.listingId = response.listingId;
-      this.router.navigate(['/createReview/' + this.listingId]);
-    });
+
+  addReview(event, salesId) {
+    this.router.navigate(['/createReview/' + salesId]);
+    console.log("ID IS " + salesId);
   }
 
   back() {

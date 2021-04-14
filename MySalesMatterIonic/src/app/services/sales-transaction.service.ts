@@ -42,7 +42,7 @@ export class SalesTransactionService {
   }
 
   getTransactionById(transactionId: number): Observable<SalesTransaction> {
-    return this.httpClient.get<SalesTransaction>(this.baseUrl + "/retrieveTransaction/" + transactionId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
+    return this.httpClient.get<SalesTransaction>(this.baseUrl + "/retrieveTransactionById/" + transactionId + "?username=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
       (
         catchError(this.handleError)
       );

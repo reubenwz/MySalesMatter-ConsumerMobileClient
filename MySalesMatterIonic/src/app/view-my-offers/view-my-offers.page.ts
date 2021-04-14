@@ -77,7 +77,8 @@ export class ViewMyOffersPage implements OnInit {
   canMakePayment(offer) {
     if (offer.paid == false && offer.offerType == 'RENTAL') {
       return true;
-    } return false;
+    } 
+    return false;
   }
 
   canProceedToBuy(offer) {
@@ -117,6 +118,10 @@ export class ViewMyOffersPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  back() {
+    this.router.navigate(['/index/']);
   }
 
   makePayment(event, offer) {
