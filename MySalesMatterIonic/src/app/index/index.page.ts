@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SessionService } from '../services/session.service';
 
 
 @Component({
@@ -9,13 +10,17 @@ import { Router } from '@angular/router';
 })
 export class IndexPage implements OnInit {
 
-  constructor(private router: Router,) { }
+  constructor(private router: Router, private sessionService: SessionService) { }
 
   ngOnInit() {
   }
 
   register() {
-    this.router.navigate(["/register"]);
+    if (this.sessionService.getCurrentUser() != null) {
+      this.router.navigate(['/browseAllListings']);
+    } else {
+      this.router.navigate(["/register"]);
+    }
   }
 
 }
