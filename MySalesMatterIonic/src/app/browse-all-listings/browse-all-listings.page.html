@@ -1,23 +1,28 @@
-<ion-header class="ion-no-border"> 
-  <ion-toolbar color="tertiary"><ion-buttons slot="start">
-    <ion-menu-button></ion-menu-button>
-  </ion-buttons>
-  <ion-title>Browse All Listings</ion-title>
-</ion-toolbar>
-<br/>
-<ion-toolbar>
-  <div class="ion-searchbar-right">
-  <ion-searchbar showcancelbutton="" (ionInput)="filterList($event)"></ion-searchbar></div>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="mysalesmatter">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Browse All Listings</ion-title>
+  </ion-toolbar>
+  <br />
+  <ion-toolbar>
+    <div class="ion-searchbar-right">
+      <ion-searchbar
+        showcancelbutton=""
+        (ionInput)="filterList($event)"
+      ></ion-searchbar>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="ion-text-center">
-    <ion-button (click)="createNewListing()">
+    <ion-button color="primary" (click)="createNewListing()">
       <ion-icon slot="start" name="add-outline"></ion-icon>
       Create New Listing
     </ion-button>
-    </div>
+  </div>
   <div *ngIf="resultSuccess == true" style="color: blue">{{message}}</div>
 
   <div *ngIf="resultError == true" style="color: red">{{message}}</div>
@@ -31,22 +36,28 @@
       <p>For Sale: {{listing.forSaleAvailability}}</p>
       <p>Username: {{listing.user.name}}</p>
       <br />
-      <ion-button (click)="viewListingDetails($event, listing)">
-        <ion-icon name="open-outline"></ion-icon>
-        View
-      </ion-button>
-        <ion-button *ngIf="listingIsLiked(listing)" (click)="unlike($event, listing)">
-          <ion-icon name="heart"></ion-icon>
+
+      <ion-list style="text-align: end">
+        <ion-button (click)="viewListingDetails($event, listing)">
+          <ion-icon slot="start" name="open-outline"></ion-icon>
+          View
+        </ion-button>
+        <ion-button
+          color="danger"
+          *ngIf="listingIsLiked(listing)"
+          (click)="unlike($event, listing)"
+        >
+          <ion-icon slot="start" name="heart"></ion-icon>
           Unlike
         </ion-button>
-        <ion-button *ngIf="!listingIsLiked(listing)" (click)="like($event, listing)">
-          <ion-icon name="heart-outline"></ion-icon>
+        <ion-button
+          *ngIf="!listingIsLiked(listing)"
+          (click)="like($event, listing)"
+        >
+          <ion-icon slot="start" name="heart-outline"></ion-icon>
           Like
         </ion-button>
+      </ion-list>
     </ion-card-content>
   </ion-card>
 </ion-content>
-
-<ion-footer>
-  <ion-title>&copy; 2021 IS3106.</ion-title>
-</ion-footer>

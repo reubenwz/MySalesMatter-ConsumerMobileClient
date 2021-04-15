@@ -1,5 +1,5 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar color="tertiary">
+  <ion-toolbar color="mysalesmatter">
     <ion-buttons slot="start">
       <ion-button (click)="back()">
         <ion-icon slot="start" name="arrow-back"></ion-icon>
@@ -27,19 +27,28 @@
           <p>Offer Type: {{acceptedOffer.offerType}}</p>
           <p>Total Price: {{acceptedOffer.totalPrice || currency}}</p>
           <br />
+
+          <ion-list style="text-align: end">
           <ion-button (click)="viewListingDetails($event, acceptedOffer)">
-            <ion-icon name="open-outline"></ion-icon>
+            <ion-icon slot="start" name="open-outline"></ion-icon>
             View
           </ion-button>
           <ion-button *ngIf="canMakePayment(acceptedOffer)" (click)="makePayment($event, acceptedOffer)">
+            <ion-icon slot="start" name="save-outline"></ion-icon>
             Make Deposit
           </ion-button>
+          </ion-list>
+
+          <ion-list style="text-align: end">
           <ion-button *ngIf="acceptedOffer.paid" (click)="arrangeMeetup($event, acceptedOffer)">
+            <ion-icon slot="start" name="people-outline"></ion-icon>
             Arrange Meetup
           </ion-button>
           <ion-button *ngIf="canProceedToBuy(acceptedOffer)" (click)="proceedToBuy($event, acceptedOffer)">
+            <ion-icon slot="start" name="receipt-outline"></ion-icon>
             Proceed To Buy
           </ion-button>
+          </ion-list>
         </ion-card-content>
       </ion-card>
     </ion-card-content>
@@ -58,19 +67,19 @@
           <p>Offer Type: {{pendingOffer.offerType}}</p>
           <p>Total Price: {{pendingOffer.totalPrice | currency}}</p>
           <br />
+
+          <ion-list style="text-align: end">
           <ion-button (click)="viewListingDetails($event, pendingOffer)">
-            <ion-icon name="open-outline"></ion-icon>
+            <ion-icon slot="start" name="open-outline"></ion-icon>
             View
           </ion-button>
           <ion-button (click)="deleteOffer($event, pendingOffer)">
+            <ion-icon slot="start" name="trash-outline"></ion-icon>
             Delete
           </ion-button>
+          </ion-list>
         </ion-card-content>
       </ion-card>
     </ion-card-content>
   </ion-card>
 </ion-content>
-
-<ion-footer>
-  <ion-title>&copy; 2021 IS3106.</ion-title>
-</ion-footer>

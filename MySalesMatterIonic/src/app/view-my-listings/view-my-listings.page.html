@@ -1,17 +1,18 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar color="tertiary">
+  <ion-toolbar color="mysalesmatter">
     <ion-buttons slot="start">
-      <ion-button (click)="back()">
-        <ion-icon slot="start" name="arrow-back"></ion-icon>
-      </ion-button>
-  </ion-buttons>
-    <ion-title>My Listings</ion-title>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>View My Listings</ion-title>
   </ion-toolbar>
+  <br />
   <ion-toolbar>
-    <ion-searchbar
-      showcancelbutton=""
-      (ionInput)="filterList($event)"
-    ></ion-searchbar>
+    <div class="ion-searchbar-right">
+      <ion-searchbar
+        showcancelbutton=""
+        (ionInput)="filterList($event)"
+      ></ion-searchbar>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -31,25 +32,25 @@
       <br />
     </ion-card-content>
 
-    <ion-row>
-      <ion-col>
-        <ion-button (click)="viewListingDetails($event, listing)">
-          <ion-icon name="open-outline"></ion-icon>
-          View
-        </ion-button>
-        <ion-button (click)="updateListing($event, listing)">
-          <ion-icon name="create"></ion-icon>
-          Update
-        </ion-button>
-        <ion-button (click)="deleteListing($event, listing)">
-          <ion-icon name="trash"></ion-icon>
-          Delete
-        </ion-button>
-        <ion-button (click)="viewOffers($event, listing)">
-          <ion-icon name="star"></ion-icon>
-          View Offers
-        </ion-button>
-      </ion-col>
-    </ion-row>
+    <ion-list style="text-align: end">
+      <ion-button (click)="viewListingDetails($event, listing)">
+        <ion-icon slot="start" name="open-outline"></ion-icon>
+        View
+      </ion-button>
+      <ion-button (click)="updateListing($event, listing)">
+        <ion-icon slot="start" name="create"></ion-icon>
+        Update
+      </ion-button>
+    </ion-list>
+    <ion-list style="text-align: end">
+      <ion-button (click)="deleteListing($event, listing)">
+        <ion-icon slot="start" name="trash"></ion-icon>
+        Delete
+      </ion-button>
+      <ion-button (click)="viewOffers($event, listing)">
+        <ion-icon slot="start" name="star"></ion-icon>
+        View Offers
+      </ion-button>
+    </ion-list>
   </ion-card>
 </ion-content>

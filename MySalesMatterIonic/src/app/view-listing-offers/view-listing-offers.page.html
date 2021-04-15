@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="mysalesmatter">
     <ion-buttons slot="start">
       <ion-button (click)="back()">
         <ion-icon slot="start" name="arrow-back"></ion-icon>
@@ -26,13 +26,10 @@
       <p>Offer Status / Accepted? {{offer.accepted}}</p>
       <br />
       <ion-button (click)="acceptOffer($event, offer)" *ngIf="!offer.accepted">
+        <ion-icon slot="start" name="thumbs-up-outline"></ion-icon>
         Accept
       </ion-button>
     </ion-card-content>
   </ion-card>
 
 </ion-content>
-
-<ion-footer>
-  <ion-title>&copy; 2021 IS3106.</ion-title>
-</ion-footer>

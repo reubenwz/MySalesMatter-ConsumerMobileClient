@@ -1,132 +1,134 @@
 <ion-header>
-
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-button (click)="back()">
-				<ion-icon slot="start" name="arrow-back"></ion-icon>
-			</ion-button>
-		</ion-buttons>
-		<ion-title>Login / Logout</ion-title>
-	</ion-toolbar>
-
+  <ion-toolbar color="mysalesmatter">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Login / Logout</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card *ngIf="sessionService.getIsLogin() == false">
+    <ion-card-content>
+      <div *ngIf="loginError == true" style="color: red">{{errorMessage}}</div>
 
-	<ion-card *ngIf="sessionService.getIsLogin() == false">
+      <form #userLoginForm="ngForm" (ngSubmit)="userLogin(userLoginForm)">
+        <div style="color: red">
+          <div
+            *ngIf="inemail.invalid && (inemail.dirty || inemail.touched || submitted)"
+            class="errorText"
+          >
+            <div *ngIf="inemail.errors.required">Email is required.</div>
+            <div *ngIf="inemail.errors.minlength">Email is required!</div>
+            <div *ngIf="inemail.errors.maxlength">Enter you email!</div>
+          </div>
 
-		<ion-card-content>
+          <div
+            *ngIf="inpassword.invalid && (inpassword.dirty || inpassword.touched || submitted)"
+            class="errorText"
+          >
+            <div *ngIf="inpassword.errors.required">Password is required.</div>
+            <div *ngIf="inpassword.errors.minlength">
+              Password must be at least 4 characters long.
+            </div>
+            <div *ngIf="inpassword.errors.maxlength">
+              Password cannot exceed 32 characters.
+            </div>
+          </div>
 
-			<div *ngIf="loginError == true" style="color: red;">
-				{{errorMessage}}
-			</div>
+          <div *ngIf="loginErrorMessage" class="errorText">
+            {{loginErrorMessage}}
+          </div>
+        </div>
 
-			<form #userLoginForm="ngForm" (ngSubmit)="userLogin(userLoginForm)">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input
+              type="text"
+              id="email"
+              name="email"
+              [(ngModel)]="email"
+              minlength="4"
+              maxlength="32"
+              required="true"
+              #inemail="ngModel"
+            ></ion-input>
+          </ion-item>
 
-				<div style="color: red;">
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input
+              type="password"
+              id="password"
+              name="password"
+              [(ngModel)]="password"
+              minlength="4"
+              maxlength="32"
+              required="true"
+              #inpassword="ngModel"
+            ></ion-input>
+          </ion-item>
 
-					<div *ngIf="inemail.invalid && (inemail.dirty || inemail.touched || submitted)" class="errorText">
-						<div *ngIf="inemail.errors.required">
-							Email is required.
-						</div>
-						<div *ngIf="inemail.errors.minlength">
-							Email is required!
-						</div>
-						<div *ngIf="inemail.errors.maxlength">
-							Enter you email!
-						</div>
-					</div>
+          <ng-container>
+            <ion-list style="text-align: center">
+              <ion-button color="danger" (click)="clear()">
+                <ion-icon slot="start" name="close"></ion-icon>Clear
+              </ion-button>
+              <ion-button color="tertiary" ion-button block type="submit">
+                <ion-icon slot="start" name="log-in-outline"></ion-icon>
+                Login
+              </ion-button>
+            </ion-list>
+          </ng-container>
+        </ion-list>
+      </form>
+    </ion-card-content>
+  </ion-card>
 
-					<div *ngIf="inpassword.invalid && (inpassword.dirty || inpassword.touched || submitted)"
-						class="errorText">
-						<div *ngIf="inpassword.errors.required">
-							Password is required.
-						</div>
-						<div *ngIf="inpassword.errors.minlength">
-							Password must be at least 4 characters long.
-						</div>
-						<div *ngIf="inpassword.errors.maxlength">
-							Password cannot exceed 32 characters.
-						</div>
-					</div>
+  <ion-card *ngIf="sessionService.getIsLogin() == true">
+    <ion-card-content>
+      Welcome back {{sessionService.getCurrentUser().name}}!
+    </ion-card-content>
+    <ion-card-header>
+      <ion-card-title color="mysalesmatter">MySalesMatter</ion-card-title>
+      <ion-chip color="primary">
+        <ion-label>How it started?</ion-label>
+      </ion-chip>
+    </ion-card-header>
 
-					<div *ngIf="loginErrorMessage" class="errorText">
-						{{loginErrorMessage}}
-					</div>
-
-				</div>
-
-				<ion-list>
-
-					<ion-item>
-						<ion-label position="floating">Email</ion-label>
-						<ion-input type="text" id="email" name="email" [(ngModel)]="email" minlength="4" maxlength="32"
-							required="true" #inemail="ngModel"></ion-input>
-					</ion-item>
-
-					<ion-item>
-						<ion-label position="floating">Password</ion-label>
-						<ion-input type="password" id="password" name="password" [(ngModel)]="password" minlength="4"
-							maxlength="32" required="true" #inpassword="ngModel"></ion-input>
-					</ion-item>
-
-					<ng-container>
-						<ion-list style="text-align:center">
-							<ion-button color="danger" (click)="clear()">
-								<ion-icon slot="start" name="close"></ion-icon>Clear
-							</ion-button>
-							<ion-button color="tertiary" ion-button block type=submit>
-								Login
-							</ion-button>
-						</ion-list>
-					</ng-container>
-
-				</ion-list>
-
-			</form>
-
-		</ion-card-content>
-
-	</ion-card>
-
-	<ion-card *ngIf="sessionService.getIsLogin() == true">
-
-		<ion-card-content>
-
-			You are login as {{sessionService.getCurrentUser().name}}
-
-
-		</ion-card-content>
-		<ion-card-header>
-			<ion-card-title>MySalesMatter</ion-card-title>
-			<ion-card-subtitle>How it started?</ion-card-subtitle>
-		  </ion-card-header>
-		
-		  <ion-card-content>
-			First launched in April 2021, MySalesMatter is developed by 4 Information System Undergraduate from National University of Singapore. It all started when one of the team member who likes to try items out before making a decision to purchase any items to prevent regrets. However, locally, there is an absence of such platform that enables users to perform both functions of first renting items and purchasing afterwards. Hence this idea of enabling users to rent and sell items originated from there.
-		  </ion-card-content>
-		  <br/>
-		  <ion-card-header>
-			<ion-card-subtitle>What is MYM?</ion-card-subtitle>
-		  </ion-card-header>
-		  <ion-card-content>
-			MySalesMatter, MYM for short, is a peer-to-peer renting and selling platforms for users. At MYM, users can choose to sell and rent unwanted items. If you are looking for items to rent or purchase or would like to earn quick cash by renting or selling unwanted items online, MYM is just the right website for you!
-		  </ion-card-content>
-
-		  
-
-	</ion-card>
-
+    <ion-card-content color="dark" class="ion-padding">
+	First launched in April 2021, MySalesMatter is developed by 4 Information
+      System Undergraduate from National University of Singapore. It all started
+      when one of the team members who likes to try items out before making a
+      decision to purchase any items to prevent regrets. However, locally, there
+      is an absence of such platform that enables users to perform both
+      functions of first renting items and purchasing afterwards. Hence this
+      idea of enabling users to rent and sell items originated from there.
+    </ion-card-content>
+    
+    <ion-card-header>
+		<ion-chip color="primary">
+		  <ion-label>What is MYM?</ion-label>
+		</ion-chip>
+    </ion-card-header>
+    <ion-card-content color="dark" class="ion-padding">
+      MySalesMatter, MYM for short, is a peer-to-peer renting and selling
+      platforms for users. At MYM, users can choose to sell and rent unwanted
+      items. If you are looking for items to rent or purchase or would like to
+      earn quick cash by renting or selling unwanted items online, MYM is just
+      the right website for you!
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 
-
 <ion-footer *ngIf="sessionService.getIsLogin() == true">
-
-	<ion-toolbar>
-		<ion-button expand="full" (click)="userLogout()">
-			<ion-icon slot="start" name="exit"></ion-icon>
-			Logout
-		</ion-button>
-	</ion-toolbar>
-
+  <ion-toolbar>
+    <ion-button expand="full" (click)="userLogout()">
+      <ion-icon slot="start" name="exit"></ion-icon>
+      Logout
+    </ion-button>
+  </ion-toolbar>
 </ion-footer>

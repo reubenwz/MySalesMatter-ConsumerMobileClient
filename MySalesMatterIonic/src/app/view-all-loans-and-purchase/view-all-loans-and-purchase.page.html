@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="tertiary">
+  <ion-toolbar color="mysalesmatter">
     <ion-buttons slot="start">
       <ion-button (click)="back()">
         <ion-icon slot="start" name="arrow-back"></ion-icon>
@@ -33,6 +33,7 @@
     </ion-card-content>
   </ion-card>
   <!-- <h3 style="text-align: center;">Purchase Transactions</h3> -->
+  
   <ion-card *ngFor="let purchase of o">
     <h3 style="text-align: center;">Purchase Transactions</h3>
     <ion-card-content>
@@ -52,7 +53,3 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
-
-<ion-footer>
-  <ion-title>&copy; 2021 IS3106.</ion-title>
-</ion-footer>

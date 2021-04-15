@@ -23,41 +23,41 @@ export class AppComponent {
     {
       title: 'Browse All Listings',
       url: '/browseAllListings',
-      icon: 'chevron-forward'
+      icon: 'list'
     },
     {
       title: 'All Loans And Purchases',
       url: '/viewAllLoansAndPurchase',
-      icon: 'chevron-forward',
+      icon: 'cash',
     },
   ];
   public appPagesProfile = [
     {
       title: 'My Listings',
       url: '/viewMyListings',
-      icon: 'chevron-forward',
+      icon: 'list',
     },
     {
       title: 'My Liked Items',
       url: '/viewMyLikedItems',
-      icon: 'chevron-forward',
+      icon: 'heart',
     },
     {
       title: 'My Offers - Transaction History',
       url: '/viewMyOffers',
-      icon: 'chevron-forward',
+      icon: 'star',
     }
   ];
   public appPagesReviews = [
     {
       title: 'Reviews Received',
       url: '/reviewsReceived',
-      icon: 'chevron-forward',
+      icon: 'folder-open',
     },
     {
       title: 'Reviews Written',
       url: '/reviewsWritten',
-      icon: 'chevron-forward'
+      icon: 'pencil'
     },
   ];
   constructor(public sessionService: SessionService) { }
