@@ -31,7 +31,7 @@ Link to project on STEPS: https://uvents.nus.edu.sg/event/18th-steps/module/IS31
 ## 🚀 Building and Running for Production
 
 1. Preview the site as it will appear once deployed
-```sh
+  ```sh
    ionic serve
    ```
 
