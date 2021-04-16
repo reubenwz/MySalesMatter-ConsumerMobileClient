@@ -5,6 +5,11 @@ import { LikedItem } from '../models/liked-item';
 import { Listing } from '../models/listing';
 import { LikedItemService } from '../services/liked-item.service';
 import { ListingService } from '../services/listing.service';
+import {
+  Camera,
+  CameraOptions,
+  DestinationType,
+} from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-browse-all-listings',
@@ -19,12 +24,13 @@ export class BrowseAllListingsPage implements OnInit {
   resultSuccess: boolean;
   resultError: boolean;
   message: string;
-
+  imgURL;
   constructor(
+    private camera: Camera,
     private router: Router,
     private listingService: ListingService,
     private likedItemService: LikedItemService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.refreshListings();
@@ -84,14 +90,13 @@ export class BrowseAllListingsPage implements OnInit {
   }
 
   like(event, listing) {
-    console.log("*** " + listing.listingId);
+    console.log('*** ' + listing.listingId);
     this.likedItemService.createNewLikedItem(listing.listingId).subscribe(
       (response) => {
         this.likedItem = response;
         this.resultSuccess = true;
         this.resultError = false;
-        this.message =
-          'Listing liked successfully!';
+        this.message = 'Listing liked successfully!';
         this.refreshListings();
       },
       (error) => {
@@ -117,5 +122,42 @@ export class BrowseAllListingsPage implements OnInit {
         console.log('********** BrowseAllListingsPage.ts: ' + error);
       }
     );
+  }
+  getCamera() {
+    this.camera
+      .getPicture({
+        sourceType: this.camera.PictureSourceType.CAMERA,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        targetWidth: 720,
+        correctOrientation: true,
+      })
+      .then(
+        (imageData) => {
+          // imageData is either a base64 encoded string or a file URI
+          // If it's base64 (DATA_URL):
+          this.imgURL = 'data:image/jpeg;base64,' + imageData;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
+  getGallery() {
+    this.camera
+      .getPicture({
+        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+        destinationType: this.camera.DestinationType.DATA_URL,
+      })
+      .then(
+        (imageData) => {
+          // imageData is either a base64 encoded string or a file URI
+          // If it's base64 (DATA_URL):
+          this.imgURL = 'data:image/jpeg;base64,' + imageData;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 }

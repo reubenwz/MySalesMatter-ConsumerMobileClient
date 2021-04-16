@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-button (click)="back()">
-          <ion-icon slot="start" name="arrow-back"></ion-icon>
-        </ion-button>
-      </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Create New Listing</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -122,7 +122,6 @@
               id="forSaleAvailability"
               name="forSaleAvailability"
               [(ngModel)]="newListing.forSaleAvailability"
-              
             >
             </ion-checkbox>
           </ion-item>
@@ -189,12 +188,19 @@
 
     <ion-card style="text-align: center">
       <ion-card-content>
-        <ion-button (click)="clear()" color="danger"> 
-          <ion-icon name="close-outline"></ion-icon>Clear </ion-button>
-        <ion-button type="submit" ion-button block> 
-          <ion-icon name="clipboard-outline"></ion-icon>Create </ion-button>
+        <ion-button (click)="clear()" color="danger">
+          <ion-icon name="close-outline"></ion-icon>Clear
+        </ion-button>
+        <ion-button type="submit" ion-button block>
+          <ion-icon name="clipboard-outline"></ion-icon>Create
+        </ion-button>
       </ion-card-content>
     </ion-card>
+    <div>
+      <img src="{{imgURL}}" height="200" width="200" />
+      <ion-button (click)="getCamera()">Open Camera</ion-button>
+      <ion-button (click)="getGallery()">Gallery</ion-button>
+    </div>
   </form>
 </ion-content>
 

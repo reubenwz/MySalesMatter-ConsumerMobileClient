@@ -10,6 +10,11 @@ import { Listing } from '../models/listing';
 import { Category } from '../models/category';
 import { Tag } from '../models/tag';
 import { SessionService } from '../services/session.service';
+import {
+  Camera,
+  CameraOptions,
+  DestinationType,
+} from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-create-new-listing',
@@ -30,13 +35,16 @@ export class CreateNewListingPage implements OnInit {
   message: string;
   userId: number;
 
+  imgURL;
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private listingService: ListingService,
     private categoryService: CategoryService,
     private sessionService: SessionService,
-    private tagService: TagService
+    private tagService: TagService,
+    private camera: Camera
   ) {
     this.submitted = false;
     this.newListing = new Listing();
@@ -86,7 +94,7 @@ export class CreateNewListingPage implements OnInit {
     }
     console.log(
       '********** DEBUG CreateNewListingPage.ts brand : ' +
-      this.newListing.brand
+        this.newListing.brand
     );
     this.submitted = true;
 
@@ -122,6 +130,44 @@ export class CreateNewListingPage implements OnInit {
           }
         );
     }
+  }
+
+  getCamera() {
+    this.camera
+      .getPicture({
+        sourceType: this.camera.PictureSourceType.CAMERA,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        targetWidth: 720,
+        correctOrientation: true,
+      })
+      .then(
+        (imageData) => {
+          // imageData is either a base64 encoded string or a file URI
+          // If it's base64 (DATA_URL):
+          this.imgURL = 'data:image/jpeg;base64,' + imageData;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
+  getGallery() {
+    this.camera
+      .getPicture({
+        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+        destinationType: this.camera.DestinationType.DATA_URL,
+      })
+      .then(
+        (imageData) => {
+          // imageData is either a base64 encoded string or a file URI
+          // If it's base64 (DATA_URL):
+          this.imgURL = 'data:image/jpeg;base64,' + imageData;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 
   back() {

@@ -23,6 +23,12 @@
       Create New Listing
     </ion-button>
   </div>
+
+  <div>
+    <img src="{{imgURL}}" height="200" width="200" />
+    <ion-button (click)="getCamera()">Open Camera</ion-button>
+    <ion-button (click)="getGallery()">Gallery</ion-button>
+  </div>
   <div *ngIf="resultSuccess == true" style="color: blue">{{message}}</div>
 
   <div *ngIf="resultError == true" style="color: red">{{message}}</div>

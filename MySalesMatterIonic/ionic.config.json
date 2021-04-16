@@ -1,5 +1,7 @@
 {
   "name": "MySalesMatterIonic",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
