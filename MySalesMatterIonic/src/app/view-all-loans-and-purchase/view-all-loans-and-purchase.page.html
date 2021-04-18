@@ -43,11 +43,11 @@
       <p>Total Amount: {{purchase.totalPrice | currency}}</p>
       <br />
       <ion-button (click)="viewListingDetails($event, purchase.offerId)">
-        <ion-icon name="open-outline"></ion-icon>
+        <ion-icon slot="start" name="open-outline"></ion-icon>
         View
       </ion-button>
       <ion-button *ngIf="!purchase.reviewed" (click)="addPurchaseReview($event, purchase.offerId)">
-        <ion-icon name="create-outline"></ion-icon>
+        <ion-icon slot="start" name="create-outline"></ion-icon>
         Add Review
       </ion-button>
     </ion-card-content>

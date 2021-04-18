@@ -75,7 +75,7 @@
           <ion-item>
             <ion-label><b>Rental Price per Day</b></ion-label>
             <ion-input type="number" id="rentalPrice" name="rentalPrice" [(ngModel)]="newListing.rentalPrice"
-              required="true" #rentalPrice="ngModel"></ion-input>
+              #rentalPrice="ngModel"></ion-input>
           </ion-item>
 
           <ion-item>
@@ -87,7 +87,7 @@
 
           <ion-item>
             <ion-label><b>Sale Price</b></ion-label>
-            <ion-input type="number" id="salePrice" name="salePrice" [(ngModel)]="newListing.salePrice" required="true"
+            <ion-input type="number" id="salePrice" name="salePrice" [(ngModel)]="newListing.salePrice" 
               #salePrice="ngModel"></ion-input>
           </ion-item>
 
@@ -127,16 +127,12 @@
     <ion-card style="text-align: center">
       <ion-card-content>
         <ion-button (click)="clear()" color="danger">
-          <ion-icon name="close-outline"></ion-icon>Clear
+          <ion-icon slot="start" name="close-outline"></ion-icon>Clear
         </ion-button>
         <ion-button type="submit" ion-button block>
-          <ion-icon name="clipboard-outline"></ion-icon>Create
+          <ion-icon slot="start" name="clipboard-outline"></ion-icon>Create
         </ion-button>
       </ion-card-content>
     </ion-card>
   </form>
 </ion-content>
-
-<ion-footer>
-  <ion-title>&copy; 2021 IS3106.</ion-title>
-</ion-footer>

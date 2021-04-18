@@ -38,11 +38,11 @@
     <ion-card style="text-align: center;">
 
       <ion-card-content>
-        <ion-button (click)="clear()">
-          Clear
+        <ion-button (click)="clear()" color="danger">
+          <ion-icon slot="start" name="close-outline"></ion-icon>Clear
         </ion-button>
         <ion-button type="submit" ion-button block>
-          Create
+          <ion-icon slot="start" name="clipboard-outline"></ion-icon>Create
         </ion-button>
       </ion-card-content>
 
@@ -50,9 +50,3 @@
 
   </form>
 </ion-content>
-
-<ion-footer>
-
-  <ion-title>&copy; 2021 IS3106.</ion-title>
-
-</ion-footer>
