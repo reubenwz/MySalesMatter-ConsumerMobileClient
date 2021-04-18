@@ -4,7 +4,7 @@
       <ion-button (click)="back()">
         <ion-icon slot="start" name="arrow-back"></ion-icon>
       </ion-button>
-  </ion-buttons>
+    </ion-buttons>
     <ion-title>My Offers</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -25,29 +25,29 @@
           <p>Offer Id: {{acceptedOffer.offerId}}</p>
           <p>Offer Date: {{acceptedOffer.offerDate}}</p>
           <p>Offer Type: {{acceptedOffer.offerType}}</p>
-          <p>Total Price: {{acceptedOffer.totalPrice || currency}}</p>
+          <p>Total Price: {{acceptedOffer.totalPrice | currency}}</p>
           <br />
 
           <ion-list style="text-align: end">
-          <ion-button (click)="viewListingDetails($event, acceptedOffer)">
-            <ion-icon slot="start" name="open-outline"></ion-icon>
-            View
-          </ion-button>
-          <ion-button *ngIf="canMakePayment(acceptedOffer)" (click)="makePayment($event, acceptedOffer)">
-            <ion-icon slot="start" name="save-outline"></ion-icon>
-            Make Deposit
-          </ion-button>
+            <ion-button (click)="viewListingDetails($event, acceptedOffer)">
+              <ion-icon slot="start" name="open-outline"></ion-icon>
+              View
+            </ion-button>
+            <ion-button *ngIf="canMakePayment(acceptedOffer)" (click)="makePayment($event, acceptedOffer)">
+              <ion-icon slot="start" name="save-outline"></ion-icon>
+              Make Deposit
+            </ion-button>
           </ion-list>
 
           <ion-list style="text-align: end">
-          <ion-button *ngIf="acceptedOffer.paid" (click)="arrangeMeetup($event, acceptedOffer)">
-            <ion-icon slot="start" name="people-outline"></ion-icon>
-            Arrange Meetup
-          </ion-button>
-          <ion-button *ngIf="canProceedToBuy(acceptedOffer)" (click)="proceedToBuy($event, acceptedOffer)">
-            <ion-icon slot="start" name="receipt-outline"></ion-icon>
-            Proceed To Buy
-          </ion-button>
+            <ion-button *ngIf="acceptedOffer.paid" (click)="arrangeMeetup($event, acceptedOffer)">
+              <ion-icon slot="start" name="people-outline"></ion-icon>
+              Arrange Meetup
+            </ion-button>
+            <ion-button *ngIf="canProceedToBuy(acceptedOffer)" (click)="proceedToBuy($event, acceptedOffer)">
+              <ion-icon slot="start" name="receipt-outline"></ion-icon>
+              Proceed To Buy
+            </ion-button>
           </ion-list>
         </ion-card-content>
       </ion-card>
@@ -69,14 +69,14 @@
           <br />
 
           <ion-list style="text-align: end">
-          <ion-button (click)="viewListingDetails($event, pendingOffer)">
-            <ion-icon slot="start" name="open-outline"></ion-icon>
-            View
-          </ion-button>
-          <ion-button (click)="deleteOffer($event, pendingOffer)">
-            <ion-icon slot="start" name="trash-outline"></ion-icon>
-            Delete
-          </ion-button>
+            <ion-button (click)="viewListingDetails($event, pendingOffer)">
+              <ion-icon slot="start" name="open-outline"></ion-icon>
+              View
+            </ion-button>
+            <ion-button (click)="deleteOffer($event, pendingOffer)">
+              <ion-icon slot="start" name="trash-outline"></ion-icon>
+              Delete
+            </ion-button>
           </ion-list>
         </ion-card-content>
       </ion-card>

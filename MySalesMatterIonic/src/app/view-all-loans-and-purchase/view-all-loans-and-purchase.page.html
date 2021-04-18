@@ -11,45 +11,56 @@
 
 <!-- <h3 style="text-align: center;">Rental Transactions</h3> -->
 <ion-content>
-  <h3 style="text-align: center;">Rental Transactions</h3>
-  <ion-card *ngFor="let sales of s">
+  <ion-card>
     <ion-card-content>
-      <ion-card-title>
-        Sales Transaction ID {{sales.salesTransactionId}}
+      <ion-card-title style="text-align: center;">
+        Rental Transactions
       </ion-card-title>
-      <br />
-      <p>Transaction Type: {{sales.offer.offerType}}</p>
-      <p>Transaction Date: {{sales.transactionDate}}</p>
-      <p>Total Amount: {{sales.totalAmt | currency}}</p>
-      <br />
-      <ion-button (click)="viewListingDetails($event, sales.offer.offerId)">
-        <ion-icon name="open-outline"></ion-icon>
-        View
-      </ion-button>
-      <ion-button *ngIf="!sales.reviewed" (click)="addReview($event, sales.salesTransactionId)">
-        <ion-icon name="create-outline"></ion-icon>
-        Add Review
-      </ion-button>
+      <ion-card *ngFor="let sales of s">
+        <ion-card-content>
+          <ion-card-title>
+            Sales Transaction ID {{sales.salesTransactionId}}
+          </ion-card-title>
+          <br />
+          <p>Transaction Type: {{sales.offer.offerType}}</p>
+          <p>Transaction Date: {{sales.transactionDate}}</p>
+          <p>Total Amount: {{sales.totalAmt | currency}}</p>
+          <br />
+          <ion-button (click)="viewListingDetails($event, sales.offer.offerId)">
+            <ion-icon name="open-outline"></ion-icon>
+            View
+          </ion-button>
+          <ion-button *ngIf="!sales.reviewed" (click)="addReview($event, sales.salesTransactionId)">
+            <ion-icon name="create-outline"></ion-icon>
+            Add Review
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
     </ion-card-content>
   </ion-card>
-  <!-- <h3 style="text-align: center;">Purchase Transactions</h3> -->
-  
-  <ion-card *ngFor="let purchase of o">
-    <h3 style="text-align: center;">Purchase Transactions</h3>
+
+  <ion-card>
     <ion-card-content>
-      <ion-card-title> Purchase ID {{purchase.offerId}} </ion-card-title>
-      <br />
-      <p>Transaction Type: {{purchase.offerType}}</p>
-      <p>Total Amount: {{purchase.totalPrice | currency}}</p>
-      <br />
-      <ion-button (click)="viewListingDetails($event, purchase.offerId)">
-        <ion-icon slot="start" name="open-outline"></ion-icon>
-        View
-      </ion-button>
-      <ion-button *ngIf="!purchase.reviewed" (click)="addPurchaseReview($event, purchase.offerId)">
-        <ion-icon slot="start" name="create-outline"></ion-icon>
-        Add Review
-      </ion-button>
+      <ion-card-title style="text-align: center;">
+        Purchase Transactions
+      </ion-card-title>
+      <ion-card *ngFor="let purchase of o">
+        <ion-card-content>
+          <ion-card-title> Purchase ID {{purchase.offerId}} </ion-card-title>
+          <br />
+          <p>Transaction Type: {{purchase.offerType}}</p>
+          <p>Total Amount: {{purchase.totalPrice | currency}}</p>
+          <br />
+          <ion-button (click)="viewListingDetails($event, purchase.offerId)">
+            <ion-icon slot="start" name="open-outline"></ion-icon>
+            View
+          </ion-button>
+          <ion-button *ngIf="!purchase.reviewed" (click)="addPurchaseReview($event, purchase.offerId)">
+            <ion-icon slot="start" name="create-outline"></ion-icon>
+            Add Review
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
     </ion-card-content>
   </ion-card>
 </ion-content>

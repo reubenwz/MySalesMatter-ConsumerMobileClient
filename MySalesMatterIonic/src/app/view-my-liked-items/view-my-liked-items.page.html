@@ -4,28 +4,26 @@
       <ion-button (click)="back()">
         <ion-icon slot="start" name="arrow-back"></ion-icon>
       </ion-button>
-  </ion-buttons>
+    </ion-buttons>
     <ion-title>My Liked Items</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card
-    *ngFor="let likedItem of likedItems"
-    (click)="viewListingDetails($event, likedItem)"
-  >
+  <ion-card *ngFor="let likedItem of likedItems" (click)="viewListingDetails($event, likedItem)">
     <ion-card-content>
       <ion-card-title> {{likedItem.listing.name}} </ion-card-title>
-
+      <img src="http://localhost:8080/MySalesMatter/uploadedFiles/{{likedItem.listing.picturePath}}" height="200"
+        width="200" />
       <p>{{likedItem.listing.description}}</p>
       <p>For Rent: {{likedItem.listing.rentalAvailability}}</p>
       <p>For Sale:{{likedItem.listing.forSaleAvailability}}</p>
 
       <ion-list style="text-align: end">
-      <ion-button (click)="viewListingDetails($event, listing)">
-        <ion-icon slot="start" name="open-outline"></ion-icon>
-        View
-      </ion-button>
+        <ion-button (click)="viewListingDetails($event, listing)">
+          <ion-icon slot="start" name="open-outline"></ion-icon>
+          View
+        </ion-button>
       </ion-list>
     </ion-card-content>
   </ion-card>
