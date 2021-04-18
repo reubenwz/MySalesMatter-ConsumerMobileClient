@@ -14,10 +14,11 @@ export class CreateListingReq {
     rentalPrice: number;
     salePrice: number;
     location: string;
+    picturePath: string;
 
 
 
-    constructor(name?: string, description?: string, brand?: string, rentalPrice?: number, salePrice?: number, location?: string, username?: string, password?: string, userId?: number, categoryId?: number, tagIds?: number[]) {
+    constructor(picturePath?: string, name?: string, description?: string, brand?: string, rentalPrice?: number, salePrice?: number, location?: string, username?: string, password?: string, userId?: number, categoryId?: number, tagIds?: number[]) {
 
         this.description = description;
         this.name = name;
@@ -31,5 +32,6 @@ export class CreateListingReq {
         this.userId = userId;
         this.categoryId = categoryId;
         this.tagIds = tagIds;
+        this.picturePath = picturePath;
     }
 }

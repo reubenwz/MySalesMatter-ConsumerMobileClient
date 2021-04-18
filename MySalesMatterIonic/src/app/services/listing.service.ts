@@ -25,16 +25,16 @@ export class ListingService {
   constructor(
     private httpClient: HttpClient,
     private sessionService: SessionService
-  ) {}
+  ) { }
 
   getListings(): Observable<Listing[]> {
     return this.httpClient
       .get<Listing[]>(
         this.baseUrl +
-          '/retrieveAllListings?username=' +
-          this.sessionService.getEmail() +
-          '&password=' +
-          this.sessionService.getPassword()
+        '/retrieveAllListings?username=' +
+        this.sessionService.getEmail() +
+        '&password=' +
+        this.sessionService.getPassword()
       )
       .pipe(catchError(this.handleError));
   }
@@ -43,12 +43,12 @@ export class ListingService {
     return this.httpClient
       .get<Listing>(
         this.baseUrl +
-          '/retrieveListingByListingId/' +
-          listingId +
-          '?username=' +
-          this.sessionService.getEmail() +
-          '&password=' +
-          this.sessionService.getPassword()
+        '/retrieveListingByListingId/' +
+        listingId +
+        '?username=' +
+        this.sessionService.getEmail() +
+        '&password=' +
+        this.sessionService.getPassword()
       )
       .pipe(catchError(this.handleError));
   }
@@ -57,12 +57,12 @@ export class ListingService {
     return this.httpClient
       .get<Listing>(
         this.baseUrl +
-          '/retrieveListingByOfferId/' +
-          offerId +
-          '?username=' +
-          this.sessionService.getEmail() +
-          '&password=' +
-          this.sessionService.getPassword()
+        '/retrieveListingByOfferId/' +
+        offerId +
+        '?username=' +
+        this.sessionService.getEmail() +
+        '&password=' +
+        this.sessionService.getPassword()
       )
       .pipe(catchError(this.handleError));
   }
@@ -71,21 +71,23 @@ export class ListingService {
     return this.httpClient
       .get<Listing[]>(
         this.baseUrl +
-          '/retrieveListingsByUser?username=' +
-          this.sessionService.getEmail() +
-          '&password=' +
-          this.sessionService.getPassword()
+        '/retrieveListingsByUser?username=' +
+        this.sessionService.getEmail() +
+        '&password=' +
+        this.sessionService.getPassword()
       )
       .pipe(catchError(this.handleError));
   }
 
   createNewListing(
+    picturePath: string,
     newListing: Listing,
     categoryId: number | null,
     userId: number,
     tagIds: number[]
   ): Observable<number> {
     let createListingReq: CreateListingReq = new CreateListingReq(
+      picturePath,
       newListing.name,
       newListing.description,
       newListing.brand,
@@ -100,11 +102,11 @@ export class ListingService {
     );
     console.log(
       '********** DEBUG listingService.ts brand : ' +
-        newListing.brand +
-        'createListingReq brand: ' +
-        createListingReq.brand +
-        'createListingReq userId: ' +
-        createListingReq.userId
+      newListing.brand +
+      'createListingReq brand: ' +
+      createListingReq.brand +
+      'createListingReq userId: ' +
+      createListingReq.userId
     );
     return this.httpClient
       .put<number>(
@@ -119,12 +121,12 @@ export class ListingService {
     return this.httpClient
       .get<Listing[]>(
         this.baseUrl +
-          '/searchListingsByName/' +
-          name +
-          '?username=' +
-          this.sessionService.getEmail() +
-          '&password=' +
-          this.sessionService.getPassword()
+        '/searchListingsByName/' +
+        name +
+        '?username=' +
+        this.sessionService.getEmail() +
+        '&password=' +
+        this.sessionService.getPassword()
       )
       .pipe(catchError(this.handleError));
   }
@@ -133,12 +135,12 @@ export class ListingService {
     return this.httpClient
       .get<Listing[]>(
         this.baseUrl +
-          '/filterListingsByCategory/' +
-          categoryId +
-          '?username=' +
-          this.sessionService.getEmail() +
-          '&password=' +
-          this.sessionService.getPassword()
+        '/filterListingsByCategory/' +
+        categoryId +
+        '?username=' +
+        this.sessionService.getEmail() +
+        '&password=' +
+        this.sessionService.getPassword()
       )
       .pipe(catchError(this.handleError));
   }
@@ -171,12 +173,12 @@ export class ListingService {
     return this.httpClient
       .delete<any>(
         this.baseUrl +
-          '/' +
-          listingId +
-          '?username=' +
-          this.sessionService.getEmail() +
-          '&password=' +
-          this.sessionService.getPassword()
+        '/' +
+        listingId +
+        '?username=' +
+        this.sessionService.getEmail() +
+        '&password=' +
+        this.sessionService.getPassword()
       )
       .pipe(catchError(this.handleError));
   }

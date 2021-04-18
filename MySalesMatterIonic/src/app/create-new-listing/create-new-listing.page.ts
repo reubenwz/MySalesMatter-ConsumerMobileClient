@@ -42,7 +42,7 @@ export class CreateNewListingPage implements OnInit {
 
   showImage: boolean;
   useCustomUpload: boolean;
-  fileName: String | null;
+  fileName: string | null;
   fileToUpload: File | null;
 
   constructor(
@@ -135,6 +135,7 @@ export class CreateNewListingPage implements OnInit {
     if (createListingForm.valid) {
       this.listingService
         .createNewListing(
+          this.fileName,
           this.newListing,
           parseInt(this.categoryId),
           this.userId,
@@ -183,7 +184,7 @@ export class CreateNewListingPage implements OnInit {
           this.tempFile = imageData.getPath();
           console.log(
             '********** DEBUG CreateNewListingPage.ts imgUrl : ' +
-              this.newListing.picturePath
+            this.newListing.picturePath
           );
           // this.fileUploadService.uploadFile(this.tempFile).subscribe(
           //   (response) => {},
@@ -231,7 +232,7 @@ export class CreateNewListingPage implements OnInit {
           this.showImage = true;
           console.log(
             '********** FileUploadComponent.ts: File uploaded successfully: ' +
-              response.status
+            response.status
           );
         },
         (error) => {

@@ -18,40 +18,25 @@
         <div *ngIf="resultError == true" style="color: red">{{message}}</div>
 
         <div style="color: red">
-          <div
-            *ngIf="name.invalid && (name.dirty || name.touched || submitted)"
-            class="errorText"
-          >
+          <div *ngIf="name.invalid && (name.dirty || name.touched || submitted)" class="errorText">
             <div *ngIf="name.errors.required">Name is required.</div>
           </div>
 
-          <div
-            *ngIf="description.invalid && (description.dirty || description.touched || submitted)"
-            class="errorText"
-          >
+          <div *ngIf="description.invalid && (description.dirty || description.touched || submitted)" class="errorText">
             <div *ngIf="description.errors.required">
               Start date is required.
             </div>
           </div>
 
-          <div
-            *ngIf="brand.invalid && (brand.dirty || brand.touched || submitted)"
-            class="errorText"
-          >
+          <div *ngIf="brand.invalid && (brand.dirty || brand.touched || submitted)" class="errorText">
             <div *ngIf="brand.errors.required">Brand is required.</div>
           </div>
 
-          <div
-            *ngIf="location.invalid && (location.dirty || location.touched || submitted)"
-            class="errorText"
-          >
+          <div *ngIf="location.invalid && (location.dirty || location.touched || submitted)" class="errorText">
             <div *ngIf="location.errors.required">Location is required.</div>
           </div>
 
-          <div
-            *ngIf="category.invalid && (category.dirty || category.touched || submitted)"
-            class="errorText"
-          >
+          <div *ngIf="category.invalid && (category.dirty || category.touched || submitted)" class="errorText">
             <div *ngIf="category.errors.required">Category is required.</div>
           </div>
         </div>
@@ -62,149 +47,79 @@
             <ion-button (click)="getCamera()">Open Camera</ion-button>
             <ion-button (click)="getGallery()">Gallery</ion-button>
           </div> -->
-
-          <ion-item>
-            <ion-label><b>Image</b></ion-label>
-            <img
-              *ngIf="showImage"
-              src="http://localhost:8080/MySalesMatter/uploadedFiles/{{fileName}}"
-              height="200"
-              width="200"
-            />
-            <ion-input
-              type="file"
-              id="file"
-              (change)="handleFileInput($event)"
-              [(ngModel)]="newListing.picturePath"
-              required="true"
-            /></ion-input>
-          </ion-item>
-
           <ion-item>
             <ion-label><b>Name</b></ion-label>
-            <ion-input
-              type="text"
-              id="name"
-              name="name"
-              [(ngModel)]="newListing.name"
-              required="true"
-              #name="ngModel"
-            ></ion-input>
+            <ion-input type="text" id="name" name="name" [(ngModel)]="newListing.name" required="true" #name="ngModel">
+            </ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label><b>Description</b></ion-label>
-            <ion-input
-              type="text"
-              id="description"
-              name="description"
-              [(ngModel)]="newListing.description"
-              required="true"
-              #description="ngModel"
-            >
+            <ion-input type="text" id="description" name="description" [(ngModel)]="newListing.description"
+              required="true" #description="ngModel">
             </ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label><b>Brand</b></ion-label>
-            <ion-input
-              type="text"
-              id="brand"
-              name="brand"
-              [(ngModel)]="newListing.brand"
-              required="true"
-              #brand="ngModel"
-            ></ion-input>
+            <ion-input type="text" id="brand" name="brand" [(ngModel)]="newListing.brand" required="true"
+              #brand="ngModel"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label><b>For Rent</b></ion-label>
-            <ion-checkbox
-              id="rentalAvailability"
-              name="rentalAvailability"
-              [(ngModel)]="newListing.rentalAvailability"
-            >
+            <ion-checkbox id="rentalAvailability" name="rentalAvailability" [(ngModel)]="newListing.rentalAvailability">
             </ion-checkbox>
           </ion-item>
 
           <ion-item>
             <ion-label><b>Rental Price per Day</b></ion-label>
-            <ion-input
-              type="number"
-              id="rentalPrice"
-              name="rentalPrice"
-              [(ngModel)]="newListing.rentalPrice"
-              required="true"
-              #rentalPrice="ngModel"
-            ></ion-input>
+            <ion-input type="number" id="rentalPrice" name="rentalPrice" [(ngModel)]="newListing.rentalPrice"
+              required="true" #rentalPrice="ngModel"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label><b>For Sale</b></ion-label>
-            <ion-checkbox
-              id="forSaleAvailability"
-              name="forSaleAvailability"
-              [(ngModel)]="newListing.forSaleAvailability"
-            >
+            <ion-checkbox id="forSaleAvailability" name="forSaleAvailability"
+              [(ngModel)]="newListing.forSaleAvailability">
             </ion-checkbox>
           </ion-item>
 
           <ion-item>
             <ion-label><b>Sale Price</b></ion-label>
-            <ion-input
-              type="number"
-              id="salePrice"
-              name="salePrice"
-              [(ngModel)]="newListing.salePrice"
-              required="true"
-              #salePrice="ngModel"
-            ></ion-input>
+            <ion-input type="number" id="salePrice" name="salePrice" [(ngModel)]="newListing.salePrice" required="true"
+              #salePrice="ngModel"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label><b>Location</b></ion-label>
-            <ion-input
-              type="text"
-              id="location"
-              name="location"
-              [(ngModel)]="newListing.location"
-              required="true"
-              #location="ngModel"
-            ></ion-input>
+            <ion-input type="text" id="location" name="location" [(ngModel)]="newListing.location" required="true"
+              #location="ngModel"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label><b>Category</b></ion-label>
-            <ion-select
-              placeholder="Select One"
-              id="category"
-              name="category"
-              #category="ngModel"
-              [(ngModel)]="categoryId"
-              required="true"
-            >
-              <ion-select-option
-                *ngFor="let category of categories"
-                value="{{category.categoryId}}"
-                >{{category.name}}
+            <ion-select placeholder="Select One" id="category" name="category" #category="ngModel"
+              [(ngModel)]="categoryId" required="true">
+              <ion-select-option *ngFor="let category of categories" value="{{category.categoryId}}">{{category.name}}
               </ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
             <ion-label><b>Tags</b></ion-label>
-            <ion-select
-              placeholder="Select Many"
-              id="tag"
-              name="tag"
-              [(ngModel)]="tagIds"
-              multiple="true"
-            >
-              <ion-select-option *ngFor="let tag of tags" value="{{tag.tagId}}"
-                >{{tag.name}}</ion-select-option
-              >
+            <ion-select placeholder="Select Many" id="tag" name="tag" [(ngModel)]="tagIds" multiple="true">
+              <ion-select-option *ngFor="let tag of tags" value="{{tag.tagId}}">{{tag.name}}</ion-select-option>
             </ion-select>
           </ion-item>
+
+          <ion-item>
+            <ion-label><b>Image</b></ion-label>
+            <img *ngIf="showImage" src="http://localhost:8080/MySalesMatter/uploadedFiles/{{fileName}}" height="200"
+              width="200" />
+            <input type="file" id="file" (change)="handleFileInput($event)" required="true" />
+          </ion-item>
+
         </ion-list>
       </ion-card-content>
     </ion-card>

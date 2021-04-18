@@ -8,10 +8,7 @@
   <br />
   <ion-toolbar>
     <div class="ion-searchbar-right">
-      <ion-searchbar
-        showcancelbutton=""
-        (ionInput)="filterList($event)"
-      ></ion-searchbar>
+      <ion-searchbar showcancelbutton="" (ionInput)="filterList($event)"></ion-searchbar>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -25,6 +22,7 @@
     <ion-card-content>
       <ion-card-title> {{listing.name}} </ion-card-title>
       <br />
+      <img src="http://localhost:8080/MySalesMatter/uploadedFiles/{{listing.picturePath}}" height="200" width="200" />
       <p>Description: {{listing.description}}</p>
       <p>For Rent: {{listing.rentalAvailabilty}}</p>
       <p>For Sale: {{listing.forSaleAvailability}}</p>
