@@ -273,6 +273,14 @@ const routes: Routes = [
     path: 'makePayment/:offerId',
     loadChildren: () => import('./make-payment/make-payment.module').then(m => m.MakePaymentPageModule)
   },
+  {
+    path: 'addPurchaseReview',
+    loadChildren: () => import('./add-purchase-review/add-purchase-review.module').then( m => m.AddPurchaseReviewPageModule)
+  },
+  {
+    path: 'addPurchaseReview/:offerId',
+    loadChildren: () => import('./add-purchase-review/add-purchase-review.module').then( m => m.AddPurchaseReviewPageModule)
+  },
 
 ];
 

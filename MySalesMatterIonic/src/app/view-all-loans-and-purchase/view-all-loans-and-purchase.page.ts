@@ -104,6 +104,11 @@ export class ViewAllLoansAndPurchasePage implements OnInit {
     console.log("ID IS " + salesId);
   }
 
+  addPurchaseReview(event, offerId) {
+    this.router.navigate(['/addPurchaseReview/' + offerId]);
+    console.log("ID IS " + offerId);
+  }
+
   back() {
     this.router.navigate(['/index/']);
   }

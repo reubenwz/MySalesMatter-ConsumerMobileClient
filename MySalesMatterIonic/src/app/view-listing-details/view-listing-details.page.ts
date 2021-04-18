@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Listing } from '../models/listing';
 import { ListingService } from '../services/listing.service';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-view-listing-details',
@@ -25,6 +26,7 @@ export class ViewListingDetailsPage implements OnInit {
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private listingService: ListingService,
+    private sessionervice: SessionService,
     public alertController: AlertController) {
     this.retrieveListingError = false;
     this.error = false;
@@ -58,6 +60,20 @@ export class ViewListingDetailsPage implements OnInit {
         console.log('********** ViewListingDetailsPage.ts: ' + error);
       }
     );
+  }
+
+  checkRentalAvail() {
+    if (!this.rentalAvailability || this.listingToView.user.userId == (this.sessionervice.getCurrentUser().userId)) {
+      return false;
+    }
+    return true;
+  }
+
+  checkBuyAvail() {
+    if (!this.forSaleAvailability || this.listingToView.user.userId == (this.sessionervice.getCurrentUser().userId)) {
+      return false;
+    }
+    return true;
   }
 
   createRentalOffer() {
