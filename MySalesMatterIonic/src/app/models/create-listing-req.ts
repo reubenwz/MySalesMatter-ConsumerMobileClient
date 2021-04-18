@@ -15,11 +15,14 @@ export class CreateListingReq {
     salePrice: number;
     location: string;
     picturePath: string;
+    rentalAvailability: boolean;
+    forSaleAvailability: boolean;
 
 
 
-    constructor(picturePath?: string, name?: string, description?: string, brand?: string, rentalPrice?: number, salePrice?: number, location?: string, username?: string, password?: string, userId?: number, categoryId?: number, tagIds?: number[]) {
-
+    constructor(rentalAvailability?: boolean, forSaleAvailability?: boolean, picturePath?: string, name?: string, description?: string, brand?: string, rentalPrice?: number, salePrice?: number, location?: string, username?: string, password?: string, userId?: number, categoryId?: number, tagIds?: number[]) {
+        this.rentalAvailability = rentalAvailability;
+        this.forSaleAvailability = forSaleAvailability;
         this.description = description;
         this.name = name;
         this.date = new Date();

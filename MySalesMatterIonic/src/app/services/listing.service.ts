@@ -87,6 +87,8 @@ export class ListingService {
     tagIds: number[]
   ): Observable<number> {
     let createListingReq: CreateListingReq = new CreateListingReq(
+      newListing.rentalAvailability,
+      newListing.forSaleAvailability,
       picturePath,
       newListing.name,
       newListing.description,
