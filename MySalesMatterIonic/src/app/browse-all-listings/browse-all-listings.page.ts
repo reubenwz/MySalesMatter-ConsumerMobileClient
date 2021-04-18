@@ -24,7 +24,6 @@ export class BrowseAllListingsPage implements OnInit {
   resultSuccess: boolean;
   resultError: boolean;
   message: string;
-  imgURL;
   constructor(
     private camera: Camera,
     private router: Router,
@@ -122,42 +121,5 @@ export class BrowseAllListingsPage implements OnInit {
         console.log('********** BrowseAllListingsPage.ts: ' + error);
       }
     );
-  }
-  getCamera() {
-    this.camera
-      .getPicture({
-        sourceType: this.camera.PictureSourceType.CAMERA,
-        destinationType: this.camera.DestinationType.DATA_URL,
-        encodingType: this.camera.EncodingType.JPEG,
-        targetWidth: 720,
-        correctOrientation: true,
-      })
-      .then(
-        (imageData) => {
-          // imageData is either a base64 encoded string or a file URI
-          // If it's base64 (DATA_URL):
-          this.imgURL = 'data:image/jpeg;base64,' + imageData;
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-  }
-  getGallery() {
-    this.camera
-      .getPicture({
-        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-        destinationType: this.camera.DestinationType.DATA_URL,
-      })
-      .then(
-        (imageData) => {
-          // imageData is either a base64 encoded string or a file URI
-          // If it's base64 (DATA_URL):
-          this.imgURL = 'data:image/jpeg;base64,' + imageData;
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
   }
 }

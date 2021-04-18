@@ -15,6 +15,7 @@ import {
   CameraOptions,
   DestinationType,
 } from '@ionic-native/camera/ngx';
+import { FileUploadService } from '../services/file-upload.service';
 
 @Component({
   selector: 'app-create-new-listing',
@@ -35,7 +36,14 @@ export class CreateNewListingPage implements OnInit {
   message: string;
   userId: number;
 
-  imgURL;
+  imgURL: string;
+  tempFile: File;
+  blob: Blob;
+
+  showImage: boolean;
+  useCustomUpload: boolean;
+  fileName: String | null;
+  fileToUpload: File | null;
 
   constructor(
     private router: Router,
@@ -44,7 +52,8 @@ export class CreateNewListingPage implements OnInit {
     private categoryService: CategoryService,
     private sessionService: SessionService,
     private tagService: TagService,
-    private camera: Camera
+    private camera: Camera,
+    private fileUploadService: FileUploadService
   ) {
     this.submitted = false;
     this.newListing = new Listing();
@@ -57,6 +66,11 @@ export class CreateNewListingPage implements OnInit {
     this.resultSuccess = false;
     this.resultError = false;
     this.userId = this.sessionService.getCurrentUser().userId;
+
+    this.showImage = false;
+    this.useCustomUpload = true;
+    this.fileName = null;
+    this.fileToUpload = null;
   }
 
   ngOnInit() {
@@ -84,6 +98,29 @@ export class CreateNewListingPage implements OnInit {
     this.newListing = new Listing();
   }
 
+  dataURLtoFile(dataurl: string, filename: string): File {
+    var arr = dataurl.split(','),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], filename, { type: mime });
+  }
+
+  dataURItoBlob(dataURI: string): Blob {
+    var binary = atob(dataURI.split(',')[1]);
+    var array = [];
+    for (var i = 0; i < binary.length; i++) {
+      array.push(binary.charCodeAt(i));
+    }
+    return new Blob([new Uint8Array(array)], { type: 'image/jpeg' });
+  }
+
   create(createListingForm: NgForm) {
     let longTagIds: number[] = new Array();
 
@@ -92,10 +129,7 @@ export class CreateNewListingPage implements OnInit {
         longTagIds.push(parseInt(this.tagIds[i]));
       }
     }
-    console.log(
-      '********** DEBUG CreateNewListingPage.ts brand : ' +
-        this.newListing.brand
-    );
+
     this.submitted = true;
 
     if (createListingForm.valid) {
@@ -131,12 +165,11 @@ export class CreateNewListingPage implements OnInit {
         );
     }
   }
-
   getCamera() {
     this.camera
       .getPicture({
         sourceType: this.camera.PictureSourceType.CAMERA,
-        destinationType: this.camera.DestinationType.DATA_URL,
+        destinationType: this.camera.DestinationType.FILE_URI,
         encodingType: this.camera.EncodingType.JPEG,
         targetWidth: 720,
         correctOrientation: true,
@@ -145,7 +178,17 @@ export class CreateNewListingPage implements OnInit {
         (imageData) => {
           // imageData is either a base64 encoded string or a file URI
           // If it's base64 (DATA_URL):
-          this.imgURL = 'data:image/jpeg;base64,' + imageData;
+          this.imgURL = (<any>window).Ionic.WebView.convertFileSrc(imageData);
+          this.newListing.picturePath = this.imgURL;
+          this.tempFile = imageData.getPath();
+          console.log(
+            '********** DEBUG CreateNewListingPage.ts imgUrl : ' +
+              this.newListing.picturePath
+          );
+          // this.fileUploadService.uploadFile(this.tempFile).subscribe(
+          //   (response) => {},
+          //   (error) => {}
+          // );
         },
         (err) => {
           console.log(err);
@@ -160,14 +203,43 @@ export class CreateNewListingPage implements OnInit {
       })
       .then(
         (imageData) => {
-          // imageData is either a base64 encoded string or a file URI
-          // If it's base64 (DATA_URL):
           this.imgURL = 'data:image/jpeg;base64,' + imageData;
+          this.tempFile = this.dataURLtoFile(this.imgURL, 'test.jpg');
+          console.log('create check tempFile name:' + this.tempFile.name);
+          this.fileUploadService.uploadFile(this.tempFile).subscribe(
+            (response) => {
+              console.log('create success');
+            },
+            (error) => {
+              console.log('create faileur');
+            }
+          );
         },
         (err) => {
           console.log(err);
         }
       );
+  }
+  handleFileInput(event: any) {
+    this.fileToUpload = event.target.files.item(0);
+
+    if (this.fileToUpload != null) {
+      this.fileName = this.fileToUpload.name;
+
+      this.fileUploadService.uploadFile(this.fileToUpload).subscribe(
+        (response) => {
+          this.showImage = true;
+          console.log(
+            '********** FileUploadComponent.ts: File uploaded successfully: ' +
+              response.status
+          );
+        },
+        (error) => {
+          this.showImage = true;
+          console.log('********** FileUploadComponent.ts: ' + error);
+        }
+      );
+    }
   }
 
   back() {
