@@ -81,11 +81,11 @@
 
   <ion-card style="text-align: center;" *ngIf="retrieveListingError == false && listingToView != null">
     <ion-card-content>
-      <ion-button *ngIf="rentalAvailability" (click)="createRentalOffer()">
+      <ion-button *ngIf="checkRentalAvail()" (click)="createRentalOffer()">
         <ion-icon slot="start" name="basket"></ion-icon>
         Rent
       </ion-button>
-      <ion-button *ngIf="forSaleAvailability" (click)="createBuyOffer()">
+      <ion-button *ngIf="checkBuyAvail()" (click)="createBuyOffer()">
         <ion-icon slot="start" name="cart"></ion-icon>
         Buy
       </ion-button>
