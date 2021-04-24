@@ -29,7 +29,7 @@ Link to project on STEPS: https://uvents.nus.edu.sg/event/18th-steps/module/IS31
    
 4. Install Ionic, if Ionic is not installed in your system (Skip this step if you have Ionic)
   ```sh
-   sudo npm install -g ionic
+   npm install -g ionic/cli
    ```
    
 ## 🚀 Building and Running for Production
